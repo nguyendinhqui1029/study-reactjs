@@ -28,9 +28,33 @@ function NavigateMenu(props) {
           <li>
             Máy ảnh &amp; Máy quay phim
             <FontAwesomeIcon icon={faAngleRight} className="IconRight" />
-            <ul className="SubMenu">
-              <li> Máy ảnh &amp; Máy quay phim</li>
-            </ul>
+            <div className="SubMenu">
+              <div className="ContentSubMenu">
+                <h5>MÁY QUAY PHIM</h5>
+                <ul>
+                  <li>Máy quy phim sony</li>
+                  <li>Máy quay phim panasonic </li>
+                  <li>Máy quy phim sony</li>
+                </ul>
+                <h5>MÁY ẢNH SỐ</h5>
+                <ul>
+                  <li>Máy quy phim sony</li>
+                  <li>Máy quay phim panasonic </li>
+                  <li>Máy quy phim sony</li>
+                  <li>Máy quy phim sony</li>
+                  <li>Máy quay phim panasonic</li>
+                  <li>Máy quy phim sony</li>
+                </ul>
+              </div>
+              <div className="ContentSubMenu">
+                <h5>BỘ ĐỒ THỂ THAO NAM</h5>
+                <ul>
+                  <li>Máy quy phim sony</li>
+                  <li>Máy quay phim panasonic </li>
+                  <li>Máy quy phim sony</li>
+                </ul>
+              </div>
+            </div>
           </li>
           <li>
             Máy để bàn &amp; Laptop
