@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
-
+import ToDoList from './component/ToDoList/ToDoList';
+import { Button } from '@material-ui/core'
+import { useState } from 'react';
 function App() {
+  const [toDoList, setToDoList] = useState([{ id: 1, title: "Title 1", active: false }, { id: 2, title: "Title 2", active: false }, { id: 3, title: "Title 3", active: false }]);
+  function itemClick(item) {
+    item.active = true;
+    setToDoList(toDoList);
+    console.log(toDoList)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ToDoList clickToItem={itemClick} listToDo={toDoList}></ToDoList>
+      <Button variant="contained" color="primary">
+        Primary
+      </Button>
     </div>
   );
 }
