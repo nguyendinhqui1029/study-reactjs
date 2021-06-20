@@ -61,7 +61,7 @@
         .IconRight {
           font-size: 25px;
           position: absolute;
-          right: 10px;
+          right: 5px;
           top: 7px;
           display: none;
         }
@@ -71,9 +71,12 @@
           top: 0px;
           left: 100%;
           z-index: 1000;
+
           display: none;
           border: 1px solid $borderColor;
           box-shadow: 1px 0 4px 0 rgb(0 0 0 / 20%);
+          background-color: $whiteColor;
+
           width: 180%;
 
           .ContentSubMenu {
@@ -142,8 +145,13 @@
         line-height: 50px;
 
         font-weight: 400;
+
+        .MenuLink {
+          text-decoration: none;
+          color: $whiteColor;
+        }
       }
-      .active {
+      .Active {
         background: $colorActive;
       }
 

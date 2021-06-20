@@ -6,13 +6,23 @@ import {
   faList,
   faChevronCircleDown,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link, useRouteMatch } from "react-router-dom";
 import "./NavigateMenu.scss";
 
 NavigateMenu.propTypes = {
   listCategory: PropTypes.array,
+  listMenu: PropTypes.array,
+  selectedCategory: PropTypes.func,
+};
+
+NavigateMenu.defaultProps = {
+  listCategory: [],
+  listMenu: [],
+  selectedCategory: null,
 };
 
 function NavigateMenu(props) {
+  const { listMenu, listCategory } = props;
   return (
     <div className="NavMenu">
       <div className="ContainerCategory">
@@ -25,65 +35,79 @@ function NavigateMenu(props) {
           />
         </div>
         <ul>
-          <li>
-            Máy ảnh &amp; Máy quay phim
-            <FontAwesomeIcon icon={faAngleRight} className="IconRight" />
-            <div className="SubMenu">
-              <div className="ContentSubMenu">
-                <h5>MÁY QUAY PHIM</h5>
-                <ul>
-                  <li>Máy quy phim sony</li>
-                  <li>Máy quay phim panasonic </li>
-                  <li>Máy quy phim sony</li>
-                </ul>
-                <h5>MÁY ẢNH SỐ</h5>
-                <ul>
-                  <li>Máy quy phim sony</li>
-                  <li>Máy quay phim panasonic </li>
-                  <li>Máy quy phim sony</li>
-                  <li>Máy quy phim sony</li>
-                  <li>Máy quay phim panasonic</li>
-                  <li>Máy quy phim sony</li>
-                </ul>
-              </div>
-              <div className="ContentSubMenu">
-                <h5>BỘ ĐỒ THỂ THAO NAM</h5>
-                <ul>
-                  <li>Máy quy phim sony</li>
-                  <li>Máy quay phim panasonic </li>
-                  <li>Máy quy phim sony</li>
-                </ul>
-              </div>
-            </div>
-          </li>
-          <li>
-            Máy để bàn &amp; Laptop
-            <FontAwesomeIcon icon={faAngleRight} className="IconRight" />
-            <ul className="SubMenu">
-              <li> Máy ảnh &amp; Máy quay phim</li>
-            </ul>
-          </li>
-          <li>
-            Điện thoại
-            <FontAwesomeIcon icon={faAngleRight} className="IconRight" />
-          </li>
-          <li>
-            Máy tính bảng
-            <FontAwesomeIcon icon={faAngleRight} className="IconRight" />
-          </li>
+          {listCategory.map((catagory, index) => {
+            return (
+              <CategoryItem item={{ ...catagory, ...props }} key={index} />
+            );
+          })}
         </ul>
       </div>
+
       <div className="Menu">
         <ul>
-          <li className="active">Trang chu</li>
-          <li>Gioi thieu</li>
-          <li>San pham</li>
-          <li>Tin tuc</li>
-          <li>Lien he</li>
+          {listMenu.map((item, index) => {
+            return <MenuItem item={item} key={index} />;
+          })}
         </ul>
       </div>
     </div>
   );
 }
 
+function MenuItem({ item }) {
+  const match = useRouteMatch({ path: item.path });
+  return (
+    <Link
+      to={item.path}
+      exact={item && item.exact ? item.exact.toString() : "false"}
+      className="MenuLink"
+    >
+      <li className={match && match.isExact ? "Active" : ""}>{item.label}</li>
+    </Link>
+  );
+}
+
+function CategoryItem({ item }) {
+  const { label, subCategory, selectedCategory } = item;
+  function handlSelectedItem(categorySeleted) {
+    if (selectedCategory && subCategory.length <= 0) {
+      selectedCategory(categorySeleted);
+    }
+  }
+  return (
+    <li onClick={() => handlSelectedItem(item)}>
+      {label}
+      <FontAwesomeIcon icon={faAngleRight} className="IconRight" />
+
+      {subCategory.map((subCategory, index) => {
+        return (
+          <SubCategoryItem
+            item={{ ...subCategory, selectedCategory }}
+            key={index}
+          />
+        );
+      })}
+    </li>
+  );
+}
+
+function SubCategoryItem({ item }) {
+  const { label, subCategory, selectedCategory } = item;
+  return (
+    <div className="SubMenu">
+      <div className="ContentSubMenu">
+        <h5>{label}</h5>
+        <ul>
+          {subCategory.map((subItem, index) => {
+            return (
+              <li key={index} onClick={() => selectedCategory(subItem)}>
+                {subItem.label}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
+  );
+}
 export default NavigateMenu;
