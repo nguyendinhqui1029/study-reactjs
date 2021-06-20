@@ -1,0 +1,17 @@
+@import "../../assets/scss/common.scss";
+.ProductContent {
+  h1 {
+    font-size: 19px;
+    margin-top: 0;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: $darkTextColor;
+    font-weight: bold;
+  }
+}
+
+.Title {
+  text-align: left;
+  border-bottom: 2px solid $orangeColor;
+  padding-bottom: 5px;
+}

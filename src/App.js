@@ -22,8 +22,24 @@ const listCategory = [
         id: 2,
         label: "MÁY QUAY PHIM",
         subCategory: [
-          { id: 3, label: "MÁY QUAY PHIM", subCategory: [] },
-          { id: 3, label: "MÁY QUAY PHIM", subCategory: [] },
+          { id: 4, label: "MÁY QUAY PHIM", subCategory: [] },
+          { id: 5, label: "MÁY QUAY PHIM", subCategory: [] },
+        ],
+      },
+      {
+        id: 3,
+        label: "Dien thoai",
+        subCategory: [
+          { id: 6, label: "MÁY QUAY PHIM", subCategory: [] },
+          { id: 7, label: "MÁY QUAY PHIM", subCategory: [] },
+        ],
+      },
+      {
+        id: 4,
+        label: "Dien thoai 1",
+        subCategory: [
+          { id: 8, label: "MÁY QUAY PHIM", subCategory: [] },
+          { id: 9, label: "MÁY QUAY PHIM", subCategory: [] },
         ],
       },
     ],
