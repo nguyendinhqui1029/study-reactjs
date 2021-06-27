@@ -23,6 +23,7 @@ NavigateMenu.defaultProps = {
 
 function NavigateMenu(props) {
   const { listMenu, listCategory } = props;
+  const match = useRouteMatch({ path: "/" });
   return (
     <div className="NavMenu">
       <div className="ContainerCategory">
@@ -32,9 +33,10 @@ function NavigateMenu(props) {
           <FontAwesomeIcon
             icon={faChevronCircleDown}
             className="IconChevronCircleDown"
+            style={{ display: match.isExact ? "block" : "none" }}
           />
         </div>
-        <ul>
+        <ul style={{ display: match.isExact ? "block" : "none" }}>
           {listCategory.map((catagory, index) => {
             return (
               <CategoryItem item={{ ...catagory, ...props }} key={index} />

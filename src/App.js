@@ -6,12 +6,27 @@ import Product from "./screens/product/Product";
 import Contact from "./screens/contact/Contact";
 import News from "./screens/news/News";
 import Home from "./screens/home/Home";
+import ExampleSource from "./screens/ExampleSource/ExampleSource";
+
+import "./assets/scss/common.scss";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//dynamic icon
+import { library } from "@fortawesome/fontawesome-svg-core";
+import * as Icons from "@fortawesome/free-solid-svg-icons";
+
+const iconList = Object.keys(Icons)
+  .filter((key) => key !== "fas" && key !== "prefix")
+  .map((icon) => Icons[icon]);
+library.add(...iconList);
+
 const listMenuItem = [
   { path: "/", label: "Trang chu", exact: true },
   { path: "/about", label: "Gioi thieu", exact: false },
   { path: "/product", label: "San pham", exact: false },
   { path: "/news", label: "Tin tuc", exact: false },
   { path: "/contact", label: "Lien he", exact: false },
+  { path: "/source", label: "Component Example", exact: false },
 ];
 const listCategory = [
   {
@@ -57,6 +72,14 @@ function App() {
   return (
     <Router>
       <div className="App">
+        {/* get all icon name
+        {iconList.map(icon=>{
+          return (
+            <FontAwesomeIcon style={{padding:'5px'}} icon={icon.iconName}>
+              {icon.iconName}
+            </FontAwesomeIcon>
+          );
+        })} */}
         <NavigateMenu
           listCategory={listCategory}
           listMenu={listMenuItem}
@@ -77,6 +100,9 @@ function App() {
           </Route>
           <Route path="/" exact={true}>
             <Home />
+          </Route>
+          <Route path="/source">
+            <ExampleSource />
           </Route>
         </Switch>
       </div>

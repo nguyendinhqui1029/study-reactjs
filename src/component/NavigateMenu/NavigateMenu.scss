@@ -125,7 +125,7 @@
     }
 
     &:hover ul {
-      display: block;
+      display: block !important;
       z-index: 4;
     }
 
@@ -135,7 +135,7 @@
     }
 
     &:hover .IconChevronCircleDown {
-      display: inline;
+      display: inline !important;
       transition: 5s ease-in;
     }
   }

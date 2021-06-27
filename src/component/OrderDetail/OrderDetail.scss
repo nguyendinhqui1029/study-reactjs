@@ -1,0 +1,124 @@
+@import "../../assets/scss/common.scss";
+
+.OrderDetail {
+  padding: 35px;
+  border: 1px solid $borderColor;
+  background: $whiteColor;
+
+  .IdOrder {
+    color: $darkTextColor;
+    font-size: 40px;
+    font-weight: normal;
+    margin-bottom: 22px;
+    margin-top: 5px;
+
+    span {
+      padding: 10px;
+      font-size: 27px;
+      color: $blackColor;
+      font-weight: bold;
+    }
+  }
+
+  .ContainerOrder {
+    margin: 18px 0px;
+
+    .Label {
+      font-weight: bold;
+    }
+
+    .Content {
+      color: $darkTextColor;
+      font-style: italic;
+      padding: 10px;
+    }
+  }
+
+  .TableProduct {
+    .HeaderTable,
+    .ContentTable {
+      display: flex;
+      background: $backgroundHeaderTable;
+      border-bottom: 3px solid $borderTabel;
+      text-transform: uppercase;
+
+      line-height: 30px;
+      font-weight: bold;
+
+      .HeaderSTT,
+      .ContentSTT {
+        flex: 1;
+        text-align: left;
+        padding: 5px;
+      }
+
+      .HeaderProduct,
+      .ContentProduct {
+        flex: 7;
+        text-align: left;
+        padding: 5px;
+      }
+
+      .HeaderPrice,
+      .ContentPrice {
+        flex: 3;
+        text-align: left;
+        padding: 5px;
+      }
+
+      .HeaderAmount,
+      .ContentAmount {
+        flex: 3;
+        text-align: left;
+        padding: 5px;
+      }
+
+      .HeaderIntoMoney,
+      .ContentIntoMoney {
+        flex: 4;
+        text-align: left;
+        padding: 5px;
+      }
+
+      .ContentSTT,
+      .ContentProduct,
+      .ContentPrice,
+      .ContentAmount,
+      .ContentIntoMoney {
+        font-weight: normal;
+      }
+
+      .ContentPrice,
+      .ContentIntoMoney {
+        word-break: break-all;
+        text-transform: none;
+      }
+      .ContentProduct {
+        text-transform: none;
+      }
+    }
+
+    .ContentTable {
+      background: $whiteColor;
+      border-bottom: 2px solid $borderTabel;
+    }
+  }
+
+  .IntoMoney {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 20px;
+    .Label {
+      color: $blackColor;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin: 11px 10px;
+    }
+
+    .Content {
+      color: $redColor;
+      line-height: 40px;
+      margin: 0px 3px;
+    }
+  }
+}

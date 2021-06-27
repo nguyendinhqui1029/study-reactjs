@@ -1,0 +1,65 @@
+@import "../../assets/scss/common.scss";
+.FeaturedNews {
+  border: 1px solid $borderColor;
+  padding: 0px 10px;
+
+  margin-left: 15px;
+  position: relative;
+
+  .TitleFeaturedNews {
+    border-bottom: 3px solid $darkTextColor;
+    color: $whiteColor;
+    background: $orangeColor;
+    margin: 0px -11px;
+
+    line-height: 30px;
+    text-align: left;
+    padding: 10px;
+    text-transform: uppercase;
+  }
+
+  .ContentFeaturedNews {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    li {
+      border-bottom: 1px solid $borderColor;
+      .CardItem {
+        display: flex;
+        flex-direction: row;
+
+        .ImageItem {
+          flex: 1;
+          .Image {
+            width: 60%;
+            cursor: zoom-in;
+            margin: 15px;
+          }
+          .Image:hover {
+            transform: scale(1.15);
+          }
+        }
+
+        .ContentItem {
+          flex: 1;
+
+          .TitleItem {
+            color: $darkTextColor;
+            font-weight: bold;
+            text-align: left;
+            cursor: pointer;
+            margin: 5px 0px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+          }
+        }
+      }
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+  }
+}

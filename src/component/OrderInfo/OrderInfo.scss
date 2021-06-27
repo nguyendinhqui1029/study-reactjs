@@ -1,0 +1,75 @@
+@import "../../assets/scss/common.scss";
+.OrderInfo {
+   border: 1px solid $borderColor;
+  .HeaderContainer {
+    text-align: left;
+    padding: 6px 11px;
+    background-color: $orangeColor;
+
+    .HeaderContent {
+      color: $whiteColor;
+      margin: 0px;
+      padding: 0px;
+    }
+  }
+  .ContentContainer {
+    .ProductInfo {
+    }
+
+    .InfoPay {
+      .IntoMoney {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1px solid $borderColor;
+        padding: 6px 10px;
+        span:first-child {
+          flex: 1;
+          text-align: left;
+          font-weight: 700;
+        }
+
+        span:last-child {
+          flex: 1;
+          text-align: right;
+          font-weight: 700;
+        }
+      }
+      .Pay {
+        display: flex;
+        flex-direction: row;
+        font-size: 20px;
+        font-weight: 800;
+
+        padding: 6px 10px;
+        border-bottom: 1px solid $borderColor;
+
+        span:first-child {
+          flex: 1;
+          text-align: left;
+          text-transform: uppercase;
+        }
+
+        span:last-child {
+          flex: 1;
+          text-align: right;
+          color: $orangeColor;
+        }
+      }
+
+      .ButtonAdd {
+        flex: 1;
+        flex-direction: column;
+        padding: 20px;
+        align-items: flex-end;
+        text-align: right;
+        span {
+          color: $whiteColor;
+          text-transform: uppercase;
+          border-radius: 5px 5px 5px 5px;
+          background-color: $redColor;
+          padding: 8px 20px;
+        }
+      }
+    }
+  }
+}

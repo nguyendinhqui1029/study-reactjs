@@ -1,0 +1,74 @@
+@import "../../assets/scss/common.scss";
+
+.Steper {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  
+  .SteperItem {
+    flex: 1;
+    .IconItem {
+      font-size: 30px;
+      color: $textColor;
+    }
+
+    .TitleItem {
+      h3 {
+        margin-top: 5px;
+        margin-bottom: 35px;
+        color: $textColor;
+      }
+    }
+
+    .LineStatus {
+      border-bottom: 3px solid $textColor;
+      line-height: 0px;
+      .ItemStatus {
+        width: 20px;
+        height: 20px;
+        border: 2px solid $textColor;
+        border-radius: 50% 50%;
+
+        color: $whiteColor;
+        padding: 10px 16px;
+        font-weight: bold;
+
+        background-color: $borderColor;
+      }
+    }
+  }
+
+  .ActiveSteperItem {
+    flex: 1;
+    .IconItem {
+      font-size: 30px;
+      color: $orangeColor;
+    }
+
+    .TitleItem {
+      h3 {
+        margin-top: 5px;
+        margin-bottom: 35px;
+        color: $orangeColor;
+      }
+    }
+
+    .LineStatus {
+      border-bottom: 3px solid $orangeColor;
+      line-height: 0px;
+      .ItemStatus {
+        width: 20px;
+        height: 20px;
+        border: 2px solid $orangeColor;
+        border-radius: 50% 50%;
+
+        color: $whiteColor;
+        padding: 10px 16px;
+        font-weight: bold;
+
+        background-color: $orangeColor;
+      }
+    }
+  }
+}

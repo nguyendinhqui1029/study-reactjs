@@ -12,7 +12,9 @@
 
   flex: 1;
   flex-shrink: 1;
-
+  background: $whiteColor;
+  text-align: center;
+  
   .PercentDiscount {
     position: absolute;
     background-color: $orangeColor;
@@ -72,12 +74,17 @@
   .ImageProduct {
     height: 200px;
     .Image {
-      width: 100%;
+      width: 70%;
       height: inherit;
+      cursor: zoom-in;
+    }
+    .Image:hover {
+      transform: scale(1.25);
     }
   }
 
   .ProductDetail {
+    margin-top: 20px;
     .Price {
       font-weight: bold;
       color: $redColor;

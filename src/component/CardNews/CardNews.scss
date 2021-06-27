@@ -1,0 +1,65 @@
+@import "../../assets/scss/common.scss";
+.CardNews {
+  border-bottom: 1px solid $borderColor;
+  padding: 0px 10px;
+
+  margin-bottom: 15px;
+  position: relative;
+
+  .CardItem {
+    display: flex;
+    flex-direction: row;
+
+    .ImageItem {
+      flex: 1;
+      border: 2px solid $borderColor;
+      padding: 10px;
+      margin: 6px;
+
+      background: $whiteColor;
+      .Image {
+        width: 70%;
+        cursor: zoom-in;
+        margin: 10px;
+      }
+      .Image:hover {
+        transform: scale(1.15);
+      }
+    }
+
+    .ContentItem {
+      flex: 3;
+
+      p {
+        line-height: 25px;
+        text-align: left;
+        margin: 5px 0px;
+      }
+
+      .TitleItem {
+        color: $orangeColor;
+        font-weight: bold;
+        text-align: left;
+        cursor: pointer;
+        margin: 5px 0px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      .TitleItem:hover {
+        color: $darkTextColor;
+      }
+
+      .Date {
+        text-align: left;
+        span {
+          font-size: 13px;
+          color: $textColor;
+          font-style: italic;
+        }
+      }
+    }
+  }
+}

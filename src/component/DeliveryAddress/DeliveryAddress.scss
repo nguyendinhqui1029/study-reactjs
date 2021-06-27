@@ -1,0 +1,83 @@
+@import "../../assets/scss/common.scss";
+.DeliveryAddress {
+  border: 1px solid $borderColor;
+
+  .HeaderContainer {
+    text-align: left;
+    padding: 6px 11px;
+    background-color: $orangeColor;
+    .HeaderContent {
+      color: $whiteColor;
+      margin: 0px;
+      padding: 0px;
+    }
+  }
+  .ContentContainer {
+    padding: 6px 11px;
+    .HeaderContent {
+      color: $orangeColor;
+      margin: 12px 0px;
+    }
+    .ContainerLink {
+      span {
+        color: $textColor;
+        padding: 0px 3px;
+      }
+      .RegisterLink,
+      .LoginLink {
+        text-decoration: none;
+        color: $redColor;
+      }
+
+      .RegisterLink:hover {
+        color: $orangeColor;
+      }
+      .LoginLink:hover {
+        color: $orangeColor;
+      }
+    }
+    .MainInfo,
+    .SubInfo {
+      h5 {
+        font-size: 15px;
+        margin: 12px 0px 5px;
+      }
+
+      .FormInfo {
+        display: flex;
+        flex-direction: column;
+        input[type="text"],
+        input[type="checkbox"],
+        textarea,
+        select {
+          flex: 1;
+          outline-color: $outlineInputColor !important;
+          padding: 8px;
+          margin-bottom: 15px;
+
+          border-radius: 5px 5px 5px 5px;
+          border: 1px solid $borderColor;
+        }
+      }
+    }
+
+    .SubInfo {
+      span {
+        display: flex;
+        justify-items: center;
+        input[type="checkbox"] {
+          margin-bottom: 16px;
+          width: 20px;
+          height: 20px;
+        }
+        span {
+          margin: 0px 5px;
+          line-height: 26px;
+        }
+      }
+      .SubForm {
+        display: none;
+      }
+    }
+  }
+}

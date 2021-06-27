@@ -2,9 +2,20 @@ $orangeColor: #ff9c00;
 $darkOrangeColor: #ff7e00;
 $redColor: #ed4c4c;
 $greenColor: #01c4c4;
+
 $whiteColor: #ffffff;
 $borderColor: #c3c3c3;
 $colorActive: rgba(255, 255, 255, 0.08) none repeat scroll 0 0;
 $textColor: #aaaaaa;
+
 $blackColor: #000;
 $darkTextColor: #54585f;
+$backgroundColor: #F3F3F3;
+$outlineInputColor:#64d5f1d6;
+
+$backgroundHeaderTable: #eaeaea;
+$borderTabel:#ddd;
+
+.App {
+  background: $backgroundColor;
+}

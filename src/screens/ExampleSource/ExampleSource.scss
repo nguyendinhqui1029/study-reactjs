@@ -1,0 +1,20 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  .SubContainer {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-bottom: 15px solid blueviolet;
+    .Layout {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      flex: 4;
+    }
+    .DataStructure {
+      flex: 2;
+    }
+  }
+}
