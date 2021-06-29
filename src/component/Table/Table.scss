@@ -1,5 +1,8 @@
 @import "../../assets/scss/common.scss";
 .TableProduct {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   .HeaderTable,
   .ContentTable {
     line-height: 40px;

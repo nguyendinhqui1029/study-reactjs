@@ -1,6 +1,12 @@
 @import "../../assets/scss/common.scss";
 .ProductContent {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 43px;
+  
   h1 {
+    flex: 1;
     font-size: 19px;
     margin-top: 0;
     text-transform: uppercase;
@@ -10,7 +16,7 @@
   }
   .Title {
   text-align: left;
-  border-bottom: 2px solid $orangeColor;
+  border-bottom: 3px solid $orangeColor;
   padding-bottom: 5px;
 }
 }

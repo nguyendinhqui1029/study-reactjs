@@ -2,11 +2,9 @@
 .VerticalMenu {
   display: flex;
   flex-direction: column;
-  flex: 1;
   border: 1px solid $borderColor;
   padding: 0px 10px;
 
-  margin-left: 15px;
   position: relative;
 
   .LabelMenu {
@@ -25,6 +23,9 @@
     list-style: none;
     margin: 0px;
     padding: 0px;
+    z-index: 12;
+
+    background: $backgroundColor;
     li {
       border-bottom: 2px dotted $borderColor;
       color: $orangeColor;
@@ -49,25 +50,34 @@
     position: absolute;
     border: 2px solid #c3c3c3;
     bottom: -6px;
-    height: 19px;
+    height: 32px;
+
     width: 85%;
     border-radius: 20px 20px;
     left: 7%;
     border-top: 2px solid transparent;
+
     border-left: 2px solid transparent;
     border-right: 2px solid transparent;
+    background: $whiteColor;
+    z-index: 2;
   }
 
   .BorderLv2 {
     width: 74%;
     position: absolute;
+    z-index: -1;
     bottom: -11px;
-    height: 17px;
+    height: 30px;
+
     border: 2px solid #c3c3c3;
     border-radius: 20px 20px;
     left: 12%;
     border-top: 2px solid transparent;
+
+    background: $whiteColor;
     border-left: 2px solid transparent;
     border-right: 2px solid transparent;
+    z-index: 1;
   }
 }

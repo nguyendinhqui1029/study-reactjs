@@ -1,13 +1,89 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { Link, useRouteMatch } from "react-router-dom";
-import './DeliveryAddress.scss';
-DeliveryAddress.propTypes = {
-  
-};
+import "./DeliveryAddress.scss";
+DeliveryAddress.propTypes = {};
 DeliveryAddress.defaultProps = {};
+
 function DeliveryAddress(props) {
+  const [cities, setCities] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [districtsByCity, setDistrictsByCity] = useState([]);
+  const [districtsByCitySubAddress, setDistrictsByCitySubAddress] = useState(
+    []
+  );
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [selectedCitySubAddress, setSelectedCitySubAddress] = useState(null);
+  const [selectedDistricts, setSelectedDistricts] = useState(null);
+  const [selectedDistrictsSubAddress, setSelectedDistrictsSubAddress] =
+    useState(null);
   const [isShowOtherAddress, setShowOtherAddress] = useState(false);
+
+  useEffect(() => {
+    async function fetchCities() {
+      try {
+        const header = {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        };
+        const urlRequest = "./json/cities.json";
+        const response = await fetch(urlRequest, header);
+        const responseJson = await response.json();
+
+        setCities([
+          { id: null, label: "Vui lòng chọn Tỉnh/Thành Phố" },
+          ...responseJson,
+        ]);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchCities();
+  }, []);
+
+  useEffect(() => {
+    async function fetchDistricts() {
+      try {
+        if (!districts.length) {
+          const header = {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          };
+          const urlRequest = "./json/districts.json";
+          const response = await fetch(urlRequest, header);
+          const responseJson = await response.json();
+          setDistricts(responseJson);
+          const dis = responseJson.find((district) => {
+            return district.idCity === selectedCity;
+          });
+          dis && setDistrictsByCity(districts.district);
+
+          const disSubAddress = responseJson.find((district) => {
+            return district.idCity === selectedCitySubAddress;
+          });
+          disSubAddress && setDistrictsByCitySubAddress(disSubAddress.district);
+        } else {
+          const dis = districts.find((district) => {
+            return district.idCity === selectedCity;
+          });
+          dis && setDistrictsByCity(dis.district);
+
+          const disSubAddress = districts.find((district) => {
+            return district.idCity === selectedCitySubAddress;
+          });
+          disSubAddress && setDistrictsByCitySubAddress(disSubAddress.district);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchDistricts();
+  }, [selectedCity, selectedCitySubAddress]);
+
   function changeOtherAddress(event) {
     setShowOtherAddress(event.target.checked);
   }
@@ -39,18 +115,32 @@ function DeliveryAddress(props) {
 
               <input type="text" name="address" placeholder="Address" />
 
-              <select>
-                <option selected value={null}>
-                  Vui lòng chọn Tỉnh/Thành Phố
-                </option>
-                <option value="mango">Mango</option>
+              <select onChange={(event) => setSelectedCity(event.target.value)}>
+                {cities.map((city) => {
+                  return (
+                    <option
+                      key={city.id}
+                      value={city.id}
+                      selected={selectedCity === city.id}
+                    >
+                      {city.label}
+                    </option>
+                  );
+                })}
               </select>
 
               <select>
-                <option selected value="null">
-                  Vui lòng chọn Quận/Huyện
-                </option>
-                <option value="mango">Mango</option>
+                {districtsByCity.map((district) => {
+                  return (
+                    <option
+                      key={district.alias}
+                      value={district.alias}
+                      selected={selectedDistricts === district.alias}
+                    >
+                      {district.label}
+                    </option>
+                  );
+                })}
               </select>
 
               <textarea
@@ -83,18 +173,36 @@ function DeliveryAddress(props) {
 
               <input type="text" name="address" placeholder="Address" />
 
-              <select>
-                <option selected value="null">
-                  Vui lòng chọn Tỉnh/Thành Phố
-                </option>
-                <option value="mango">Mango</option>
+              <select
+                onChange={(event) =>
+                  setSelectedCitySubAddress(event.target.value)
+                }
+              >
+                {cities.map((city) => {
+                  return (
+                    <option
+                      key={city.id}
+                      value={city.id}
+                      selected={selectedCitySubAddress === city.id}
+                    >
+                      {city.label}
+                    </option>
+                  );
+                })}
               </select>
 
               <select>
-                <option selected value="null">
-                  Vui lòng chọn Quận/Huyện
-                </option>
-                <option value="mango">Mango</option>
+                {districtsByCitySubAddress.map((district) => {
+                  return (
+                    <option
+                      key={district.alias}
+                      value={district.alias}
+                      selected={selectedDistrictsSubAddress === district.alias}
+                    >
+                      {district.label}
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </form>

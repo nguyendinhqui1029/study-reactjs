@@ -1,7 +1,11 @@
 @import "../../assets/scss/common.scss";
 
 .OrderDetail {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 35px;
+  
   border: 1px solid $borderColor;
   background: $whiteColor;
 

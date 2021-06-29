@@ -6,26 +6,34 @@ import "./Table.scss";
 import {
   TYPE_COLUMN_TABLE,
   ACTION_TYPE_TABLE,
-} from "../../Constant/Constant.js";
+} from "../../constant/Constant.js";
 Table.propTypes = {
   dataList: PropTypes.array.isRequired,
   headerList: PropTypes.array.isRequired,
+  hanldeCalculateValue: PropTypes.func,
+};
+
+Table.defaultProps = {
+  hanldeCalculateValue: null,
 };
 
 function Table(props) {
-  const { dataList, headerList } = props;
+  const { dataList, headerList, hanldeCalculateValue } = props;
   const [dataTable, setDataTable] = useState(dataList);
 
   function handleEventChangeDataRow(newValue, item, propertyName) {
-    item[propertyName] = newValue;
-    dataTable[item.index] = item;
-    setDataTable([...dataTable]);
+    if (hanldeCalculateValue) {
+      hanldeCalculateValue(newValue, item, propertyName);
+    }
+      item[propertyName] = newValue;
+      dataTable[item.index] = item;
+      setDataTable([...dataTable]);
   }
 
-  function handleActionClick(item,actionName) {
-    if (actionName === ACTION_TYPE_TABLE.UPDATE){
+  function handleActionClick(item, actionName) {
+    if (actionName === ACTION_TYPE_TABLE.UPDATE) {
       dataTable[item.index] = item;
-    } else dataTable.splice(item.index,1);
+    } else dataTable.splice(item.index, 1);
     setDataTable([...dataTable]);
   }
 
@@ -72,9 +80,7 @@ function Table(props) {
 function renderComponentByType(header, item, eventChange) {
   switch (header.type) {
     case TYPE_COLUMN_TABLE.IMAGE: {
-      return (
-          <img className="Image" src={item[header.propertyMapping]} />
-      );
+      return <img className="Image" src={item[header.propertyMapping]} />;
     }
     case TYPE_COLUMN_TABLE.CHECKBOX: {
       return (

@@ -61,13 +61,25 @@
         flex-direction: column;
         padding: 20px;
         align-items: flex-end;
+
         text-align: right;
+        cursor: pointer;
+        user-select: none;
         span {
           color: $whiteColor;
           text-transform: uppercase;
           border-radius: 5px 5px 5px 5px;
           background-color: $redColor;
           padding: 8px 20px;
+        }
+        span:hover {
+          background: $orangeColor;
+          transition: 0.5s ease-out ;
+        }
+
+        span:active{
+          background: $redColor;
+          transition: 0.001s ease-in;
         }
       }
     }

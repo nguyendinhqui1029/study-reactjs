@@ -14,7 +14,7 @@ Pagination.propTypes = {
   pageChangeClick: PropTypes.func,
 };
 Pagination.defaultProps = {
-  currentPage: 0,
+  currentPage: 1,
   itemPage: 0,
   totalItem: 0,
   limit: 5,

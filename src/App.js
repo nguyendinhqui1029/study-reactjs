@@ -7,7 +7,7 @@ import Contact from "./screens/contact/Contact";
 import News from "./screens/news/News";
 import Home from "./screens/home/Home";
 import ExampleSource from "./screens/ExampleSource/ExampleSource";
-
+import Footer from "./component/Footer/Footer";
 import "./assets/scss/common.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -72,8 +72,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* get all icon name
-        {iconList.map(icon=>{
+        {/* //get all icon name */}
+        {/* {iconList.map(icon=>{
           return (
             <FontAwesomeIcon style={{padding:'5px'}} icon={icon.iconName}>
               {icon.iconName}
@@ -85,6 +85,7 @@ function App() {
           listMenu={listMenuItem}
           selectedCategory={handleSelectedCategory}
         ></NavigateMenu>
+
         <Switch>
           <Route path="/about">
             <About />
@@ -105,6 +106,7 @@ function App() {
             <ExampleSource />
           </Route>
         </Switch>
+        <Footer />
       </div>
     </Router>
   );

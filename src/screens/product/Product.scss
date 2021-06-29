@@ -1,5 +1,50 @@
-.Container {
+@import "../../assets/scss/common.scss";
+.Product {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex: 1;
+  margin: 20px 70px;
+  .Left {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .VerticalMenu {
+      .LabelMenu {
+        background: $backgroundFooter;
+      }
+    }
+  }
+  .Right {
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+    margin-left: 25px;
+
+    .NavigateQuickly {
+      margin-top: -5px;
+    }
+    .Header {
+      .ProductContent {
+        .Title {
+          color: $blackColor;
+        }
+      }
+    }
+
+    .ProductList {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .Pagination {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      justify-content: center;
+      padding: 5px;
+    }
+  }
 }

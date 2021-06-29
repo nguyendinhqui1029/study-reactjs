@@ -1,5 +1,8 @@
 @import "../../assets/scss/common.scss";
 .DeliveryAddress {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   border: 1px solid $borderColor;
 
   .HeaderContainer {
