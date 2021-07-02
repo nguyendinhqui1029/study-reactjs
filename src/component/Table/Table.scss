@@ -1,0 +1,88 @@
+@import "../../assets/scss/common.scss";
+.TableProduct {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  .HeaderTable,
+  .ContentTable {
+    line-height: 40px;
+    display: flex;
+    background: $backgroundHeaderTable;
+    border-bottom: 3px solid $borderTabel;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      text-align: left;
+      padding: 5px;
+    }
+  }
+
+  .ContentTable {
+    background: $whiteColor;
+    border-bottom: 2px solid $borderTabel;
+    font-weight: normal;
+    word-break: break-all;
+
+    div {
+      align-items: center;
+    }
+    span {
+      flex: row;
+      input[type="checkbox"] {
+        justify-items: center;
+        margin-bottom: 16px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    input[type="text"] {
+      height: 18px;
+      width: 100%;
+    }
+
+    input[type="checkbox"],
+    select {
+      height: 36px;
+    }
+
+    input[type="text"],
+    input[type="checkbox"],
+    textarea,
+    select {
+      flex: 1;
+      outline-color: $outlineInputColor !important;
+      padding: 8px;
+      margin-bottom: 15px;
+
+      border-radius: 5px 5px 5px 5px;
+      border: 1px solid $borderColor;
+    }
+
+    .UpdateAction {
+      font-size: 30px;
+      cursor: pointer;
+      margin: auto;
+    }
+
+    .DeleteAction:hover,
+    .UpdateAction:hover {
+      color: $orangeColor;
+    }
+
+    .DeleteAction {
+      font-size: 30px;
+      margin: auto;
+      color: $redColor;
+      cursor: pointer;
+    }
+
+    .Image {
+      width: 100%;
+      height: inherit;
+    }
+  }
+}

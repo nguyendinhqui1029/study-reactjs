@@ -3,14 +3,15 @@
   display: flex;
   background-color: $orangeColor;
   height: 53px;
-  padding-left: 70px;
+  padding-left: 69px;
 
   .ContainerCategory {
     border: 1px solid rgba(255, 255, 255, 0.15);
     background-color: $darkOrangeColor;
     height: inherit;
-    width: 300px;
+    width: 310px;
     position: relative;
+    z-index: 100;
 
     .TitleCategory {
       position: relative;
@@ -48,6 +49,8 @@
 
       padding: 0px;
       margin: 0px;
+      background-color: $whiteColor;
+
       li {
         border-bottom: 1px dotted $borderColor;
         position: relative;
@@ -58,6 +61,8 @@
         line-height: 40px;
         text-indent: 30px;
 
+        cursor: pointer;
+
         .IconRight {
           font-size: 25px;
           position: absolute;
@@ -66,11 +71,14 @@
           display: none;
         }
 
+        .IconRightHidden {
+          display: none;
+        }
+
         .SubMenu {
           position: absolute;
           top: 0px;
           left: 100%;
-          z-index: 1000;
 
           display: none;
           border: 1px solid $borderColor;
@@ -96,6 +104,7 @@
 
             &:hover li {
               color: $colorActive;
+              cursor: pointer;
             }
           }
         }
@@ -116,15 +125,17 @@
     }
 
     &:hover ul {
-      display: block;
+      display: block !important;
+      z-index: 4;
     }
 
     li:hover {
       color: $orangeColor;
+      z-index: 4;
     }
 
     &:hover .IconChevronCircleDown {
-      display: inline;
+      display: inline !important;
       transition: 5s ease-in;
     }
   }

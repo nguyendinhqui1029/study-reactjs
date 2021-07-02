@@ -1,0 +1,52 @@
+@import "../../assets/scss/common.scss";
+.Pagination {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  padding: 15px;
+
+  user-select: none;
+  height: 45px;
+  .PageIndex {
+    color: $blackColor;
+    background: $whiteColor;
+    padding: 2px 12px;
+    margin: 5px 2px;
+
+    line-height: 1.42857143;
+    box-shadow: 0.5px 0 2px 0 rgb(0 0 0 / 20%);
+    cursor: pointer;
+    font-size: 20px;
+  }
+  .PrevIndex {
+    border-radius: 0px 5px 5px 0px;
+  }
+  .NextIndex {
+    border-radius: 5px 0px 0px 5px;
+  }
+  .NextIndex,
+  .PrevIndex {
+    padding: 8px 12px;
+    box-shadow: 0.5px 0 2px 0 rgb(0 0 0 / 20%);
+    margin: 5px 2px;
+    cursor: pointer;
+    .IconPagination {
+      font-size: 18px;
+      color: $textColor;
+    }
+  }
+  .Active {
+    background: $orangeColor;
+    color: $whiteColor;
+  }
+
+  .IsDisable {
+    pointer-events: none;
+  }
+  .PageIndex:hover,
+  .NextIndex:hover,
+  .PrevIndex:hover {
+    background: $orangeColor;
+    color: $whiteColor;
+  }
+}

@@ -1,0 +1,64 @@
+@import "../../assets/scss/common.scss";
+.PayInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border: 1px solid $borderColor;
+  .HeaderContainer {
+    text-align: left;
+    padding: 6px 11px;
+    background-color: $orangeColor;
+
+    .HeaderContent {
+      color: $whiteColor;
+      margin: 0px;
+      padding: 0px;
+      text-transform: uppercase;
+    }
+  }
+  .ContentContainer {
+    padding: 6px 11px;
+    .HeaderContent {
+      color: $orangeColor;
+      margin: 12px 0px;
+      text-transform: uppercase;
+    }
+
+    .DeliveryContainer {
+      display: flex;
+      flex-direction: column;
+
+      input[type="text"],
+      input[type="checkbox"],
+      input[type="radio"],
+      textarea,
+      select {
+        flex: 1;
+        outline-color: $outlineInputColor !important;
+        padding: 8px;
+        margin-bottom: 15px;
+
+        border-radius: 5px 5px 5px 5px;
+        border: 1px solid $borderColor;
+      }
+
+      span {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        input[type="radio"] {
+          flex: 1;
+          margin-bottom: 16px;
+          width: 25px !important;
+          height: 25px !important;
+        }
+        span {
+          flex: 12;
+          text-align: left;
+          margin: 5px 1px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+}

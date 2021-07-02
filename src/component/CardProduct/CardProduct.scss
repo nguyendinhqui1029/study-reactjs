@@ -1,0 +1,114 @@
+@import "../../assets/scss/common.scss";
+
+.CardProduct {
+  position: relative;
+  border: 1px solid $borderColor;
+  display: flex;
+
+  z-index: 2;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 230px;
+
+  flex: 1;
+  flex-shrink: 1;
+  background: $whiteColor;
+  text-align: center;
+  
+  .PercentDiscount {
+    position: absolute;
+    background-color: $orangeColor;
+    color: $whiteColor;
+    font-weight: bold;
+    display: block;
+
+    text-align: center;
+    line-height: 27px;
+    padding: 0 10px;
+    font-size: 25px;
+
+    font-weight: 700;
+    text-transform: uppercase;
+    transform: rotate(-47deg);
+    top: 30px;
+
+    left: -103px;
+    width: 302px;
+    height: 40px;
+    z-index: 100;
+
+    line-height: 35px;
+  }
+
+  .HotProduct {
+    position: absolute;
+    background-color: $redColor;
+    color: $whiteColor;
+    font-weight: bold;
+    display: block;
+
+    text-align: center;
+    line-height: 27px;
+    padding: 0 10px;
+    font-size: 12px;
+
+    font-weight: 700;
+    text-transform: uppercase;
+    top: 10px;
+    left: 10px;
+
+    z-index: 100;
+  }
+
+  .HotProduct::after {
+    content: "";
+    width: 10px;
+    height: inherit;
+    position: absolute;
+    right: -10px;
+    border-top: 14px solid $redColor;
+    border-bottom: 12.5px solid $redColor;
+    border-right: 10px solid transparent;
+  }
+
+  .ImageProduct {
+    height: 200px;
+    .Image {
+      width: 70%;
+      height: inherit;
+      cursor: zoom-in;
+    }
+    .Image:hover {
+      transform: scale(1.25);
+    }
+  }
+
+  .ProductDetail {
+    margin-top: 20px;
+    .Price {
+      font-weight: bold;
+      color: $redColor;
+      padding: 5px;
+      .Currency {
+        text-decoration: underline;
+      }
+    }
+    .ProductName {
+      margin: 0px;
+      padding: 0px;
+      font-size: 1rem;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+
+    .BtnBuy {
+      color: $whiteColor;
+      background-color: $redColor;
+      padding: 7px 20px;
+      margin: 0px 0px 15px;
+      cursor: pointer;
+    }
+  }
+}

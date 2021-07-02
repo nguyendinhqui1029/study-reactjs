@@ -23,6 +23,7 @@ NavigateMenu.defaultProps = {
 
 function NavigateMenu(props) {
   const { listMenu, listCategory } = props;
+  const match = useRouteMatch({ path: "/" });
   return (
     <div className="NavMenu">
       <div className="ContainerCategory">
@@ -32,9 +33,10 @@ function NavigateMenu(props) {
           <FontAwesomeIcon
             icon={faChevronCircleDown}
             className="IconChevronCircleDown"
+            style={{ display: match.isExact ? "block" : "none" }}
           />
         </div>
-        <ul>
+        <ul style={{ display: match.isExact ? "block" : "none" }}>
           {listCategory.map((catagory, index) => {
             return (
               <CategoryItem item={{ ...catagory, ...props }} key={index} />
@@ -77,16 +79,19 @@ function CategoryItem({ item }) {
   return (
     <li onClick={() => handlSelectedItem(item)}>
       {label}
-      <FontAwesomeIcon icon={faAngleRight} className="IconRight" />
-
-      {subCategory.map((subCategory, index) => {
-        return (
-          <SubCategoryItem
-            item={{ ...subCategory, selectedCategory }}
-            key={index}
-          />
-        );
-      })}
+      <FontAwesomeIcon
+        icon={faAngleRight}
+        className={
+          subCategory && subCategory.length > 0
+            ? "IconRight"
+            : "IconRightHidden"
+        }
+      />
+      {subCategory && subCategory.length > 0 ? (
+        <SubCategoryItem item={{ subCategory, selectedCategory }} />
+      ) : (
+        ""
+      )}
     </li>
   );
 }
@@ -95,18 +100,22 @@ function SubCategoryItem({ item }) {
   const { label, subCategory, selectedCategory } = item;
   return (
     <div className="SubMenu">
-      <div className="ContentSubMenu">
-        <h5>{label}</h5>
-        <ul>
-          {subCategory.map((subItem, index) => {
-            return (
-              <li key={index} onClick={() => selectedCategory(subItem)}>
-                {subItem.label}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      {subCategory.map((parentSubcategory, ind) => {
+        return (
+          <div className="ContentSubMenu" key={ind}>
+            <h5>{parentSubcategory.label}</h5>
+            <ul>
+              {parentSubcategory.subCategory.map((subItem, index) => {
+                return (
+                  <li key={index} onClick={() => selectedCategory(subItem)}>
+                    {subItem.label}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      })}
     </div>
   );
 }

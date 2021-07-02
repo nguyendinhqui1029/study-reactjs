@@ -6,12 +6,27 @@ import Product from "./screens/product/Product";
 import Contact from "./screens/contact/Contact";
 import News from "./screens/news/News";
 import Home from "./screens/home/Home";
+import ExampleSource from "./screens/ExampleSource/ExampleSource";
+import Footer from "./component/Footer/Footer";
+import "./assets/scss/common.scss";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//dynamic icon
+import { library } from "@fortawesome/fontawesome-svg-core";
+import * as Icons from "@fortawesome/free-solid-svg-icons";
+
+const iconList = Object.keys(Icons)
+  .filter((key) => key !== "fas" && key !== "prefix")
+  .map((icon) => Icons[icon]);
+library.add(...iconList);
+
 const listMenuItem = [
   { path: "/", label: "Trang chu", exact: true },
   { path: "/about", label: "Gioi thieu", exact: false },
   { path: "/product", label: "San pham", exact: false },
   { path: "/news", label: "Tin tuc", exact: false },
   { path: "/contact", label: "Lien he", exact: false },
+  { path: "/source", label: "Component Example", exact: false },
 ];
 const listCategory = [
   {
@@ -22,8 +37,24 @@ const listCategory = [
         id: 2,
         label: "MÁY QUAY PHIM",
         subCategory: [
-          { id: 3, label: "MÁY QUAY PHIM", subCategory: [] },
-          { id: 3, label: "MÁY QUAY PHIM", subCategory: [] },
+          { id: 4, label: "MÁY QUAY PHIM", subCategory: [] },
+          { id: 5, label: "MÁY QUAY PHIM", subCategory: [] },
+        ],
+      },
+      {
+        id: 3,
+        label: "Dien thoai",
+        subCategory: [
+          { id: 6, label: "MÁY QUAY PHIM", subCategory: [] },
+          { id: 7, label: "MÁY QUAY PHIM", subCategory: [] },
+        ],
+      },
+      {
+        id: 4,
+        label: "Dien thoai 1",
+        subCategory: [
+          { id: 8, label: "MÁY QUAY PHIM", subCategory: [] },
+          { id: 9, label: "MÁY QUAY PHIM", subCategory: [] },
         ],
       },
     ],
@@ -41,11 +72,20 @@ function App() {
   return (
     <Router>
       <div className="App">
+        {/* //get all icon name */}
+        {/* {iconList.map(icon=>{
+          return (
+            <FontAwesomeIcon style={{padding:'5px'}} icon={icon.iconName}>
+              {icon.iconName}
+            </FontAwesomeIcon>
+          );
+        })} */}
         <NavigateMenu
           listCategory={listCategory}
           listMenu={listMenuItem}
           selectedCategory={handleSelectedCategory}
         ></NavigateMenu>
+
         <Switch>
           <Route path="/about">
             <About />
@@ -62,7 +102,11 @@ function App() {
           <Route path="/" exact={true}>
             <Home />
           </Route>
+          <Route path="/source">
+            <ExampleSource />
+          </Route>
         </Switch>
+        <Footer />
       </div>
     </Router>
   );
