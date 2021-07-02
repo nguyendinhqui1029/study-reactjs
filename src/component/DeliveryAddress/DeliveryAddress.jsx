@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Input from "../../component/Input/Input";
+import SelectedInput from "../../component/SelectedInput/SelectedInput";
+import { Formik, Form, FastField, Field } from "formik";
+import Yup from "../../validation/CustomValidation";
 import "./DeliveryAddress.scss";
 DeliveryAddress.propTypes = {};
 DeliveryAddress.defaultProps = {};
@@ -9,84 +13,100 @@ function DeliveryAddress(props) {
   const [cities, setCities] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [districtsByCity, setDistrictsByCity] = useState([]);
-  const [districtsByCitySubAddress, setDistrictsByCitySubAddress] = useState(
-    []
-  );
+  const [districtsByCitySubAddress, setDistrictsByCitySubAddress] = useState([]);
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedCitySubAddress, setSelectedCitySubAddress] = useState(null);
-  const [selectedDistricts, setSelectedDistricts] = useState(null);
-  const [selectedDistrictsSubAddress, setSelectedDistrictsSubAddress] =
-    useState(null);
   const [isShowOtherAddress, setShowOtherAddress] = useState(false);
+  const initialValues = {
+    name: "",
+    email: "",
+    address: "",
+    city: "",
+    district: "",
+  };
+  const fetchCities = async () => {
+    try {
+      const header = {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      };
+      const urlRequest = "./json/cities.json";
+      const response = await fetch(urlRequest, header);
+      const responseJson = await response.json();
+      const responseJsonMap = responseJson.map((item) => {
+        return {
+          value: item.id,
+          label: item.label,
+        };
+      });
+      setCities(responseJsonMap);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    async function fetchCities() {
-      try {
+    fetchCities();
+  }, []);
+
+  async function fetchDistricts() {
+    try {
+      const districtsList = [];
+      const districtsSubAddress = [];
+      if (!districts.length) {
         const header = {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
         };
-        const urlRequest = "./json/cities.json";
+        const urlRequest = "./json/districts.json";
         const response = await fetch(urlRequest, header);
         const responseJson = await response.json();
-
-        setCities([
-          { id: null, label: "Vui lòng chọn Tỉnh/Thành Phố" },
-          ...responseJson,
-        ]);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchCities();
-  }, []);
-
-  useEffect(() => {
-    async function fetchDistricts() {
-      try {
-        if (!districts.length) {
-          const header = {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
+        const responseJsonMap = responseJson.map((item) => {
+          return {
+            districts: item.district.map((item) => {
+              return { value: item.alias, label: item.label };
+            }),
+            idCity: item.idCity,
           };
-          const urlRequest = "./json/districts.json";
-          const response = await fetch(urlRequest, header);
-          const responseJson = await response.json();
-          setDistricts(responseJson);
-          const dis = responseJson.find((district) => {
-            return district.idCity === selectedCity;
-          });
-          dis && setDistrictsByCity(districts.district);
+        });
+       
+        setDistricts(responseJsonMap);
+        responseJsonMap.forEach((district) => {
+          district.idCity === selectedCity &&
+            districtsList.push(...district.districts);
+          district.idCity === selectedCitySubAddress &&
+            districtsSubAddress.push(...district.districts);
+        });
 
-          const disSubAddress = responseJson.find((district) => {
-            return district.idCity === selectedCitySubAddress;
-          });
-          disSubAddress && setDistrictsByCitySubAddress(disSubAddress.district);
-        } else {
-          const dis = districts.find((district) => {
-            return district.idCity === selectedCity;
-          });
-          dis && setDistrictsByCity(dis.district);
-
-          const disSubAddress = districts.find((district) => {
-            return district.idCity === selectedCitySubAddress;
-          });
-          disSubAddress && setDistrictsByCitySubAddress(disSubAddress.district);
-        }
-      } catch (error) {
-        console.log(error);
+        setDistrictsByCity(Object.assign(districtsList));
+        setDistrictsByCitySubAddress(Object.assign(districtsSubAddress));
+      } else {
+        districts.forEach((district) => {
+          district.idCity === selectedCity &&
+            districtsList.push(...district.districts);
+          district.idCity === selectedCitySubAddress &&
+            districtsSubAddress.push(...district.districts);
+        });
+         console.log(districtsList);
+        setDistrictsByCity(Object.assign(districtsList));
+        setDistrictsByCitySubAddress(Object.assign(districtsSubAddress));
       }
+    } catch (error) {
+      console.log(error);
     }
+  }
+  useEffect(() => {
     fetchDistricts();
   }, [selectedCity, selectedCitySubAddress]);
 
   function changeOtherAddress(event) {
     setShowOtherAddress(event.target.checked);
   }
+
   return (
     <div className="DeliveryAddress">
       <div className="HeaderContainer">
@@ -105,52 +125,53 @@ function DeliveryAddress(props) {
         </div>
         <div className="MainInfo">
           <h5>Mua hàng không cần tài khoản</h5>
-          <form>
-            <div className="FormInfo">
-              <input type="text" name="name" placeholder="Họ và Tên" />
+          <Formik
+            initialValues={initialValues}
+            render={(formik) => {
+              setSelectedCity(formik.values.city);
+              return (
+                <Form className="FormInfo">
+                  <FastField
+                    name="name"
+                    component={Input}
+                    type="text"
+                    placeholder="Họ và Tên"
+                  />
+                  <FastField
+                    name="email"
+                    component={Input}
+                    type="text"
+                    placeholder="Email"
+                  />
+                  <FastField
+                    name="address"
+                    component={Input}
+                    type="text"
+                    placeholder="Địa chỉ"
+                  />
+                  <Field           
+                    name="city"
+                    component={SelectedInput}
+                    dataSource={cities}
+                  />
 
-              <input type="text" name="phone" placeholder="Số điện thoại" />
-
-              <input type="text" name="email" placeholder="Email" />
-
-              <input type="text" name="address" placeholder="Address" />
-
-              <select onChange={(event) => setSelectedCity(event.target.value)}>
-                {cities.map((city) => {
-                  return (
-                    <option
-                      key={city.id}
-                      value={city.id}
-                      selected={selectedCity === city.id}
-                    >
-                      {city.label}
-                    </option>
-                  );
-                })}
-              </select>
-
-              <select>
-                {districtsByCity.map((district) => {
-                  return (
-                    <option
-                      key={district.alias}
-                      value={district.alias}
-                      selected={selectedDistricts === district.alias}
-                    >
-                      {district.label}
-                    </option>
-                  );
-                })}
-              </select>
-
-              <textarea
-                value=""
-                onChange={() => {}}
-                placeholder="Ghi chú đơn hàng"
-                rows="5"
-              />
-            </div>
-          </form>
+                  <Field
+                    as="select"
+                    name="district"
+                    component={SelectedInput}
+                    dataSource={districtsByCity}
+                    disabled={!districtsByCity.length}
+                  ></Field>
+                  <textarea
+                    value=""
+                    onChange={() => {}}
+                    placeholder="Ghi chú đơn hàng"
+                    rows="5"
+                  />
+                </Form>
+              );
+            }}
+          />
         </div>
         <h3 className="HeaderContent">THÔNG TIN GIAO HÀNG</h3>
         <div className="SubInfo">
@@ -163,49 +184,45 @@ function DeliveryAddress(props) {
             />
             <span>Giao hàng địa chỉ khác</span>
           </span>
-          <form className={isShowOtherAddress ? "" : "SubForm"}>
-            <div className="FormInfo">
-              <input type="text" name="name" placeholder="Họ và Tên" />
 
-              <input type="text" name="phone" placeholder="Số điện thoại" />
-
-              <input type="text" name="email" placeholder="Email" />
-
-              <input type="text" name="address" placeholder="Address" />
-
-              <select
-                onChange={(event) =>
-                  setSelectedCitySubAddress(event.target.value)
-                }
-              >
-                {cities.map((city) => {
-                  return (
-                    <option
-                      key={city.id}
-                      value={city.id}
-                      selected={selectedCitySubAddress === city.id}
-                    >
-                      {city.label}
-                    </option>
-                  );
-                })}
-              </select>
-
-              <select>
-                {districtsByCitySubAddress.map((district) => {
-                  return (
-                    <option
-                      key={district.alias}
-                      value={district.alias}
-                      selected={selectedDistrictsSubAddress === district.alias}
-                    >
-                      {district.label}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-          </form>
+          <Formik
+            initialValues={initialValues}
+            render={(formik) => {
+              return (
+                <Form className={isShowOtherAddress ? "FormInfo" : "SubForm"}>
+                  <FastField
+                    name="nameSubAddress"
+                    component={Input}
+                    type="text"
+                    placeholder="Họ và Tên"
+                  />
+                  <FastField
+                    name="emailSubAddress"
+                    component={Input}
+                    type="text"
+                    placeholder="Email"
+                  />
+                  <FastField
+                    name="addressSubAddress"
+                    component={Input}
+                    type="text"
+                    placeholder="Địa chỉ"
+                  />
+                  <Field
+                    name="citySubAddress"
+                    component={SelectedInput}
+                    dataSource={cities}
+                    placeHolder="Vui lòng chọn thành phố"
+                  />
+                  <FastField
+                    name="districtSubAddress"
+                    component={SelectedInput}
+                    dataSource={districtsByCitySubAddress}
+                  />
+                </Form>
+              );
+            }}
+          />
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import CardProduct from "../../component/CardProduct/CardProduct";
 import FeaturedNews from "../../component/FeaturedNews/FeaturedNews";
@@ -14,13 +14,28 @@ import OrderDetail from "../../component/OrderDetail/OrderDetail";
 import CardNews from "../../component/CardNews/CardNews";
 import Contact from "../../component/Contact/Contact";
 import ContactForm from "../../component/ContactForm/ContactForm";
+import Input from "../../component/Input/Input";
+import SelectedInput from "../../component/SelectedInput/SelectedInput";
+
 import {
   TYPE_COLUMN_TABLE,
   ACTION_TYPE_TABLE,
 } from "../../constant/Constant.js";
 import Table from "../../component/Table/Table";
 
+import { Formik, Form, FastField } from "formik";
+import Yup from "../../validation/CustomValidation";
 import "./ExampleSource.scss";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import * as Icons from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const iconList = Object.keys(Icons)
+  .filter((key) => key !== "fas" && key !== "prefix")
+  .map((icon) => Icons[icon]);
+library.add(...iconList);
+
 ExampleSource.propTypes = {};
 
 function ExampleSource(props) {
@@ -53,8 +68,60 @@ function ExampleSource(props) {
   function clickOrder(orderInfo) {
     console.log("Data after click Order button", orderInfo);
   }
+
+  const validations = Yup.object().shape({
+    title: Yup.string().requiredCustome("Require field can't be empty"),
+    option: Yup.string().requiredCustome("Require field can't be empty"),
+  });
+
+  const initialValues = {
+    title: "",
+    option: "",
+  };
+
+  const dataSource = [
+    { value: "", label: "Vui lòng chon options" },
+    { value: "1", label: "1" },
+    { value: "2", label: "3" },
+  ];
   return (
     <div className="Container">
+      <div className="SubContainer">
+        <div className="Layout">
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validations}
+            onSubmit={(values) => console.log(values)}
+          >
+            {(formikProps) => {
+              return (
+                <Form style={{ width: "100%" }}>
+                  <FastField
+                    name="title"
+                    component={Input}
+                    type="text"
+                    placeholder="Title"
+                  />
+                  <FastField
+                    name="option"
+                    component={SelectedInput}
+                    dataSource={dataSource}
+                  />
+                  <button type="submit">submit</button>
+                </Form>
+              );
+            }}
+          </Formik>
+        </div>
+        <div className="DataStructure">
+          <p>
+            import CardProduct from "../../component/CardProduct/CardProduct";
+          </p>
+          <p>//Khai báo hàm xử lí ở parent function clickBuyProduct(item)</p>
+          <pre>{showDataExample(listProduct)}</pre>
+        </div>
+      </div>
+
       <div className="SubContainer">
         <div className="Layout">
           {listProduct.map((item, index) => {
@@ -324,7 +391,7 @@ function ExampleSource(props) {
       <div className="SubContainer">
         <div className="Layout">
           {/* Contact */}
-          <ContactForm/>
+          <ContactForm />
         </div>
         <div className="DataStructure">
           <p>
@@ -335,6 +402,23 @@ function ExampleSource(props) {
           </p>
           <pre>{showDataExample(contactInfo)}</pre>
         </div>
+      </div>
+
+      <div className="SubContainer">
+        <div className="Layout">
+          {iconList.map((icon, index) => {
+            return (
+              <div
+                key={index}
+                style={{ margin: "5px", width: "70px", border: "1px solid" }}
+              >
+                <FontAwesomeIcon icon={icon.iconName} />
+                <p>{icon.iconName}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className="DataStructure"></div>
       </div>
     </div>
   );
