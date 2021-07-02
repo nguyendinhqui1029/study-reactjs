@@ -44,7 +44,7 @@ function ExampleSource(props) {
   }
 
   function getItemSeleted(item) {
-    console.log(item);
+    console.log("feature newws", item);
   }
 
   function selectedCategory(item) {
