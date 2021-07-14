@@ -1,1 +1,4 @@
-@import '../../assets/scss/common.scss';
+@import "../../assets/scss/common.scss";
+select:active option {
+  width: 100px;
+}

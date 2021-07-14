@@ -1,0 +1,45 @@
+@import "../../assets/scss/common.scss";
+.Search {
+  .Form {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+
+    .ButtonSearch {
+      background: $orangeColor;
+      border-radius: 0px 6px 6px 0px;
+      .Icon {
+        color: $whiteColor;
+      }
+    }
+    .Input {
+      .ContainerInput {
+        .Input {
+          input[type="text"] {
+            width: 100%;
+            min-width: 120px;
+            border-radius: 5px 0px 0px 5px !important;
+          }
+        }
+      }
+      .InputValid {
+        .Input {
+          input[type="text"] {
+            border: 2px solid #1a9d1af7 !important;
+          }
+        }
+      }
+    }
+    .ContainerMain {
+      .ContainerInput {
+        .Input {
+          select {
+            width: 100%;
+            min-width: 90px;
+            border-radius: 0px 0px 0px 0px !important;
+          }
+        }
+      }
+    }
+  }
+}

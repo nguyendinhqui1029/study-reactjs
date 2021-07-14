@@ -1,11 +1,12 @@
 @import "../../assets/scss/common.scss";
+
 .TableProduct {
   display: flex;
   flex-direction: column;
   flex: 1;
   .HeaderTable,
   .ContentTable {
-    line-height: 40px;
+    line-height: 20px;
     display: flex;
     background: $backgroundHeaderTable;
     border-bottom: 3px solid $borderTabel;
@@ -24,7 +25,6 @@
     background: $whiteColor;
     border-bottom: 2px solid $borderTabel;
     font-weight: normal;
-    word-break: break-all;
 
     div {
       align-items: center;
@@ -39,7 +39,8 @@
       }
     }
 
-    input[type="text"] {
+    input[type="text"],
+    input[type="number"] {
       height: 18px;
       width: 100%;
     }
@@ -51,6 +52,7 @@
 
     input[type="text"],
     input[type="checkbox"],
+    input[type="number"],
     textarea,
     select {
       flex: 1;

@@ -69,17 +69,17 @@ function Footer(props) {
         <Header title="Mạng xã hội" />
         <span className="Facebook">
           <Link to="myfacebook" className="Link">
-            <img src="./facebook-square-brands.svg" />
+            <img src="/facebook-square-brands.svg" />
           </Link>
         </span>
         <span className="Youtuber">
           <Link to="myyoutube" className="Link">
-            <img src="./youtube-brands.svg" />
+            <img src="/youtube-brands.svg" />
           </Link>
         </span>
         <span className="Google">
           <Link to="mygoogle" className="Link">
-            <img src="./google-plus-square-brands.svg" />
+            <img src="/google-plus-square-brands.svg" />
           </Link>
         </span>
       </div>

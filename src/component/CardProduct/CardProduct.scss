@@ -72,11 +72,12 @@
   }
 
   .ImageProduct {
-    height: 200px;
+    // height: 200px;
     .Image {
       width: 70%;
       height: inherit;
       cursor: zoom-in;
+      margin-bottom: 70px;
     }
     .Image:hover {
       transform: scale(1.25);

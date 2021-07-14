@@ -9,7 +9,7 @@ $colorActive: rgba(255, 255, 255, 0.08) none repeat scroll 0 0;
 $textColor: #aaaaaa;
 
 $blackColor: #000;
-$darkTextColor: #54585f;
+$darkTextColor: #3c3f44;
 $backgroundColor: #f3f3f3;
 $outlineInputColor: #64d5f1d6;
 
@@ -20,81 +20,183 @@ $validColor: #1a9d1af7;
 .App {
   background: $backgroundColor;
 }
-.ContainerInput {
+
+.ContainerBody {
+  display: flex;
   flex-direction: row;
-  flex: 1;
-  margin: 0px 10px;
-  // background: red;
-  .ContainerInput {
-    display: flex;
+  flex-wrap: wrap;
+  margin: 0px 5%;
+  .ContainerBodyLeft {
     flex: 1;
-    flex-direction: column;
-
-    .Input {
-      display: flex;
-      flex: 1;
-      position: relative;
-      input[type="text"],
-      select {
-        flex: 1;
-        outline-color: $outlineInputColor !important;
-        padding: 8px;
-
-        border-radius: 5px 5px 5px 5px;
-        border: 1px solid $borderColor;
-      }
-
-      .IconValid {
-        display: none;
-        position: absolute;
-        z-index: 2;
-        right: 2px;
-        top: 9px;
-        color: $validColor;
-      }
-    }
-    .Error {
-      padding: 6px 0px;
-      display: none;
-      .IconInvalid {
-        color: $redColor;
-      }
-      span {
-        color: $redColor;
-        padding: 5px;
-      }
-    }
   }
 
-  .InputValid {
-    .Input {
-      input,
-      select {
-        border: 2px solid $validColor !important;
+  .ContainerBodyRight {
+    flex-direction: column;
+    flex: 3;
+    padding: 10px 15px;
+    min-width: 300px;
+  }
+}
+
+@media all and (max-width: 1600px) {
+  .ContainerMain {
+    flex-direction: row;
+    flex: 1;
+    .ContainerInput {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+
+      .Input {
+        display: flex;
+        flex: 1;
+        position: relative;
+        input[type="text"],
+        select,
+        textarea {
+          flex: 1;
+          outline-color: $outlineInputColor !important;
+          padding: 8px;
+
+          border-radius: 5px 5px 5px 5px;
+          border: 1px solid $borderColor;
+        }
+
+        .IconValid {
+          display: none;
+          position: absolute;
+          z-index: 2;
+          right: 1px;
+          top: 8px;
+          color: $validColor;
+        }
       }
-      .IconValid {
+      .Error {
+        padding: 6px 0px;
+        display: none;
+        .IconInvalid {
+          color: $redColor;
+        }
+        span {
+          color: $redColor;
+          padding: 5px;
+        }
+      }
+    }
+
+    .InputValid {
+      .Input {
+        input,
+        select {
+          border: 2px solid $validColor !important;
+        }
+        .IconValid {
+          display: inline;
+        }
+      }
+
+      .Error {
+        display: none;
+      }
+    }
+
+    .InputInvalid {
+      .Input {
+        input,
+        select {
+          border: 2px solid $redColor !important;
+          padding-left: 8px;
+        }
+        .IconValid {
+          display: none;
+        }
+      }
+      .Error {
         display: inline;
       }
     }
-
-    .Error {
-      display: none;
-    }
   }
+}
 
-  .InputInvalid {
-    .Input {
-      input,
-      select {
-        border: 2px solid $redColor !important;
-        padding-left: 8px;
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .ContainerMain {
+    flex-direction: row;
+    flex: 1;
+    .ContainerInput {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+
+      .Input {
+        display: flex;
+        flex: 1;
+        position: relative;
+        input[type="text"],
+        select,
+        textarea {
+          flex: 1;
+          outline-color: $outlineInputColor !important;
+          padding: 8px;
+
+          border-radius: 5px 5px 5px 5px;
+          border: 1px solid $borderColor;
+        }
+
+        .IconValid {
+          display: none;
+          position: absolute;
+          z-index: 2;
+          right: 1px;
+          top: 8px;
+          color: $validColor;
+        }
       }
-      .IconValid {
+      .Error {
+        padding: 6px 0px;
+        display: none;
+        .IconInvalid {
+          color: $redColor;
+        }
+        span {
+          color: $redColor;
+          padding: 5px;
+        }
+      }
+    }
+
+    .InputValid {
+      .Input {
+        input,
+        select {
+          border: 2px solid $validColor !important;
+        }
+        .IconValid {
+          display: inline;
+        }
+      }
+
+      .Error {
         display: none;
       }
     }
-    .Error {
-      display: inline;
+
+    .InputInvalid {
+      .Input {
+        input,
+        select {
+          border: 2px solid $redColor !important;
+          padding-left: 8px;
+        }
+        .IconValid {
+          display: none;
+        }
+      }
+      .Error {
+        display: inline;
+      }
     }
   }
 }

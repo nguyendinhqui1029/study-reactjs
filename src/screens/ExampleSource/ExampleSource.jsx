@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import CardProduct from "../../component/CardProduct/CardProduct";
 import FeaturedNews from "../../component/FeaturedNews/FeaturedNews";
 import VerticalMenu from "../../component/VerticalMenu/VerticalMenu";
@@ -12,16 +11,16 @@ import Header from "../../component/Header/Header";
 import NavigateQuickly from "../../component/NavigateQuickly/NavigateQuickly";
 import OrderDetail from "../../component/OrderDetail/OrderDetail";
 import CardNews from "../../component/CardNews/CardNews";
-import Contact from "../../component/Contact/Contact";
+import Info from "../../component/Info/Info";
 import ContactForm from "../../component/ContactForm/ContactForm";
 import Input from "../../component/Input/Input";
 import SelectedInput from "../../component/SelectedInput/SelectedInput";
-
-import {
-  TYPE_COLUMN_TABLE,
-  ACTION_TYPE_TABLE,
-} from "../../constant/Constant.js";
+import CarouselImage from "../../component/CarouselImage/CarouselImage";
+import { TYPE_COLUMN_TABLE, ACTION_TYPE_TABLE } from "../../Constant/Constant";
 import Table from "../../component/Table/Table";
+import HeaderPage from "../../component/HeaderPage/HeaderPage";
+import Search from "../../component/Search/Search";
+import Cart from "../../component/Cart/Cart";
 
 import { Formik, Form, FastField } from "formik";
 import Yup from "../../validation/CustomValidation";
@@ -88,6 +87,40 @@ function ExampleSource(props) {
     <div className="Container">
       <div className="SubContainer">
         <div className="Layout">
+          <Cart />
+        </div>
+        <div className="DataStructure"></div>
+      </div>
+
+      <div className="SubContainer">
+        <div className="Layout">
+          <Search />
+        </div>
+        <div className="DataStructure"></div>
+      </div>
+
+      <div className="SubContainer">
+        <div className="Layout">
+          <HeaderPage />
+        </div>
+        <div className="DataStructure"></div>
+      </div>
+      
+      <div className="SubContainer">
+        <div className="Layout">
+          <CarouselImage dataSource={dataSourceCarousel} />
+        </div>
+        <div className="DataStructure">
+          <p>
+            import CarouselImage from
+            "../../component/CarouselImage/CarouselImage";
+          </p>
+          <p>props:dataSource</p>
+          <pre>{showDataExample(dataSourceCarousel)}</pre>
+        </div>
+      </div>
+      <div className="SubContainer">
+        <div className="Layout">
           <Formik
             initialValues={initialValues}
             validationSchema={validations}
@@ -113,15 +146,7 @@ function ExampleSource(props) {
             }}
           </Formik>
         </div>
-        <div className="DataStructure">
-          <p>
-            import CardProduct from "../../component/CardProduct/CardProduct";
-          </p>
-          <p>//Khai báo hàm xử lí ở parent function clickBuyProduct(item)</p>
-          <pre>{showDataExample(listProduct)}</pre>
-        </div>
       </div>
-
       <div className="SubContainer">
         <div className="Layout">
           {listProduct.map((item, index) => {
@@ -138,11 +163,10 @@ function ExampleSource(props) {
           <p>
             import CardProduct from "../../component/CardProduct/CardProduct";
           </p>
-          <p>//Khai báo hàm xử lí ở parent function clickBuyProduct(item)</p>
+          <p>Khai báo hàm xử lí ở parent function clickBuyProduct(item)</p>
           <pre>{showDataExample(listProduct)}</pre>
         </div>
       </div>
-
       <div className="SubContainer">
         <div className="Layout">
           <div style={{ width: "350px" }}>
@@ -156,6 +180,8 @@ function ExampleSource(props) {
           <div style={{ width: "350px" }}>
             {/* VerticalMenu */}
             <VerticalMenu
+              iconLeft="arrow-circle-right"
+              iconRight="chevron-right"
               categoryList={listVerticalMenu}
               title={"Sản phẩm"}
               selectedCategory={selectedCategory}
@@ -167,18 +193,18 @@ function ExampleSource(props) {
             import FeaturedNews from
             "../../component/FeaturedNews/FeaturedNews";
           </p>
-          <p>//Khai báo hàm xử lí ở parent function getItemSeleted(item)</p>
+          <p>Khai báo hàm xử lí ở parent function getItemSeleted(item)</p>
           <pre>{showDataExample(listDataNews)}</pre>
           <hr />
           <p>
             import VerticalMenu from
             "../../component/VerticalMenu/VerticalMenu";
           </p>
+          <p>props: iconLeft, iconRight (optional).</p>
           function selectedCategory(item)
           <pre>{showDataExample(listVerticalMenu)}</pre>
         </div>
       </div>
-
       <div className="SubContainer">
         <div className="Layout">
           {/* Steper */}
@@ -195,14 +221,13 @@ function ExampleSource(props) {
         </div>
         <div className="DataStructure">
           <p>import Steper from "../../component/Steper/Steper";</p>
-          <p>//Khai báo hàm xử lí ở parent function getItemSeleted(item)</p>
+          <p>props:listSteper</p>
           <pre>{showDataExample(listSteper)}</pre>
           <hr />
           <p>import Pagination from "../../component/Pagination/Pagination";</p>
           function getPagination(item)
         </div>
       </div>
-
       <div className="SubContainer">
         <div className="Layout">
           {/* DeliveryAddress */}
@@ -278,7 +303,6 @@ function ExampleSource(props) {
           </p>
         </div>
       </div>
-
       <div className="SubContainer">
         <div className="Layout">
           {/* Header */}
@@ -291,24 +315,18 @@ function ExampleSource(props) {
           </p>
         </div>
       </div>
-
       <div className="SubContainer">
         <div className="Layout">
           {/* NavigateQuickly */}
-          <NavigateQuickly listQuickLink={listMenuQuick} />
+          <NavigateQuickly />
         </div>
         <div className="DataStructure">
           <p>
             import NavigateQuickly from
             "../../component/NavigateQuickly/NavigateQuickly";
           </p>
-          <p>
-            Props require:<span style={{ color: "red" }}>listQuickLink</span>
-          </p>
-          <pre>{showDataExample(listMenuQuick)}</pre>
         </div>
       </div>
-
       <div className="SubContainer">
         <div className="Layout">
           {/* OrderDetail */}
@@ -324,7 +342,6 @@ function ExampleSource(props) {
           <pre>{showDataExample(orderDetail)}</pre>
         </div>
       </div>
-
       <div className="SubContainer">
         <div className="Layout">
           {/* CardNews */}
@@ -347,7 +364,6 @@ function ExampleSource(props) {
           <pre>{showDataExample(newsCard)}</pre>
         </div>
       </div>
-
       <div className="SubContainer">
         <div className="Layout">
           {/* Table */}
@@ -373,37 +389,29 @@ function ExampleSource(props) {
           </p>
         </div>
       </div>
-
       <div className="SubContainer">
         <div className="Layout">
           {/* Contact */}
-          <Contact contactInfo={contactInfo} />
+          <Info contactInfo={contactInfo} />
         </div>
         <div className="DataStructure">
           <p>import Contact from "../../component/Contact/Contact";</p>
           <p>
-            Props require:<span style={{ color: "red" }}>contactInfo</span>
+            import CarouselImage from
+            import CartHeader from './../CartHeader/CartHeader';
+'./../../component/CarouselImage/CarouselImage'; Props require:
+            <span style={{ color: "red" }}>contactInfo</span>
           </p>
           <pre>{showDataExample(contactInfo)}</pre>
         </div>
       </div>
-
       <div className="SubContainer">
         <div className="Layout">
           {/* Contact */}
           <ContactForm />
         </div>
-        <div className="DataStructure">
-          <p>
-            import ContactForm from "../../component/ContactForm/ContactForm";
-          </p>
-          <p>
-            Props require:<span style={{ color: "red" }}>contactInfo</span>
-          </p>
-          <pre>{showDataExample(contactInfo)}</pre>
-        </div>
+        <div className="DataStructure"></div>
       </div>
-
       <div className="SubContainer">
         <div className="Layout">
           {iconList.map((icon, index) => {
@@ -518,25 +526,6 @@ const listSteper = [
 ];
 //End Steper
 
-//NavigateQuickly
-const listMenuQuick = [
-  {
-    id: "1",
-    label: "Trang chu",
-    path: "#",
-  },
-  {
-    id: "2",
-    label: "San pham",
-    path: "#",
-  },
-  {
-    id: "3",
-    label: "Chi tiet san pham",
-    path: "#",
-  },
-];
-//End NavigateQuickly
 
 //orderDetail
 const orderDetail = {
@@ -766,3 +755,21 @@ const contactInfo = {
   ],
 };
 //End Contact info
+
+const dataSourceCarousel = [
+  {
+    id: "1",
+    image: require("../../assets/images/761x309.png").default,
+    content: "",
+  },
+  {
+    id: "2",
+    image: require("../../assets/images/slider1.jpg").default,
+    content: "",
+  },
+  {
+    id: "3",
+    image: require("../../assets/images/slider2.jpg").default,
+    content: "",
+  },
+];

@@ -1,75 +1,74 @@
 @import "../../assets/scss/common.scss";
-
 .Steper {
-  margin-bottom: 25px;
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  text-align: center;
-  
-  .SteperItem {
+    margin-bottom: 25px;
+    display: flex;
     flex: 1;
-    .IconItem {
-      font-size: 30px;
-      color: $textColor;
-    }
+    flex-direction: row;
+    text-align: center;
 
-    .TitleItem {
-      h3 {
-        margin-top: 5px;
-        margin-bottom: 35px;
+    .SteperItem {
+      flex: 1;
+      .IconItem {
+        font-size: 30px;
         color: $textColor;
       }
-    }
 
-    .LineStatus {
-      border-bottom: 3px solid $textColor;
-      line-height: 0px;
-      .ItemStatus {
-        width: 20px;
-        height: 20px;
-        border: 2px solid $textColor;
-        border-radius: 50% 50%;
+      .TitleItem {
+        h3 {
+          margin-top: 5px;
+          margin-bottom: 35px;
+          color: $textColor;
+        }
+      }
 
-        color: $whiteColor;
-        padding: 10px 16px;
-        font-weight: bold;
+      .LineStatus {
+        border-bottom: 3px solid $textColor;
+        line-height: 0px;
+        .ItemStatus {
+          width: 20px;
+          height: 20px;
+          border: 2px solid $textColor;
+          border-radius: 50% 50%;
 
-        background-color: $borderColor;
+          color: $whiteColor;
+          padding: 10px 16px;
+          font-weight: bold;
+
+          background-color: $borderColor;
+        }
       }
     }
-  }
 
-  .ActiveSteperItem {
-    flex: 1;
-    .IconItem {
-      font-size: 30px;
-      color: $orangeColor;
-    }
-
-    .TitleItem {
-      h3 {
-        margin-top: 5px;
-        margin-bottom: 35px;
+    .ActiveSteperItem {
+      flex: 1;
+      .IconItem {
+        font-size: 30px;
         color: $orangeColor;
       }
-    }
 
-    .LineStatus {
-      border-bottom: 3px solid $orangeColor;
-      line-height: 0px;
-      .ItemStatus {
-        width: 20px;
-        height: 20px;
-        border: 2px solid $orangeColor;
-        border-radius: 50% 50%;
+      .TitleItem {
+        h3 {
+          margin-top: 5px;
+          margin-bottom: 35px;
+          color: $orangeColor;
+        }
+      }
 
-        color: $whiteColor;
-        padding: 10px 16px;
-        font-weight: bold;
+      .LineStatus {
+        border-bottom: 3px solid $orangeColor;
+        line-height: 0px;
+        .ItemStatus {
+          width: 20px;
+          height: 20px;
+          border: 2px solid $orangeColor;
+          border-radius: 50% 50%;
 
-        background-color: $orangeColor;
+          color: $whiteColor;
+          padding: 10px 16px;
+          font-weight: bold;
+
+          background-color: $orangeColor;
+        }
       }
     }
   }
-}

@@ -1,174 +1,335 @@
 @import "../../assets/scss/common.scss";
-.NavMenu {
-  display: flex;
-  background-color: $orangeColor;
-  height: 53px;
-  padding-left: 69px;
 
-  .ContainerCategory {
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background-color: $darkOrangeColor;
-    height: inherit;
-    width: 310px;
-    position: relative;
-    z-index: 100;
-
-    .TitleCategory {
-      position: relative;
-      color: $whiteColor;
-      font-weight: bold;
-      font-size: 14px;
-
+//Laptop
+@media all and (max-width : 1600px) {
+  .NavMenu {
+    display: flex;
+    background-color: $orangeColor;
+    height: 53px;
+    padding-left: 5%;
+    user-select: none;
+    .ContainerCategory {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background-color: $darkOrangeColor;
       height: inherit;
-      line-height: 53px;
-      text-align: left;
-      text-transform: uppercase;
+      width: 310px;
+      position: relative;
+      z-index: 100;
 
-      .IconCategory {
-        font-weight: 900;
-        font-size: 25px;
-        color: $whiteColor;
-        margin: 5px 10px 0px 20px;
-      }
-
-      .IconChevronCircleDown {
-        position: absolute;
-        font-size: 20px;
-        color: $whiteColor;
-        right: 10px;
-        top: 12px;
-        display: none;
-      }
-    }
-
-    ul {
-      display: none;
-      border: 1px solid $borderColor;
-      border-top: none;
-      list-style: none;
-
-      padding: 0px;
-      margin: 0px;
-      background-color: $whiteColor;
-
-      li {
-        border-bottom: 1px dotted $borderColor;
+      .TitleCategory {
         position: relative;
+        color: $whiteColor;
+        font-weight: bold;
+        font-size: 14px;
+
+        height: inherit;
+        line-height: 53px;
         text-align: left;
-
         text-transform: uppercase;
-        color: $textColor;
-        line-height: 40px;
-        text-indent: 30px;
 
-        cursor: pointer;
-
-        .IconRight {
+        .IconCategory {
+          font-weight: 900;
           font-size: 25px;
-          position: absolute;
-          right: 5px;
-          top: 7px;
-          display: none;
+          color: $whiteColor;
+          margin: 5px 10px 0px 20px;
         }
 
-        .IconRightHidden {
+        .IconChevronCircleDown {
+          position: absolute;
+          font-size: 20px;
+          color: $whiteColor;
+          right: 10px;
+          top: 12px;
           display: none;
         }
+      }
 
-        .SubMenu {
-          position: absolute;
-          top: 0px;
-          left: 100%;
+      ul {
+        display: none;
+        border: 1px solid $borderColor;
+        border-top: none;
+        list-style: none;
 
-          display: none;
-          border: 1px solid $borderColor;
-          box-shadow: 1px 0 4px 0 rgb(0 0 0 / 20%);
-          background-color: $whiteColor;
+        padding: 0px;
+        margin: 0px;
+        background-color: $whiteColor;
 
-          width: 180%;
+        li {
+          border-bottom: 1px dotted $borderColor;
+          position: relative;
+          text-align: left;
 
-          .ContentSubMenu {
-            h5 {
-              margin: 0px;
-              padding: 0px;
-              color: #000;
-            }
-            ul {
-              border: none;
-              li {
-                padding-left: 20px;
-                text-transform: none;
+          text-transform: uppercase;
+          color: $textColor;
+          line-height: 40px;
+          text-indent: 30px;
+
+          cursor: pointer;
+
+          .IconRight {
+            font-size: 25px;
+            position: absolute;
+            right: 5px;
+            top: 7px;
+            display: none;
+          }
+
+          .IconRightHidden {
+            display: none;
+          }
+
+          .SubMenu {
+            flex-direction: row;
+            flex-wrap: wrap;
+            position: absolute;
+            top: 0px;
+            left: 100%;
+
+            display: none;
+            border: 1px solid $borderColor;
+            box-shadow: 1px 0 4px 0 rgb(0 0 0 / 20%);
+            background-color: $whiteColor;
+
+            width: 180%;
+
+            .ContentSubMenu {
+              display: flex;
+              flex: 1;
+              flex-direction: column;
+              min-width: 40%;
+              h4 {
+                margin: 0px;
+                padding: 0px;
+                color: #000;
+              }
+              ul {
                 border: none;
+                li {
+                  padding-left: 20px;
+                  text-transform: none;
+                  border: none;
+                }
+              }
+
+              &:hover li {
+                color: $colorActive;
+                cursor: pointer;
               }
             }
+          }
 
-            &:hover li {
-              color: $colorActive;
-              cursor: pointer;
-            }
+          &:hover .SubMenu {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
           }
         }
 
-        &:hover .SubMenu {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
+        li:last-child {
+          border-bottom: 0px !important;
+        }
+        li:hover .IconRight {
+          display: inline;
         }
       }
 
-      li:last-child {
-        border-bottom: 0px !important;
-      }
-      li:hover .IconRight {
-        display: inline;
-      }
-    }
-
-    &:hover ul {
-      display: block !important;
-      z-index: 4;
-    }
-
-    li:hover {
-      color: $orangeColor;
-      z-index: 4;
-    }
-
-    &:hover .IconChevronCircleDown {
-      display: inline !important;
-      transition: 5s ease-in;
-    }
-  }
-
-  .Menu {
-    ul {
-      list-style: none;
-      margin: 0px;
-
-      li {
-        display: inline-block;
-        text-transform: uppercase;
-        padding: 0px 30px;
-        height: 53px;
-
-        border-right: 1px solid rgba(255, 255, 255, 0.15);
-        color: $whiteColor;
-        line-height: 50px;
-
-        font-weight: 400;
-
-        .MenuLink {
-          text-decoration: none;
-          color: $whiteColor;
-        }
-      }
-      .Active {
-        background: $colorActive;
+      &:hover ul {
+        display: block !important;
+        z-index: 4;
       }
 
       li:hover {
-        background: $colorActive;
+        color: $orangeColor;
+        z-index: 4;
       }
+
+      &:hover .IconChevronCircleDown {
+        display: inline !important;
+        transition: 5s ease-in;
+      }
+    }
+
+    .Menu {
+      ul {
+        list-style: none;
+        margin: 0px;
+
+        li {
+          display: inline-block;
+          text-transform: uppercase;
+          padding: 0px 30px;
+          height: 53px;
+
+          border-right: 1px solid rgba(255, 255, 255, 0.15);
+          color: $whiteColor;
+          line-height: 50px;
+
+          font-weight: 400;
+
+          .MenuLink {
+            text-decoration: none;
+            color: $whiteColor;
+          }
+        }
+        .Active {
+          background: $colorActive;
+        }
+
+        li:hover {
+          background: $colorActive;
+        }
+      }
+    }
+  }
+}
+
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .NavMenu {
+    padding: 0px;
+    .ContainerCategory {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background-color: $darkOrangeColor;
+      height: inherit;
+      position: relative;
+
+      z-index: 10000;
+      width: 100%;
+
+      .TitleCategory {
+        position: relative;
+        color: $whiteColor;
+        font-weight: bold;
+        font-size: 14px;
+
+        height: inherit;
+        line-height: 53px;
+        text-align: left;
+        text-transform: uppercase;
+
+        .IconCategory {
+          font-weight: 900;
+          font-size: 25px;
+          color: $whiteColor;
+          margin: 5px 10px 0px 20px;
+        }
+
+        .IconChevronCircleDown {
+          position: absolute;
+          font-size: 20px;
+          color: $whiteColor;
+          right: 10px;
+          top: 12px;
+          display: none;
+        }
+      }
+
+      ul {
+        display: none !important;
+        border: 1px solid $borderColor;
+        border-top: none;
+        list-style: none;
+
+        padding: 0px;
+        margin: 0px;
+        background-color: $whiteColor;
+
+        li {
+          border-bottom: 1px dotted $borderColor;
+          position: relative;
+          text-align: left;
+
+          text-transform: uppercase;
+          color: $textColor;
+          line-height: 40px;
+          text-indent: 30px;
+
+          cursor: pointer;
+
+          .IconRight {
+            font-size: 25px;
+            position: absolute;
+            right: 5px;
+            top: 7px;
+            display: none;
+            transform: rotate(90deg);
+          }
+
+          .IconRightHidden {
+            display: none;
+          }
+
+          .SubMenu {
+            display: flex;
+            flex-direction: column !important;
+            position: relative;
+            left: 0px;
+
+            display: none;
+            border: 1px solid $borderColor;
+            box-shadow: 1px 0 4px 0 rgb(0 0 0 / 20%);
+            background-color: $whiteColor;
+
+            width: inherit;
+            .ContentSubMenu {
+              display: flex;
+              flex: 1;
+              flex-direction: column;
+              h4 {
+                margin: 0px;
+                padding: 0px;
+                color: #000;
+              }
+              ul {
+                border: none;
+                li {
+                  text-transform: none;
+                  border: none;
+                }
+              }
+
+              &:hover li {
+                color: $colorActive;
+                cursor: pointer;
+              }
+            }
+          }
+
+          &:hover .SubMenu {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+          }
+        }
+
+        li:last-child {
+          border-bottom: 0px !important;
+        }
+        li:hover .IconRight {
+          display: inline;
+        }
+      }
+
+      &:hover ul {
+        display: block !important;
+        z-index: 4;
+      }
+
+      li:hover {
+        color: $orangeColor;
+        z-index: 4;
+      }
+
+      &:hover .IconChevronCircleDown {
+        display: inline !important;
+        transition: 5s ease-in;
+      }
+    }
+    .Menu {
+      display: none;
     }
   }
 }

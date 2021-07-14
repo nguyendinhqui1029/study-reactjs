@@ -9,25 +9,37 @@ SelectedInput.propTypes = {
   dataSource: PropTypes.array,
   disabled: PropTypes.bool,
   placeHolder: PropTypes.string,
+  isShowValidField: PropTypes.bool,
+  optionEventChange: PropTypes.func,
 };
 SelectedInput.defaultProps = {
   placeHolder: "",
   dataSource: [],
   disabled: false,
+  isShowValidField: true,
+  optionEventChange: null,
 };
 function SelectedInput(props) {
-  const { field, form, dataSource, disabled, placeHolder } = props;
+  const {
+    field,
+    form,
+    dataSource,
+    disabled,
+    placeHolder,
+    isShowValidField,
+    optionEventChange,
+  } = props;
   const { errors, touched } = form;
   const { name, value } = field;
-  
+
   const showError = errors[name] && touched[name];
-  const showValidField = touched[name] && !errors[name];
+  const showValidField = touched[name] && !errors[name] && isShowValidField;
 
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
     if (value) setSelected(value);
-  }, []);
+  }, [value]);
 
   const handleEventChange = (selectedOption) => {
     const selectedValue = selectedOption
@@ -39,12 +51,15 @@ function SelectedInput(props) {
         value: selectedValue,
       },
     };
+    if (optionEventChange) {
+      optionEventChange(selectedValue);
+    }
     field.onChange(dataChange);
     setSelected(selectedValue);
   };
 
   return (
-    <div className="ContainerInput">
+    <div className="ContainerMain">
       <div
         className={
           showValidField

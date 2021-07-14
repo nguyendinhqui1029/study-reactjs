@@ -1,0 +1,42 @@
+@import "../../assets/scss/common.scss";
+
+.ContainerChildLeft {
+  padding: 20px 0px;
+  .VerticalMenu {
+    background: $whiteColor;
+    .LabelMenu {
+      border-left: 7px solid $darkTextColor;
+      background: $orangeColor;
+    }
+
+    .ItemList {
+      background: $whiteColor;
+      li {
+        color: $textColor;
+        text-transform: none;
+        font-weight: normal;
+      }
+
+      li:hover {
+        color:$orangeColor;
+        background: none;
+      }
+    }
+
+    .BorderLv2{
+      display: none;
+    }
+
+    .BorderLv1{
+      display: none;
+    }
+  }
+}
+
+.ContainerChildRight {
+  .ProductContent {
+    .Title {
+      border: none;
+    }
+  }
+}

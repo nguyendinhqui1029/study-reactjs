@@ -1,37 +1,98 @@
 @import "../../assets/scss/common.scss";
 
-.ContainerNews {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 0px 70px;
-  .ContainerLeft {
-    flex: 1;
-    .News {
-      margin-top: 20px;
-      .VerticalMenu{
-        .LabelMenu {
-          background: $blackColor;
+//Laptop
+@media all and (max-width: 1600px) {
+  .ContainerNews {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0px 5%;
+    .ContainerLeft {
+      flex: 1;
+      .News {
+        margin-top: 20px;
+        .VerticalMenu {
+          .LabelMenu {
+            background: $blackColor;
+          }
         }
+      }
+
+      .NewsHighlight {
+        margin-top: 20px;
       }
     }
 
-    .NewsHighlight {
-      margin-top: 20px;
-    }
-  }
-
-  .ContainerRight {
-    flex-direction: column;
-    flex: 3;
-    padding: 10px 15px;
-    min-width: 300px;
-    .Header {
-        .ProductContent{
-          h1{
+    .ContainerRight {
+      flex-direction: column;
+      flex: 3;
+      padding: 10px 15px;
+      min-width: 300px;
+      .Header {
+        .ProductContent {
+          h1 {
             color: $blackColor;
           }
         }
       }
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .ContainerNews {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0px 5px;
+    .ContainerLeft {
+      flex: 1;
+      .News {
+        margin-top: 20px;
+        .VerticalMenu {
+          .LabelMenu {
+            background: $blackColor;
+          }
+        }
+      }
+
+      .NewsHighlight {
+        margin-top: 20px;
+      }
+    }
+
+    .ContainerRight {
+      flex-direction: column;
+      flex: 3;
+      padding: 0px !important;
+
+      min-width: 300px;
+      .Header {
+        .ProductContent {
+          h1 {
+            color: $blackColor;
+          }
+        }
+      }
+
+      .NewsList {
+        .CardNews {
+          .CardItem {
+            .ImageItem {
+              margin: 12px;
+            }
+            .ContentItem {
+              overflow: hidden;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+            }
+          }
+        }
+      }
+    }
   }
 }

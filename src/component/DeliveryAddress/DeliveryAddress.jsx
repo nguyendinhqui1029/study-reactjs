@@ -3,27 +3,49 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Input from "../../component/Input/Input";
 import SelectedInput from "../../component/SelectedInput/SelectedInput";
-import { Formik, Form, FastField, Field } from "formik";
-import Yup from "../../validation/CustomValidation";
+import Textarea from "../../component/Textarea/Textarea";
+import { Formik, Form, FastField, Field, useFormikContext } from "formik";
 import "./DeliveryAddress.scss";
-DeliveryAddress.propTypes = {};
-DeliveryAddress.defaultProps = {};
+import { useDispatch } from 'react-redux';
+import { addAddress, addAddressOther } from "../../actions/cart";
+DeliveryAddress.propTypes = {
+  isSubmitForm: PropTypes.bool,
+};
+DeliveryAddress.defaultProps = {
+  isSubmitForm: false,
+};
 
 function DeliveryAddress(props) {
+  const { isSubmitForm } = props;
   const [cities, setCities] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [districtsByCity, setDistrictsByCity] = useState([]);
-  const [districtsByCitySubAddress, setDistrictsByCitySubAddress] = useState([]);
+  const [districtsByCitySubAddress, setDistrictsByCitySubAddress] = useState(
+    []
+  );
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedCitySubAddress, setSelectedCitySubAddress] = useState(null);
   const [isShowOtherAddress, setShowOtherAddress] = useState(false);
+  const dispatch = useDispatch();
   const initialValues = {
-    name: "",
-    email: "",
-    address: "",
-    city: "",
-    district: "",
+    address: {
+      name: "",
+      email: "",
+      address: "",
+      city: "",
+      district: "",
+      description: "",
+    },
+    otherAddress: {
+      nameOther: "",
+      emailOther: "",
+      addressOther: "",
+      cityOther: "",
+      districtOther: "",
+      descriptionOther: "",
+    },
   };
+
   const fetchCities = async () => {
     try {
       const header = {
@@ -32,7 +54,7 @@ function DeliveryAddress(props) {
           Accept: "application/json",
         },
       };
-      const urlRequest = "./json/cities.json";
+      const urlRequest = "/json/cities.json";
       const response = await fetch(urlRequest, header);
       const responseJson = await response.json();
       const responseJsonMap = responseJson.map((item) => {
@@ -51,6 +73,10 @@ function DeliveryAddress(props) {
     fetchCities();
   }, []);
 
+  useEffect(() => {
+    fetchDistricts();
+  }, [selectedCity, selectedCitySubAddress]);
+
   async function fetchDistricts() {
     try {
       const districtsList = [];
@@ -62,7 +88,7 @@ function DeliveryAddress(props) {
             Accept: "application/json",
           },
         };
-        const urlRequest = "./json/districts.json";
+        const urlRequest = "/json/districts.json";
         const response = await fetch(urlRequest, header);
         const responseJson = await response.json();
         const responseJsonMap = responseJson.map((item) => {
@@ -73,7 +99,7 @@ function DeliveryAddress(props) {
             idCity: item.idCity,
           };
         });
-       
+
         setDistricts(responseJsonMap);
         responseJsonMap.forEach((district) => {
           district.idCity === selectedCity &&
@@ -91,7 +117,7 @@ function DeliveryAddress(props) {
           district.idCity === selectedCitySubAddress &&
             districtsSubAddress.push(...district.districts);
         });
-         console.log(districtsList);
+        console.log(districtsList);
         setDistrictsByCity(Object.assign(districtsList));
         setDistrictsByCitySubAddress(Object.assign(districtsSubAddress));
       }
@@ -99,14 +125,20 @@ function DeliveryAddress(props) {
       console.log(error);
     }
   }
-  useEffect(() => {
-    fetchDistricts();
-  }, [selectedCity, selectedCitySubAddress]);
 
   function changeOtherAddress(event) {
     setShowOtherAddress(event.target.checked);
   }
 
+  const AutoSubmit = () => {
+    const { values, submitForm } = useFormikContext();
+    useEffect(() => {
+      if (isSubmitForm) {
+        submitForm();
+      }
+    }, [isSubmitForm]);
+    return null;
+  };
   return (
     <div className="DeliveryAddress">
       <div className="HeaderContainer">
@@ -126,9 +158,11 @@ function DeliveryAddress(props) {
         <div className="MainInfo">
           <h5>Mua hàng không cần tài khoản</h5>
           <Formik
-            initialValues={initialValues}
-            render={(formik) => {
-              setSelectedCity(formik.values.city);
+            initialValues={initialValues.address}
+            onSubmit={(value) => {
+              dispatch(addAddress(value));
+            }}
+            render={() => {
               return (
                 <Form className="FormInfo">
                   <FastField
@@ -149,25 +183,26 @@ function DeliveryAddress(props) {
                     type="text"
                     placeholder="Địa chỉ"
                   />
-                  <Field           
+                  <Field
                     name="city"
                     component={SelectedInput}
                     dataSource={cities}
+                    optionEventChange={setSelectedCity}
+                    placeHolder="Vui lòng chọn thành phố"
                   />
-
                   <Field
-                    as="select"
                     name="district"
                     component={SelectedInput}
                     dataSource={districtsByCity}
                     disabled={!districtsByCity.length}
-                  ></Field>
-                  <textarea
-                    value=""
-                    onChange={() => {}}
-                    placeholder="Ghi chú đơn hàng"
-                    rows="5"
                   />
+                  <FastField
+                    name="description"
+                    component={Textarea}
+                    placeholder="Ghi chú đơn hàng"
+                    rows={5}
+                  />
+                  <AutoSubmit />
                 </Form>
               );
             }}
@@ -186,39 +221,48 @@ function DeliveryAddress(props) {
           </span>
 
           <Formik
-            initialValues={initialValues}
-            render={(formik) => {
+            initialValues={initialValues.otherAddress}
+            onSubmit={(value) => {
+              if (isShowOtherAddress){
+                dispatch(addAddressOther(initialValues.otherAddress));
+              } 
+              console.log(value);
+              dispatch(addAddressOther(value));
+            }}
+            render={() => {
               return (
                 <Form className={isShowOtherAddress ? "FormInfo" : "SubForm"}>
                   <FastField
-                    name="nameSubAddress"
+                    name="nameOther"
                     component={Input}
                     type="text"
                     placeholder="Họ và Tên"
                   />
                   <FastField
-                    name="emailSubAddress"
+                    name="emailOther"
                     component={Input}
                     type="text"
                     placeholder="Email"
                   />
                   <FastField
-                    name="addressSubAddress"
+                    name="addressOther"
                     component={Input}
                     type="text"
                     placeholder="Địa chỉ"
                   />
                   <Field
-                    name="citySubAddress"
+                    name="cityOther"
                     component={SelectedInput}
                     dataSource={cities}
                     placeHolder="Vui lòng chọn thành phố"
+                    optionEventChange={setSelectedCitySubAddress}
                   />
-                  <FastField
-                    name="districtSubAddress"
+                  <Field
+                    name="districtOther"
                     component={SelectedInput}
                     dataSource={districtsByCitySubAddress}
                   />
+                  <AutoSubmit />
                 </Form>
               );
             }}

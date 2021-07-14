@@ -1,7 +1,10 @@
 .App {
-  
+  font-family:myFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
-
+@font-face {
+  font-family: myFont;
+  src: url(./assets/scss/font/Roboto-Light.ttf);
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

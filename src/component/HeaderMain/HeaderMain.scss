@@ -1,0 +1,127 @@
+@import "../../assets/scss/common.scss";
+
+@media all and (max-width: 1600px) {
+  .HeaderMain {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background: $whiteColor;
+    .ContainerCart {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+
+      flex-wrap: wrap;
+      margin: 0px 5%;
+      .ContainerHeaderLeft {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+      }
+      .ContainerHeaderRight {
+        display: flex;
+        flex-direction: column;
+        flex: 4;
+        .ContainerSlogan {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          padding: 20px;
+          .ContainerIcon {
+            margin: 10px;
+            .Icon {
+              font-size: 30px;
+              margin: 0px 5px;
+              color: $orangeColor;
+            }
+            span {
+              color: $textColor;
+              font-weight: 800;
+            }
+          }
+        }
+        .ContainerSearchAndCart {
+          display: flex;
+          flex-direction: row;
+          flex: 1;
+          flex-wrap: wrap;
+
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 15px;
+          .ContainerSearch {
+            flex: 2;
+            margin-bottom: 15px;
+          }
+
+          .ContainerCart {
+            flex: 1;
+            margin-bottom: 15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .HeaderMain {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: $whiteColor;
+  .ContainerCart {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+
+    flex-wrap: wrap;
+    margin: 0px 5%;
+    .ContainerHeaderLeft {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+    .ContainerHeaderRight {
+      display: flex;
+      flex-direction: column;
+      flex: 4;
+      .ContainerSlogan {
+        display: none;
+      }
+      .ContainerSearchAndCart {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        flex-wrap: wrap;
+
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        .ContainerSearch {
+          flex: 2;
+          margin-bottom: 15px;
+          .Search{
+            .ContainerMain {
+              display: none;
+            }
+          }
+        }
+
+        .ContainerCart {
+          flex: 1;
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+}
+}

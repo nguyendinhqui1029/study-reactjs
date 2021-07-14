@@ -1,0 +1,31 @@
+@import "../../assets/scss/common.scss";
+
+.ContainerBodyLeft {
+  flex: 1;
+  .ContainerChild {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    flex-wrap: wrap;
+
+    .Image{
+      flex: 1;
+      img {
+        min-width: 200px;
+      }
+    }
+    .Info{
+      flex: 3;
+       min-width:300px;
+    }
+    .ContactForm {
+      flex: 1;
+      min-width:300px;
+    }
+    .Map{
+      flex: 1;
+      min-width:300px;
+    }
+  }
+}
+

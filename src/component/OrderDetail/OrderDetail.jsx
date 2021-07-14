@@ -8,7 +8,7 @@ OrderDetail.propTypes = {
 function OrderDetail(props) {
   const { orderDetail } = props;
   const { idOrder, orderDate, payMethod, listProduct, intoMoney } = orderDetail;
-  
+
   return (
     <div className="OrderDetail">
       <h3 className="IdOrder">
