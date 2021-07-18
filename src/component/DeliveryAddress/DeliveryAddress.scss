@@ -49,6 +49,7 @@
       .FormInfo {
         display: flex;
         flex-direction: column;
+        input[type="password"],
         input[type="text"],
         input[type="checkbox"],
         textarea,

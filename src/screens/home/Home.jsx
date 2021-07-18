@@ -18,7 +18,7 @@ function Home() {
       </div>
 
       <div className="ProductList">
-        <BodyProductList noItemPage ={20}/>
+        <BodyProductList noItemPage={20} />
       </div>
     </div>
   );

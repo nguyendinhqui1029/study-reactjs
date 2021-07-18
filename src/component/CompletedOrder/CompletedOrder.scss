@@ -1,1 +1,31 @@
-@import '../.././assets/scss/common.scss';
+@import "../.././assets/scss/common.scss";
+
+@media all and (max-width: 1600px) {
+  .ContainerCompletedOrder {
+    padding-bottom: 20px;
+    .OrderDetail {
+      .IntoMoney {
+        .Content {
+          line-height: 35px;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .ContainerCompletedOrder {
+    padding-bottom: 20px;
+    .OrderDetail {
+      padding: 5px;
+      .IntoMoney {
+        .Content {
+          line-height: 35px;
+        }
+      }
+    }
+  }
+}

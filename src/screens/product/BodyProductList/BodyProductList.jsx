@@ -4,6 +4,7 @@ import CardProduct from "./../../../component/CardProduct/CardProduct";
 import Pagination from "./../../../component/Pagination/Pagination";
 import "./BodyProductList.scss";
 import productApi from "../../../api/product.api";
+import Loading from './../../../component/Loading/Loading';
 
 BodyProductList.propTypes = {
   noItemPage: PropTypes.number,
@@ -40,23 +41,9 @@ function BodyProductList(props) {
   return (
     <div className="BodyProductList">
       <div className="ProductList">
-        {isShowLoading && (
-          <div className="ContainerLoading">
-            <div className="Loading"></div>
-            <img
-              className="ImgLoading"
-              src={require("../../../assets/images/loading.gif").default}
-              alt="loading ..."
-            />
-          </div>
-        )}
+        {<Loading isLoading={isShowLoading} />}
         {productList.map((product, index) => {
-          return (
-            <CardProduct
-              key={index}
-              itemProduct={product}
-            />
-          );
+          return <CardProduct key={index} itemProduct={product} />;
         })}
       </div>
       <div className="Pagination">

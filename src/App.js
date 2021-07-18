@@ -25,6 +25,8 @@ import ResultSearch from './screens/ResultSearch/ResultSearch';
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import * as Icons from "@fortawesome/free-solid-svg-icons";
+import MyOrder from './screens/MyOrder/MyOrder';
+import Login from './screens/Login/Login';
 const iconList = Object.keys(Icons)
   .filter((key) => key !== "fas" && key !== "prefix")
   .map((icon) => Icons[icon]);
@@ -69,6 +71,12 @@ function App() {
             </Route>
             <Route path="/search-result">
               <ResultSearch />
+            </Route>
+            <Route path="/my-order">
+              <MyOrder />
+            </Route>
+            <Route path="/account">
+              <Login />
             </Route>
           </Switch>
           <Footer />

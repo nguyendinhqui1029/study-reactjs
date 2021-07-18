@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import VerticalMenu from "../../component/VerticalMenu/VerticalMenu";
 import NavigateQuickly from "../../component/NavigateQuickly/NavigateQuickly";
 import Header from "../../component/Header/Header";
 import "./About.scss";
 import { addQuickLink, removeQuickLink } from "../../actions/quicklink";
-import { useDispatch } from 'react-redux';
-
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function About() {
   const disPatch = useDispatch();
+  const history = useHistory();
+  const [header, setHeader] = useState("Đăng nhập");
+  history.listen((location) => {
+    const item = dataSource.find((item) => {
+      return item.path.includes(location.pathname);
+    });
+    if (item && item.hasOwnProperty("title")) setHeader(item.title);
+  });
+
+  function navigatePage(item) {
+    setHeader(item.title);
+    history.push(item.path[0]);
+  }
   function selectedCategory(item) {
     disPatch(removeQuickLink(1));
     disPatch(addQuickLink({ path: `/about`, label: "Giới thiệu" }));
@@ -85,9 +98,11 @@ const dataSource = [
   {
     id: "1",
     title: "Về chúng tôi",
+    path: "",
   },
   {
     id: "2",
     title: "Lĩnh vực hoạt động",
+    path: "",
   },
 ];

@@ -11,7 +11,7 @@ import { addMenu } from '../../actions/menu';
 
 function HeaderMain() {
   const [listMenu, setListMenu] = useState([]);
-  const disPatch =useDispatch();
+  const disPatch = useDispatch();
   useEffect(() => {
     getAllMenu().then((value) => {
       setListMenu(value);

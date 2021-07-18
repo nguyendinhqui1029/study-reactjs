@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./OrderDetail.scss";
+import { calculateDiscount, formatCurrency } from "../../util/util";
 OrderDetail.propTypes = {
   orderDetail: PropTypes.object.isRequired,
 };
 
 function OrderDetail(props) {
   const { orderDetail } = props;
-  const { idOrder, orderDate, payMethod, listProduct, intoMoney } = orderDetail;
-
+  const { idOrder, orderDate, payMethod, listProduct, intoMoney, deliveryFee } =
+    orderDetail;
   return (
     <div className="OrderDetail">
       <h3 className="IdOrder">
@@ -35,11 +36,19 @@ function OrderDetail(props) {
           return (
             <div className="ContentTable" key={product.id}>
               <div className="ContentSTT">{index + 1}</div>
-              <div className="ContentProduct">{product.name}</div>
-              <div className="ContentPrice">{product.price}</div>
+              <div className="ContentProduct">{product.productName}</div>
+              <div className="ContentPrice">
+                {formatCurrency(product.price)}
+              </div>
               <div className="ContentAmount">{product.amount}</div>
               <div className="ContentIntoMoney">
-                {product.intoMoney}
+                <span style={{ padding: "5px" }}>
+                  {formatCurrency(
+                    calculateDiscount(product.price, product.discount) *
+                      product.amount
+                  )}
+                </span>
+
                 <sup>đ</sup>
               </div>
             </div>
@@ -48,7 +57,13 @@ function OrderDetail(props) {
       </div>
       <div className="IntoMoney">
         <span className="Content">
-          {intoMoney} <sup>đ</sup>
+          {formatCurrency(deliveryFee)} <sup>đ</sup>
+        </span>
+        <span className="Label">Phí vận chuyển:</span>
+      </div>
+      <div className="IntoMoney">
+        <span className="Content">
+          {formatCurrency(intoMoney + deliveryFee)} <sup>đ</sup>
         </span>
         <span className="Label">Tổng thanh toán:</span>
       </div>

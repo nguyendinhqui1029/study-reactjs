@@ -12,7 +12,7 @@ function HeaderPage() {
     subMenu: [
       {
         label: "Kiểm tra đơn hàng",
-        path: "/account/check-order",
+        path: "/my-order",
         icon: "pen-square",
       },
       { label: "Đăng nhập", path: "/account/login", icon: "share-square" },

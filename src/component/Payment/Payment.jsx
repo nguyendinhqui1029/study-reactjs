@@ -9,7 +9,8 @@ import { calculateIntoMoney, calculateTotal } from "../../util/util";
 import {
   addDeliveryMethod,
   addPaymentMethod,
-  updateFeeOther,
+  setID,
+  setStatus,
 } from "../../actions/cart";
 import orderDetailApi from "../../api/orderDetail";
 import { useHistory } from "react-router-dom";
@@ -21,13 +22,10 @@ function Payment() {
   const [deliveryFee, setDeliveryFee] = useState(0);
   const history = useHistory();
   let cartList = useSelector((carts) => carts.cart.cartList);
+  // let address = useSelector((carts) => carts.cart.address);
+  // let addressOther = useSelector((carts) => carts.cart.addressOther);
   let cartDetail = useSelector((carts) => carts.cart);
   const disPatch = useDispatch();
-  cartList = cartList.length
-    ? cartList
-    : sessionStorage.getItem("item_cart")
-    ? JSON.parse(sessionStorage.getItem("item_cart")).cartList
-    : [];
   cartList = calculateIntoMoney(cartList);
 
   useEffect(() => {
@@ -43,23 +41,16 @@ function Payment() {
     disPatch(addPaymentMethod(item));
   };
 
-  const handleClickOrder = (item) => {
+  const handleClickOrder = () => {
     setIsSubmitForm(true);
-
-    disPatch(
-      updateFeeOther({
-        deliveryFee: item.deliveryFee,
-        intoMoney: item.intoMoney,
-        totalPay: item.totalPay,
-      })
-    );
-    orderDetailApi.addOrderDetail(cartDetail).then((result) => {
-      console.log(result);
-    });
-    history.push("/cart-detail/completed");
     setTimeout(() => {
+      orderDetailApi.addOrderDetail(cartDetail).then((result) => {
+        disPatch(setID(result.id));
+        disPatch(setStatus("Waiting Approval"));
+        history.push("/cart-detail/completed");
+      });
       setIsSubmitForm(false);
-    }, 2000);
+    }, 3000);
   };
 
   return (

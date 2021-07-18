@@ -11,18 +11,14 @@ import {
   formatCurrency,
 } from "../../util/util";
 import { ACTION_TYPE_TABLE } from "../../Constant/Constant";
-import { removeToCart, updateCartList } from "../../actions/cart";
+import { removeToCart } from "../../actions/cart";
 import { useHistory } from "react-router-dom";
 function Cart() {
-  let cartList = useSelector((carts) => carts.cart.cartList);
+  let cartList = useSelector((cart) => cart.cart.cartList);
   const disPatch = useDispatch();
   const history = useHistory();
-  if (!cartList.length) {
-    cartList = JSON.parse(sessionStorage.getItem("item_cart"));
-    disPatch(updateCartList(cartList));
-  }
-
   cartList = calculateIntoMoney(cartList);
+
   const removeItemCart = (item, actionName) => {
     if (actionName === ACTION_TYPE_TABLE.DELETE) {
       disPatch(removeToCart(item));

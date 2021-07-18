@@ -7,12 +7,13 @@ VerticalMenu.propTypes = {
   iconRight: PropTypes.string,
   title: PropTypes.string.isRequired,
   categoryList: PropTypes.array.isRequired,
-  selectedCategory: PropTypes.func.isRequired,
+  selectedCategory: PropTypes.func,
 };
 
 VerticalMenu.defaultProps = {
-  iconLeft: "",
-  iconRight: "",
+  iconLeft: null,
+  iconRight: null,
+  selectedCategory:null
 };
 function VerticalMenu(props) {
   const { selectedCategory, title, categoryList,iconLeft,iconRight } = props;
@@ -28,18 +29,18 @@ function VerticalMenu(props) {
         {categoryList.map((category) => {
           return (
             <li key={category.id} onClick={() => handleEventClick(category)}>
-              {iconLeft && (
+              {(iconLeft || category.hasOwnProperty("iconLeft")) && (
                 <FontAwesomeIcon
                   className="IconLeft"
-                  icon={iconLeft}
+                  icon={iconLeft || category.iconLeft}
                 />
               )}
 
               {category.title}
-              {iconRight && (
+              {(iconRight || category.hasOwnProperty("iconRight")) && (
                 <FontAwesomeIcon
                   className="IconRight"
-                  icon={iconRight}
+                  icon={iconRight || category.iconRight}
                 />
               )}
             </li>

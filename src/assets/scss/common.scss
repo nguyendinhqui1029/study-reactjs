@@ -51,6 +51,9 @@ $validColor: #1a9d1af7;
         display: flex;
         flex: 1;
         position: relative;
+
+        input[type="date"],
+        input[type="password"],
         input[type="text"],
         select,
         textarea {
@@ -66,8 +69,8 @@ $validColor: #1a9d1af7;
           display: none;
           position: absolute;
           z-index: 2;
-          right: 1px;
-          top: 8px;
+          right: 0px;
+          top: 10px;
           color: $validColor;
         }
       }
@@ -88,7 +91,7 @@ $validColor: #1a9d1af7;
       .Input {
         input,
         select {
-          border: 2px solid $validColor !important;
+          border: 1px solid $validColor !important;
         }
         .IconValid {
           display: inline;
@@ -104,7 +107,7 @@ $validColor: #1a9d1af7;
       .Input {
         input,
         select {
-          border: 2px solid $redColor !important;
+          border: 1px solid $redColor !important;
           padding-left: 8px;
         }
         .IconValid {
@@ -134,6 +137,7 @@ $validColor: #1a9d1af7;
         display: flex;
         flex: 1;
         position: relative;
+        input[type="password"],
         input[type="text"],
         select,
         textarea {
@@ -149,8 +153,8 @@ $validColor: #1a9d1af7;
           display: none;
           position: absolute;
           z-index: 2;
-          right: 1px;
-          top: 8px;
+          right: 0px;
+          top: 10px;
           color: $validColor;
         }
       }
@@ -169,9 +173,10 @@ $validColor: #1a9d1af7;
 
     .InputValid {
       .Input {
-        input,
+        input[type="password"],
+        input[type="text"],
         select {
-          border: 2px solid $validColor !important;
+          border: 1px solid $validColor !important;
         }
         .IconValid {
           display: inline;
@@ -185,9 +190,10 @@ $validColor: #1a9d1af7;
 
     .InputInvalid {
       .Input {
-        input,
+        input[type="password"],
+        input[type="text"],
         select {
-          border: 2px solid $redColor !important;
+          border: 1px solid $redColor !important;
           padding-left: 8px;
         }
         .IconValid {

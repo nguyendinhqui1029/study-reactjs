@@ -1,13 +1,14 @@
 export const addToCart= (cart)=>{
   return {
-    type: "ADD_CART",
+    type: "ADD_ITEM_TO_CART",
     payload: cart,
   };
 }
-export const updateCartList = (cartList) => {
+
+export const resetCartList = () => {
   return {
-    type: "UPDATE_CART",
-    payload: cartList,
+    type: "RESET_CART_LIST",
+    payload: [],
   };
 };
 
@@ -57,3 +58,17 @@ export const addPaymentMethod= (paymentMethod)=>{
     payload: paymentMethod,
   };
 }
+
+export const setStatus = (status) => {
+  return {
+    type: "STATUS",
+    payload: status,
+  };
+};
+
+export const setID = (id) => {
+  return {
+    type: "ID",
+    payload: id,
+  };
+};

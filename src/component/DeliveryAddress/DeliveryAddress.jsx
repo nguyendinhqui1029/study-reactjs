@@ -6,7 +6,7 @@ import SelectedInput from "../../component/SelectedInput/SelectedInput";
 import Textarea from "../../component/Textarea/Textarea";
 import { Formik, Form, FastField, Field, useFormikContext } from "formik";
 import "./DeliveryAddress.scss";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { addAddress, addAddressOther } from "../../actions/cart";
 DeliveryAddress.propTypes = {
   isSubmitForm: PropTypes.bool,
@@ -223,11 +223,11 @@ function DeliveryAddress(props) {
           <Formik
             initialValues={initialValues.otherAddress}
             onSubmit={(value) => {
-              if (isShowOtherAddress){
+              if (!isShowOtherAddress) {
                 dispatch(addAddressOther(initialValues.otherAddress));
-              } 
-              console.log(value);
-              dispatch(addAddressOther(value));
+              } else {
+                dispatch(addAddressOther(value));
+              }
             }}
             render={() => {
               return (

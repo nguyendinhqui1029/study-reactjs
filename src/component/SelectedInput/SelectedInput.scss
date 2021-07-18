@@ -1,4 +1,10 @@
 @import "../../assets/scss/common.scss";
-select:active option {
-  width: 100px;
+.ContainerMain {
+  .ContainerInput {
+    .Input {
+      select {
+        height: 40px;
+      }
+    }
+  }
 }

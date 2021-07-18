@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Steper from "../../component/Steper/Steper";
 import Table from "../../component/Table/Table";
 import { ACTION_TYPE_TABLE } from "../../Constant/Constant";
@@ -14,7 +14,8 @@ import {
   Route,
   useRouteMatch,
   useHistory,
-  Link
+  Link,
+  Redirect,
 } from "react-router-dom";
 import "./CartDetail.scss";
 import { useSelector } from "react-redux";
@@ -32,13 +33,11 @@ function CartDetail() {
   let { path } = useRouteMatch(); //get root path
   const history = useHistory();
   let cartList = useSelector((carts) => carts.cart.cartList);
+  let status = useSelector((carts) => carts.cart.status);
   const disPatch = useDispatch();
-  cartList = cartList.length
-    ? cartList
-    : sessionStorage.getItem("item_cart")
-    ? JSON.parse(sessionStorage.getItem("item_cart")).cartList
-    : [];
   cartList = calculateIntoMoney(cartList);
+
+  
 
   const removeItemCart = (item, actionName) => {
     if (actionName === ACTION_TYPE_TABLE.DELETE) {
@@ -51,7 +50,9 @@ function CartDetail() {
     disPatch(updateAmountToCart(item));
   };
 
-  return (
+  return (!cartList.length && status === "dratf")? (
+    <Redirect to="/product" />
+  ) : (
     <div className="CartDetail">
       <div className="ContainerBody">
         <div className="NavQuickly">
@@ -83,12 +84,14 @@ function CartDetail() {
                 <div className="ButtonSend">
                   <Button
                     className="ButtonLeft"
-                    onClick={() => history.goBack()}
+                    onClick={() => history.replace("/product")}
                   >
                     Tiếp tục mua hàng
                   </Button>
                   <Button className="ButtonRight">
-                    <Link to={`${path}/payment`} className="Link">Tiến hành thanh toán</Link>
+                    <Link to={`${path}/payment`} className="Link">
+                      Tiến hành thanh toán
+                    </Link>
                   </Button>
                 </div>
               </div>
@@ -97,7 +100,23 @@ function CartDetail() {
               <Payment />
             </Route>
             <Route path={`${path}/completed`}>
-              <CompletedOrder />
+              <div className="ProductInfo">
+                <CompletedOrder />
+                <div className="ButtonSend">
+                  <Button
+                    className="ButtonLeft"
+                    onClick={() => history.push("/product")}
+                  >
+                    Tiếp tục mua hàng
+                  </Button>
+                  <Button
+                    className="ButtonRight"
+                    onClick={() => {history.push("/my-order")}}
+                  >
+                    Đơn hàng của tôi
+                  </Button>
+                </div>
+              </div>
             </Route>
           </Switch>
         </Router>

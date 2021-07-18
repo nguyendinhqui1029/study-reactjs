@@ -26,6 +26,8 @@
         font-size: 20px;
       }
 
+      input[type="password"],
+      input[type="date"],
       input[type="text"] {
         flex: 1;
         outline-color: $outlineInputColor !important;
@@ -33,6 +35,7 @@
 
         border-radius: 5px 5px 5px 5px;
         border: 1px solid $borderColor;
+        height: 23px;
       }
       .NoneBorderLeft {
         border-radius: 0px 5px 5px 0px !important;
