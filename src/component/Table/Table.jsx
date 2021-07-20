@@ -143,9 +143,18 @@ function renderComponentByType(header, item, eventChange) {
           placeholder={header.label}
           onChange={(event) => {
             eventChange(
-              event.target.value > header.max
+              event.target.value >= header.max
                 ? header.max
-                : event.target.value < header.min
+                : event.target.value < header.min && event.target.value !==''
+                ? header.min
+                : event.target.value,
+              item,
+              header.propertyMapping
+            );
+          }}
+          onMouseLeave={(event) => {
+            eventChange(
+                event.target.value <= header.min
                 ? header.min
                 : event.target.value,
               item,

@@ -20,7 +20,9 @@ $validColor: #1a9d1af7;
 .App {
   background: $backgroundColor;
 }
-
+.DisplayNone {
+  display: none;
+}
 .ContainerBody {
   display: flex;
   flex-direction: row;

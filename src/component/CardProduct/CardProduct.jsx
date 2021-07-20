@@ -25,6 +25,10 @@ function CardProduct(props) {
     disPatch(addToCart(item));
     history.push("/cart-detail");
   }
+
+  function navigateDetail(itemProduct){
+    history.push({ pathname: `/product/${itemProduct.id}` ,state:{id:itemProduct.id}});
+  }
   return (
     <div className="CardProduct">
       {itemProduct.discount ? (
@@ -38,7 +42,7 @@ function CardProduct(props) {
         <img className="Image" src={itemProduct.imageUrl} alt={itemProduct.imageUrl}/>
       </div>
       <div className="ProductDetail">
-        <h2 className="ProductName">{itemProduct.productName}</h2>
+        <h2 className="ProductName" onClick={()=>{navigateDetail(itemProduct);}}>{itemProduct.productName}</h2>
         <span className="Price">
           {itemProduct.discount ? (
             formatCurrency(

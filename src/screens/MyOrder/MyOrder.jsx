@@ -111,7 +111,7 @@ function MyOrder() {
             </Formik>
           </div>
           <div className="ContainerOrderDetail">
-            {<Loading isLoading={isShowLoading} />}
+            <Loading isLoading={isShowLoading} />
             {showOrderDetail ? (
               <div className="ContainerHeader">
                 <Header title="Thông tin đơn hàng" />

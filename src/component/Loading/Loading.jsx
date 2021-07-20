@@ -9,12 +9,12 @@ function Loading(props) {
   const { isLoading } = props;
   return (
     <div className={isLoading ? "ShowLoading" : "HiddenLoading"}>
-      <div className="Loading"></div>
-      <img
-        className="ImgLoading"
-        src={require("../../assets/images/loading.gif").default}
-        alt="loading ..."
-      />
+        <div className="Loading"></div>
+        <img
+          className="ImgLoading"
+          src={require("../../assets/images/loading.gif").default}
+          alt="loading ..."
+        />
     </div>
   );
 }

@@ -64,8 +64,6 @@ function CartDetail() {
         <div className="Steper">
           <Steper listSteper={listSteper} />
         </div>
-
-        <Router>
           <Switch>
             <Route path="/cart-detail" exact={true}>
               <div className="ProductInfo">
@@ -119,7 +117,6 @@ function CartDetail() {
               </div>
             </Route>
           </Switch>
-        </Router>
       </div>
     </div>
   );

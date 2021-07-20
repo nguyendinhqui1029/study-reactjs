@@ -40,8 +40,10 @@ function BodyProductList(props) {
   }, [idCategory, currentPage, noItemPage]);
   return (
     <div className="BodyProductList">
-      <div className="ProductList">
+      <div className={!isShowLoading ? "DisplayNone" : "ProductList"}>
         {<Loading isLoading={isShowLoading} />}
+      </div>
+      <div className={isShowLoading ? "DisplayNone" : "ProductList"}>
         {productList.map((product, index) => {
           return <CardProduct key={index} itemProduct={product} />;
         })}

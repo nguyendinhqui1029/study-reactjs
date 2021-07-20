@@ -6,6 +6,7 @@ import CardProduct from "./../../component/CardProduct/CardProduct";
 import Pagination from "./../../component/Pagination/Pagination";
 import { useSelector } from "react-redux";
 import "./ResultSearch.scss";
+import Loading from "../../component/Loading/Loading";
 
 function ResultSearch() {
   const ITEM_PECENT_PAGE = 20;
@@ -21,42 +22,56 @@ function ResultSearch() {
     const listDataSource = [];
     setCurrentPage(1);
     if (fillter === "ALL") {
-      getProductList(fillter).then((result) => {
-        if (enter) {
-          result.forEach((item) => {
-            if (item.productName.includes(enter)) {
-              listDataSource.push(item);
-            }
-          });
-        } else {
-          listDataSource.push(...result);
-        }
-
-        setProductFilter([...listDataSource]);
-        setProductFilterPagination(listDataSource.splice(0, ITEM_PECENT_PAGE));
-        setIsLoading(false);
-      });
-    } else {
-      Promise.all(
-        listId.forEach((id) => {
-          return getProductList(id).then((item) => {
-            const arrayFilter = [];
-            item.forEach((itemFilter) => {
-              if (itemFilter.productName.includes(enter)) {
-                arrayFilter.push(itemFilter);
+      try {
+        getProductList(fillter).then((result) => {
+          if (enter) {
+            result.forEach((item) => {
+              if (item.productName.includes(enter)) {
+                listDataSource.push(item);
               }
             });
-            return arrayFilter;
-          });
-        })
-      ).then((result) => {
-        result.forEach((item) => {
-          listDataSource.push(...item);
+          } else {
+            listDataSource.push(...result);
+          }
+
+          setProductFilter([...listDataSource]);
+          setProductFilterPagination(
+            listDataSource.splice(0, ITEM_PECENT_PAGE)
+          );
+          setIsLoading(false);
         });
-        setProductFilter([...listDataSource]);
-        setProductFilterPagination(listDataSource.splice(0, ITEM_PECENT_PAGE));
-        setIsLoading(false);
-      });
+      } catch (error) {
+         console.log("call api fail", error);
+      }
+      
+    } else {
+      try {
+          Promise.all(
+            listId.map((id) => {
+              return getProductList(id).then((item) => {
+                const arrayFilter = [];
+                item.forEach((itemFilter) => {
+                  if (itemFilter.productName.includes(enter)) {
+                    arrayFilter.push(itemFilter);
+                  }
+                });
+                return arrayFilter;
+              });
+            })
+          ).then((result) => {
+            result.forEach((item) => {
+              listDataSource.push(...item);
+            });
+            setProductFilter([...listDataSource]);
+            setProductFilterPagination(
+              listDataSource.splice(0, ITEM_PECENT_PAGE)
+            );
+            setIsLoading(false);
+          });
+      } catch (error) {
+        console.log("call api fail", error);
+      }
+      
     }
   }, [enter, fillter, categories]);
 
@@ -77,18 +92,8 @@ function ResultSearch() {
       </div>
       <div className="BodySearch">
         <div className="ProductList">
-          {isLoading && (
-            <div className="ContainerLoading">
-              <div className="Loading"></div>
-              <img
-                className="ImgLoading"
-                src={require("../../assets/images/loading.gif").default}
-                alt="loading ..."
-              />
-            </div>
-          )}
-          {!isLoading && productFilterPagination.length === 0 ? (
-            <div>Not found record match.</div>
+          {isLoading ? <Loading isLoading={isLoading} />: productFilterPagination.length === 0 ? (
+            <div>Không tìm thất kết quả.</div>
           ) : (
             productFilterPagination.map((product, index) => {
               return <CardProduct key={index} itemProduct={product} />;

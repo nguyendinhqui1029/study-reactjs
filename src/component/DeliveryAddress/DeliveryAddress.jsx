@@ -147,11 +147,11 @@ function DeliveryAddress(props) {
       <div className="ContentContainer">
         <h3 className="HeaderContent">THÔNG TIN THANH TOÁN</h3>
         <div className="ContainerLink">
-          <Link to="link123" className="RegisterLink">
+          <Link to="/account/register" className="RegisterLink">
             Đăng ký tài khoản mua hàng
           </Link>
           <span>|</span>
-          <Link to="link124" className="LoginLink">
+          <Link to="/account/login" className="LoginLink">
             Đăng nhập
           </Link>
         </div>

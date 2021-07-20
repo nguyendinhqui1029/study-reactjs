@@ -1,8 +1,0 @@
-[
-  { "path": "/", "label": "Trang chu", "exact": true },
-  { "path": "/about", "label": "Gioi thieu", "exact": false },
-  { "path": "/product", "label": "San pham", "exact": false },
-  { "path": "/news", "label": "Tin tuc", "exact": false },
-  { "path": "/contact", "label": "Lien he", "exact": false },
-  { "path": "/source", "label": "Component Example", "exact": false }
-]

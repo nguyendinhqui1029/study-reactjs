@@ -27,6 +27,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import * as Icons from "@fortawesome/free-solid-svg-icons";
 import MyOrder from './screens/MyOrder/MyOrder';
 import Login from './screens/Login/Login';
+import DetailProduct from './screens/DetailProduct/DetailProduct';
 const iconList = Object.keys(Icons)
   .filter((key) => key !== "fas" && key !== "prefix")
   .map((icon) => Icons[icon]);
@@ -51,9 +52,13 @@ function App() {
             <Route path="/about">
               <About />
             </Route>
-            <Route path="/product">
+            <Route path="/product" exact>
               <Product />
             </Route>
+            <Route path="/product/:id">
+              <DetailProduct />
+            </Route>
+
             <Route path="/contact">
               <Contact />
             </Route>
