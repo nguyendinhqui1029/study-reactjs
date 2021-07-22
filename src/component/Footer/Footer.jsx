@@ -15,22 +15,22 @@ function Footer(props) {
         <Header title="Về chúng tôi" />
         <ul>
           <li>
-            <Link to="about" className="Link">
+            <Link to="/about" className="Link">
               Giới thiệu
             </Link>
           </li>
           <li>
-            <Link to="delivery" className="Link">
+            <Link to="/delivery" className="Link">
               Giao hàng - Đổi trả
             </Link>
           </li>
           <li>
-            <Link to="security" className="Link">
+            <Link to="/security" className="Link">
               Chính sách bảo mật
             </Link>
           </li>
           <li>
-            <Link to="contact" className="Link">
+            <Link to="/contact" className="Link">
               Liên hệ
             </Link>
           </li>
@@ -40,11 +40,11 @@ function Footer(props) {
         <Header title="Trợ giúp" />
         <ul>
           <li>
-            <Link to="guide-order" className="Link">
+            <Link to="/guide-order" className="Link">
               Hướng dẫn mua hàng
             </Link>
           </li>
-          <li> <Link to="guide-payment" className="Link">Hướng dẫn thanh toán</Link></li>
+          <li> <Link to="/guide-payment" className="Link">Hướng dẫn thanh toán</Link></li>
         </ul>
       </div>
       <div className="ContainerCompanyInfo">

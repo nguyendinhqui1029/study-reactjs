@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../actions/cart";
+import { addToCart, setStatus } from "../../actions/cart";
 import { useHistory } from "react-router-dom";
 import "./CardProduct.scss";
 import { calculateDiscount, formatCurrency } from "../../util/util";
@@ -23,11 +23,15 @@ function CardProduct(props) {
   const history = useHistory();
   function addItemToCart(item) {
     disPatch(addToCart(item));
+    disPatch(setStatus("draft"));
     history.push("/cart-detail");
   }
 
-  function navigateDetail(itemProduct){
-    history.push({ pathname: `/product/${itemProduct.id}` ,state:{id:itemProduct.id}});
+  function navigateDetail(itemProduct) {
+    history.push({
+      pathname: `/product/${itemProduct.id}`,
+      state: { id: itemProduct.id },
+    });
   }
   return (
     <div className="CardProduct">
@@ -39,26 +43,36 @@ function CardProduct(props) {
         ""
       )}
       <div className="ImageProduct">
-        <img className="Image" src={itemProduct.imageUrl} alt={itemProduct.imageUrl}/>
+        <img
+          className="Image"
+          src={itemProduct.imageUrl}
+          alt={itemProduct.imageUrl}
+        />
       </div>
       <div className="ProductDetail">
-        <h2 className="ProductName" onClick={()=>{navigateDetail(itemProduct);}}>{itemProduct.productName}</h2>
+        <h2
+          className="ProductName"
+          onClick={() => {
+            navigateDetail(itemProduct);
+          }}
+        >
+          {itemProduct.productName}
+        </h2>
         <span className="Price">
-          {itemProduct.discount ? (
-            formatCurrency(
-              calculateDiscount(itemProduct.price, itemProduct.discount)
-            )
-          ) : (
-            <span>&nbsp;</span>
+          {formatCurrency(
+            calculateDiscount(itemProduct.price, itemProduct.discount)
           )}
-
           <span className="Currency">đ</span>
         </span>
         <div className="Discount">
-          <del>
-            {formatCurrency(itemProduct.price)}
-            <span className="Currency">đ</span>
-          </del>
+          {itemProduct.discount ? (
+            <del>
+              {formatCurrency(itemProduct.price)}
+              <span className="Currency">đ</span>
+            </del>
+          ) : (
+            <span>&nbsp;</span>
+          )}
         </div>
         <Button className="BtnBuy" onClick={() => addItemToCart(itemProduct)}>
           Mua

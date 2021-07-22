@@ -11,13 +11,13 @@ Input.propTypes = {
   placeholder: PropTypes.string.isRequired,
   disable: PropTypes.bool,
   iconLeft: PropTypes.string,
-  isShowValidField: PropTypes.bool,
+  isShowValidField: PropTypes.bool
 };
 
 Input.defaultProps = {
   disable: false,
   iconLeft: "",
-  isShowValidField: true,
+  isShowValidField: true
 };
 function Input(props) {
   const {
@@ -28,6 +28,8 @@ function Input(props) {
     disable,
     iconLeft,
     isShowValidField,
+    min,
+    max,
   } = props;
   const { errors, touched } = form;
   const { name } = field;

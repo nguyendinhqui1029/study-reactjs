@@ -1,42 +1,96 @@
 @import "../../assets/scss/common.scss";
 
-.ContainerChildLeft {
-  padding: 20px 0px;
-  .VerticalMenu {
-    background: $whiteColor;
-    .LabelMenu {
-      border-left: 7px solid $darkTextColor;
-      background: $orangeColor;
-    }
+@media all and (max-width: 1600px) {
+  .ContainerBody {
+    margin: 0px 5%;
+    .ContainerChildLeft {
+      padding: 20px 0px;
+      .VerticalMenu {
+        background: $whiteColor;
+        .LabelMenu {
+          border-left: 7px solid $darkTextColor;
+          background: $orangeColor;
+        }
 
-    .ItemList {
-      background: $whiteColor;
-      li {
-        color: $textColor;
-        text-transform: none;
-        font-weight: normal;
+        .ItemList {
+          background: $whiteColor;
+          li {
+            color: $textColor;
+            text-transform: none;
+            font-weight: normal;
+          }
+
+          li:hover {
+            color: $orangeColor;
+            background: none;
+          }
+        }
+
+        .BorderLv2 {
+          display: none;
+        }
+
+        .BorderLv1 {
+          display: none;
+        }
       }
+    }
 
-      li:hover {
-        color:$orangeColor;
-        background: none;
+    .ContainerChildRight {
+      .ProductContent {
+        .Title {
+          border: none;
+        }
       }
-    }
-
-    .BorderLv2{
-      display: none;
-    }
-
-    .BorderLv1{
-      display: none;
     }
   }
 }
 
-.ContainerChildRight {
-  .ProductContent {
-    .Title {
-      border: none;
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .ContainerBody {
+    margin: 0px 5px !important;
+    .ContainerChildLeft {
+      padding: 20px 0px;
+      .VerticalMenu {
+        background: $whiteColor;
+        .LabelMenu {
+          border-left: 7px solid $darkTextColor;
+          background: $orangeColor;
+        }
+
+        .ItemList {
+          background: $whiteColor;
+          li {
+            color: $textColor;
+            text-transform: none;
+            font-weight: normal;
+          }
+
+          li:hover {
+            color: $orangeColor;
+            background: none;
+          }
+        }
+
+        .BorderLv2 {
+          display: none;
+        }
+
+        .BorderLv1 {
+          display: none;
+        }
+      }
+    }
+
+    .ContainerChildRight {
+      .ProductContent {
+        .Title {
+          border: none;
+        }
+      }
     }
   }
 }

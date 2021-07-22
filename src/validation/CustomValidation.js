@@ -6,5 +6,4 @@ Yup.addMethod(Yup.string, "requiredCustome",function (errorMessage){
       return value || createError({ path, message: errorMessage });
     });
 });
-
 export default Yup;

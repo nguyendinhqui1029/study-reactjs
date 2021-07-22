@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import DeliveryAddress from "../../component/DeliveryAddress/DeliveryAddress";
 import PayInfo from "../../component/PayInfo/PayInfo";
 import OrderInfo from "../../component/OrderInfo/OrderInfo";
@@ -11,22 +11,24 @@ import {
   addPaymentMethod,
   setID,
   setStatus,
+  addAddress,
+  addAddressOther,
 } from "../../actions/cart";
 import orderDetailApi from "../../api/orderDetail";
 import { useHistory } from "react-router-dom";
+import { useFormikContext } from "formik";
 
 function Payment() {
   const [paymentMethod, setPaymentMethod] = useState([]);
-  const [isSubmitForm, setIsSubmitForm] = useState(false);
   const [deliveryMethod, setDeliveryMethod] = useState([]);
   const [deliveryFee, setDeliveryFee] = useState(0);
   const history = useHistory();
   let cartList = useSelector((carts) => carts.cart.cartList);
-  // let address = useSelector((carts) => carts.cart.address);
-  // let addressOther = useSelector((carts) => carts.cart.addressOther);
   let cartDetail = useSelector((carts) => carts.cart);
   const disPatch = useDispatch();
   cartList = calculateIntoMoney(cartList);
+  const formRefAdrress = useRef(null);
+  const formRefOther = useRef(null);
 
   useEffect(() => {
     setPaymentMethod(payMethod);
@@ -42,21 +44,33 @@ function Payment() {
   };
 
   const handleClickOrder = () => {
-    setIsSubmitForm(true);
-    setTimeout(() => {
-      orderDetailApi.addOrderDetail(cartDetail).then((result) => {
+    const { isValid: isValidForm = false, values: valueForm = {} } =
+      formRefAdrress.current;
+    const { isValid: isValidFormOther = false, values: valueFormOther = {} } =
+      formRefOther.current;
+    formRefAdrress.current.submitForm();
+    formRefOther.current.submitForm();
+    if (isValidForm && isValidFormOther) {
+      const cartDetailMap = Object.assign({
+        ...cartDetail,
+        address: valueForm,
+        addressOther: valueFormOther,
+      });
+      delete cartDetailMap.id;
+      orderDetailApi.addOrderDetail(cartDetailMap).then((result) => {
         disPatch(setID(result.id));
+        disPatch(addAddress(valueForm));
+        disPatch(addAddressOther(valueFormOther));
         disPatch(setStatus("Waiting Approval"));
         history.push("/cart-detail/completed");
       });
-      setIsSubmitForm(false);
-    }, 3000);
+    }
   };
 
   return (
     <div className="Payment">
       <div className="ContainerDeliveryAddress">
-        <DeliveryAddress isSubmitForm={isSubmitForm} />
+        <DeliveryAddress formRef={formRefAdrress} formRefOther={formRefOther} />
       </div>
       <div className="ContainerPayInfo">
         <PayInfo

@@ -1,82 +1,171 @@
 @import "../../assets/scss/common.scss";
 
-.Footer {
-  background: $backgroundFooter;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex: 1;
-
-  padding: 0px 65px;
-
-  .ContainerCompanyInfo {
-    color: $textColor;
-    .Icon {
-      margin-right: 5px;
-    }
-    h3 {
-      line-height: 30px;
-    }
-
-    .Link {
-      text-decoration: none;
-      color: $textColor;
-    }
-
-    .Link:hover {
-      color: $orangeColor;
-    }
-  }
-
-  .ContainerSocial {
-    .Facebook,
-    .Youtuber,
-    .Google {
-      img {
-        border-radius: 5px 5px 5px 5px;
-        margin: 5px;
-        width: 50px;
-        height: 50px;
-        background: $orangeColor;
-      }
-
-      img:hover {
-        background: $whiteColor;
-        cursor: pointer;
-      }
-    }
-  }
-
-  .ContainerAbout,
-  .ContainerHelp,
-  .ContainerCompanyInfo,
-  .ContainerSocial {
-    padding: 10px;
+@media all and (max-width: 1600px) {
+  .Footer {
+    background: $backgroundFooter;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     flex: 1;
-    min-width: 200px;
-    ul {
-      margin: 15px -25px;
-      li {
-        line-height: 40px;
+
+    padding: 0px 65px;
+
+    .ContainerCompanyInfo {
+      color: $textColor;
+      .Icon {
+        margin-right: 5px;
+      }
+      h3 {
+        line-height: 30px;
+      }
+
+      .Link {
+        text-decoration: none;
         color: $textColor;
-        margin: 0px;
-        padding: 0px;
-        .Link {
-          text-decoration: none;
-          color: $textColor;
+      }
+
+      .Link:hover {
+        color: $orangeColor;
+      }
+    }
+
+    .ContainerSocial {
+      .Facebook,
+      .Youtuber,
+      .Google {
+        img {
+          border-radius: 5px 5px 5px 5px;
+          margin: 5px;
+          width: 50px;
+          height: 50px;
+          background: $orangeColor;
         }
 
-        .Link:hover {
+        img:hover {
+          background: $whiteColor;
           cursor: pointer;
-          color: $orangeColor;
         }
       }
     }
-    .ProductContent {
-      flex: none;
-      h1 {
-        color: $whiteColor;
-        font-weight: normal;
+
+    .ContainerAbout,
+    .ContainerHelp,
+    .ContainerCompanyInfo,
+    .ContainerSocial {
+      padding: 10px;
+      flex: 1;
+      min-width: 200px;
+      ul {
+        margin: 15px -25px;
+        li {
+          line-height: 40px;
+          color: $textColor;
+          margin: 0px;
+          padding: 0px;
+          .Link {
+            text-decoration: none;
+            color: $textColor;
+          }
+
+          .Link:hover {
+            cursor: pointer;
+            color: $orangeColor;
+          }
+        }
+      }
+      .ProductContent {
+        flex: none;
+        h1 {
+          color: $whiteColor;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .Footer {
+    background: $backgroundFooter;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 1;
+
+    padding: 0px 10px;
+
+    .ContainerCompanyInfo {
+      color: $textColor;
+      .Icon {
+        margin-right: 5px;
+      }
+      h3 {
+        line-height: 30px;
+      }
+
+      .Link {
+        text-decoration: none;
+        color: $textColor;
+      }
+
+      .Link:hover {
+        color: $orangeColor;
+      }
+    }
+
+    .ContainerSocial {
+      .Facebook,
+      .Youtuber,
+      .Google {
+        img {
+          border-radius: 5px 5px 5px 5px;
+          margin: 5px;
+          width: 50px;
+          height: 50px;
+          background: $orangeColor;
+        }
+
+        img:hover {
+          background: $whiteColor;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .ContainerAbout,
+    .ContainerHelp,
+    .ContainerCompanyInfo,
+    .ContainerSocial {
+      padding: 10px;
+      flex: 1;
+      min-width: 200px;
+      ul {
+        margin: 15px -25px;
+        li {
+          line-height: 40px;
+          color: $textColor;
+          margin: 0px;
+          padding: 0px;
+          .Link {
+            text-decoration: none;
+            color: $textColor;
+          }
+
+          .Link:hover {
+            cursor: pointer;
+            color: $orangeColor;
+          }
+        }
+      }
+      .ProductContent {
+        flex: none;
+        h1 {
+          color: $whiteColor;
+          font-weight: normal;
+        }
       }
     }
   }

@@ -50,9 +50,9 @@ const cartReducer = (state = initialState, action) => {
       });
 
       if (!!product) {
-        product.amount += 1;
+        product.amount += action.payload.amount || 1;
       } else {
-        state.cartList.push({ ...action.payload, amount: 1 });
+        state.cartList.push({ ...action.payload, amount: action.payload.amount || 1 });
       }
 
       const obj = { cartList: [...state.cartList] };

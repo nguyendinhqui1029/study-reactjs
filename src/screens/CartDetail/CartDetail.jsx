@@ -33,7 +33,7 @@ function CartDetail() {
   let { path } = useRouteMatch(); //get root path
   const history = useHistory();
   let cartList = useSelector((carts) => carts.cart.cartList);
-  let status = useSelector((carts) => carts.cart.status);
+  const status = useSelector((carts) => carts.cart.status);
   const disPatch = useDispatch();
   cartList = calculateIntoMoney(cartList);
 
@@ -50,7 +50,7 @@ function CartDetail() {
     disPatch(updateAmountToCart(item));
   };
 
-  return (!cartList.length && status === "dratf")? (
+  return !cartList.length && status === "draft" ? (
     <Redirect to="/product" />
   ) : (
     <div className="CartDetail">
@@ -64,59 +64,61 @@ function CartDetail() {
         <div className="Steper">
           <Steper listSteper={listSteper} />
         </div>
-          <Switch>
-            <Route path="/cart-detail" exact={true}>
-              <div className="ProductInfo">
-                <Table
-                  dataList={cartList}
-                  headerList={headerTable}
-                  hanldeCalculateValue={hanldeCalculateValue}
-                  hanldeAction={removeItemCart}
-                />
-                <div className="Total">
-                  <span className="Label">Tổng thanh toán:</span>
-                  <span className="Content">
-                    {formatCurrency(calculateTotal(cartList))} <sup>đ</sup>
-                  </span>
-                </div>
-                <div className="ButtonSend">
-                  <Button
-                    className="ButtonLeft"
-                    onClick={() => history.replace("/product")}
-                  >
-                    Tiếp tục mua hàng
-                  </Button>
-                  <Button className="ButtonRight">
-                    <Link to={`${path}/payment`} className="Link">
-                      Tiến hành thanh toán
-                    </Link>
-                  </Button>
-                </div>
+        <Switch>
+          <Route path="/cart-detail" exact={true}>
+            <div className="ProductInfo">
+              <Table
+                dataList={cartList}
+                headerList={headerTable}
+                hanldeCalculateValue={hanldeCalculateValue}
+                hanldeAction={removeItemCart}
+              />
+              <div className="Total">
+                <span className="Label">Tổng thanh toán:</span>
+                <span className="Content">
+                  {formatCurrency(calculateTotal(cartList))} <sup>đ</sup>
+                </span>
               </div>
-            </Route>
-            <Route path={`${path}/payment`}>
-              <Payment />
-            </Route>
-            <Route path={`${path}/completed`}>
-              <div className="ProductInfo">
-                <CompletedOrder />
-                <div className="ButtonSend">
-                  <Button
-                    className="ButtonLeft"
-                    onClick={() => history.push("/product")}
-                  >
-                    Tiếp tục mua hàng
-                  </Button>
-                  <Button
-                    className="ButtonRight"
-                    onClick={() => {history.push("/my-order")}}
-                  >
-                    Đơn hàng của tôi
-                  </Button>
-                </div>
+              <div className="ButtonSend">
+                <Button
+                  className="ButtonLeft"
+                  onClick={() => history.replace("/product")}
+                >
+                  Tiếp tục mua hàng
+                </Button>
+                <Button className="ButtonRight">
+                  <Link to={`${path}/payment`} className="Link">
+                    Tiến hành thanh toán
+                  </Link>
+                </Button>
               </div>
-            </Route>
-          </Switch>
+            </div>
+          </Route>
+          <Route path={`${path}/payment`}>
+            <Payment />
+          </Route>
+          <Route path={`${path}/completed`}>
+            <div className="ProductInfo">
+              <CompletedOrder />
+              <div className="ButtonSend">
+                <Button
+                  className="ButtonLeft"
+                  onClick={() => history.push("/product")}
+                >
+                  Tiếp tục mua hàng
+                </Button>
+                <Button
+                  className="ButtonRight"
+                  onClick={() => {
+                    history.push("/my-order");
+                  }}
+                >
+                  Đơn hàng của tôi
+                </Button>
+              </div>
+            </div>
+          </Route>
+        </Switch>
       </div>
     </div>
   );

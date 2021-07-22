@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import VerticalMenu from "../../component/VerticalMenu/VerticalMenu";
 import NavigateQuickly from "../../component/NavigateQuickly/NavigateQuickly";
 import Header from "../../component/Header/Header";
-import "./About.scss";
 import { addQuickLink, removeQuickLink } from "../../actions/quicklink";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import "./About.scss";
 function About() {
   const disPatch = useDispatch();
   const history = useHistory();

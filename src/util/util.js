@@ -1,5 +1,5 @@
 export const calculateDiscount = (price, discount) => {
-  return price * ((100 - discount) / 100);
+  return parseInt(price) * ((100 - discount) / 100);
 };
 
 export const formatCurrency = (value) => {

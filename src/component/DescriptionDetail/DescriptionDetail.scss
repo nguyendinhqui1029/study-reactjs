@@ -40,6 +40,7 @@
               width: 90px;
               height: 50px;
               margin: 3px;
+              border: 1px solid $borderColor;
             }
             .Iframe {
               width: 90px;
@@ -63,8 +64,8 @@
           margin-bottom: 15px;
         }
         .Price {
-           margin-bottom: 15px;
-          .Label{
+          margin-bottom: 15px;
+          .Label {
             color: $blackColor;
             font-weight: bold;
           }
@@ -74,10 +75,41 @@
             padding: 0px 20px;
           }
         }
-        .Social{
+        .Social {
           display: flex;
           flex-direction: row;
           justify-content: space-around;
+        }
+        .SizeAndAmout {
+          .Form {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            .ContainerField {
+              display: flex;
+              flex: 1;
+              flex-direction: row;
+              align-items: center;
+              margin-bottom: 15px;
+              .LabelForm {
+                flex: 1;
+                font-weight: bold;
+                color: $blackColor;
+              }
+              .Field {
+                flex: 1;
+              }
+            }
+            .ContainerButton {
+              display: flex;
+              flex: 1;
+              justify-content: space-between;
+              .Button {
+                color: $whiteColor;
+                background: $redColor;
+              }
+            }
+          }
         }
       }
     }
@@ -147,13 +179,58 @@
         display: flex;
         flex: 1;
         flex-direction: column;
-        min-width: 350px;
+        min-width: 320px;
         margin-top: 15px;
         padding: 5px;
+        .Price {
+          margin-bottom: 15px;
+          .Label {
+            color: $blackColor;
+            font-weight: bold;
+          }
+          .Content {
+            color: $orangeColor;
+            font-weight: bold;
+            padding: 0px 20px;
+          }
+        }
         .Title {
           font-weight: bold;
           font-size: 25px;
           color: $blackColor;
+        }
+        .Social {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+        }
+        .SizeAndAmout {
+          .Form {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            .ContainerField {
+              display: flex;
+              flex: 1;
+              flex-direction: row;
+              align-items: center;
+              margin-bottom: 15px;
+              .LabelForm {
+                font-weight: bold;
+                color: $blackColor;
+              }
+            }
+
+            .ContainerButton {
+              display: flex;
+              flex: 1;
+              justify-content: space-between;
+              .Button {
+                color: $whiteColor;
+                background: $redColor;
+              }
+            }
+          }
         }
       }
     }

@@ -68,7 +68,7 @@ function PayInfo(props) {
                 <input
                   type="radio"
                   id={pay.id}
-                  name="deliveryPay"
+                  name="payMethod"
                   value={payMethodSelected.id}
                   checked={pay.id === payMethodSelected.id}
                   onChange={() => handleChangePayMethod(pay.id)}

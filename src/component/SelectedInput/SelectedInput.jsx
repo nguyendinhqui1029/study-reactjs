@@ -76,7 +76,7 @@ function SelectedInput(props) {
             disabled={disabled}
           >
             {placeHolder && (
-              <option key="default" value={null} selected={!selected}>
+              <option key="default" value={null}>
                 {placeHolder}
               </option>
             )}

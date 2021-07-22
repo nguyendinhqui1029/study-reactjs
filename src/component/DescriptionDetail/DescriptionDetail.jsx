@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -9,14 +8,20 @@ import {
   TwitterShareButton,
   ViberShareButton,
   ViberIcon,
-  InstapaperShareButton,
-  InstapaperIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
 } from "react-share";
 import "./DescriptionDetail.scss";
 import { useHistory } from "react-router";
 import productApi from "../../api/product.api";
 import { formatCurrency } from "../../util/util";
-DescriptionDetail.propTypes = {};
+import { Formik, Form, Field } from "formik";
+import SelectedInput from "./../SelectedInput/SelectedInput";
+import Input from "./../Input/Input";
+import { Button } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { addToCart, setStatus } from "../../actions/cart";
+import Yup from "../../validation/CustomValidation";
 const listThumnail = [
   {
     id: "1",
@@ -42,6 +47,7 @@ function DescriptionDetail(props) {
   });
   const urlShare = window.location.href;
   const history = useHistory();
+  const disPatch = useDispatch();
   const { location: { state: { id = "" } = {} } = {} } = history;
   const [product, setProduct] = useState({
     productName: "",
@@ -51,13 +57,39 @@ function DescriptionDetail(props) {
     price: 0,
     discount: 0,
   });
+
+  const [size, setSize] = useState([
+    { value: "S", label: "Size S - 30->45 kg" },
+    { value: "M", label: "Size M - 45->55 kg" },
+    { value: "L", label: "Size L - 55->65 kg" },
+  ]);
+
+  const [typeSubmit, setTypeSubmit] = useState("");
   useEffect(() => {
     productApi.getById(id).then((result) => {
       if (result) {
-         setProduct(result);
+        setProduct(result);
       }
     });
   }, [id]);
+
+  const initialValues = {
+    size: "S",
+    amount: 1,
+  };
+
+  const validations = Yup.object().shape({
+    amount: Yup.number().min(1,"Số lượng lớn hơn 0."),
+  });
+  
+  function addItemToCart(value, action) {
+    let item = { ...product, size: value.size, amount: value.amount };
+    disPatch(addToCart(item));
+    if (typeSubmit === "PAY_NOW") {
+      disPatch(setStatus("draft"));
+      history.push("/cart-detail");
+    }
+  }
   return (
     <div className="DescriptionDetail">
       <div className="ContainerImage">
@@ -106,8 +138,55 @@ function DescriptionDetail(props) {
             </span>
           </div>
           <div className="SizeAndAmout">
-            <div className="Size">S</div>
-            <div className="Amout">1</div>
+            <Formik
+              validationSchema={validations}
+              initialValues={initialValues}
+              onSubmit={(value, action) => {
+                addItemToCart(value, action);
+              }}
+            >
+              <Form className="Form">
+                <div className="ContainerField">
+                  <span className="LabelForm">Kích cỡ:</span>
+                  <Field
+                    name="size"
+                    component={SelectedInput}
+                    dataSource={size}
+                    className="Field"
+                  />
+                </div>
+                <div className="ContainerField">
+                  <span className="LabelForm">Số lượng:</span>
+                  <Field
+                    name="amount"
+                    component={Input}
+                    type="number"
+                    className="Field"
+                    placeholder="Nhập số lượng"
+                  />
+                </div>
+                <div className="ContainerButton">
+                  <Button
+                    className="Button"
+                    type="submit"
+                    onClick={() => {
+                      setTypeSubmit("Add_TO_CART");
+                    }}
+                  >
+                    Thêm vào giỏ hàng
+                  </Button>
+                  <Button
+                    className="Button"
+                    type="submit"
+                    onClick={() => {
+                      setTypeSubmit("PAY_NOW");
+                    }}
+                  >
+                    Mua ngay
+                  </Button>
+                </div>
+              </Form>
+            </Formik>
           </div>
           <div className="SubDesccription">
             <p>{product.subContent}</p>
@@ -125,12 +204,10 @@ function DescriptionDetail(props) {
             <ViberShareButton url={urlShare}>
               <ViberIcon size={50} round={true} />
             </ViberShareButton>
-            <InstapaperShareButton url={urlShare}>
-              <InstapaperIcon size={50} round={true} />
-            </InstapaperShareButton>
+            <WhatsappShareButton url={urlShare}>
+              <WhatsappIcon size={50} round={true} />
+            </WhatsappShareButton>
           </div>
-
-          <div className="Action"></div>
         </div>
       </div>
       <div className="ContentDetail">

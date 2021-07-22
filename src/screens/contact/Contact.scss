@@ -1,6 +1,8 @@
 @import "../../assets/scss/common.scss";
 
-.ContainerBodyLeft {
+
+@media all and (max-width: 1600px) {
+  .ContainerBodyLeft {
   flex: 1;
   .ContainerChild {
     display: flex;
@@ -10,6 +12,7 @@
 
     .Image{
       flex: 1;
+      align-self: center;
       img {
         min-width: 200px;
       }
@@ -27,5 +30,42 @@
       min-width:300px;
     }
   }
+}
+}
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .ContainerBodyLeft {
+  flex: 1;
+  .ContainerChild {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    flex-wrap: wrap;
+
+    .Image{
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      img {
+        min-width: 200px;
+      }
+    }
+    .Info{
+      flex: 3;
+       min-width:300px;
+    }
+    .ContactForm {
+      flex: 1;
+      min-width:300px;
+    }
+    .Map{
+      flex: 1;
+      min-width:300px;
+    }
+  }
+}
 }
 
