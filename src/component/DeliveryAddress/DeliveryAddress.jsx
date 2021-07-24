@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 import Input from "../../component/Input/Input";
 import SelectedInput from "../../component/SelectedInput/SelectedInput";
 import Textarea from "../../component/Textarea/Textarea";
-import { Formik, Form, FastField, Field, useFormikContext } from "formik";
-import { useDispatch } from "react-redux";
-import { addAddress, addAddressOther } from "../../actions/cart";
+import { Formik, Form, FastField, Field } from "formik";
 import Yup from "../../validation/CustomValidation";
 import "./DeliveryAddress.scss";
 DeliveryAddress.propTypes = {
@@ -29,7 +27,7 @@ function DeliveryAddress(props) {
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedCitySubAddress, setSelectedCitySubAddress] = useState(null);
   const [isShowOtherAddress, setShowOtherAddress] = useState(false);
-  const dispatch = useDispatch();
+
   const initialValues = {
     address: {
       name: "",
@@ -52,7 +50,9 @@ function DeliveryAddress(props) {
 
   const validations = Yup.object().shape({
     name: Yup.string().requiredCustome("Vui lòng nhập họ tên"),
-    email: Yup.string().requiredCustome("Vui lòng nhập email").email("Email không hợp vui lòng nhập lại."),
+    email: Yup.string()
+      .requiredCustome("Vui lòng nhập email")
+      .email("Email không hợp vui lòng nhập lại."),
     phone: Yup.string().requiredCustome("Vui lòng nhập số điện thoại"),
     address: Yup.string().requiredCustome("Vui lòng nhập địa chỉ"),
     city: Yup.string().requiredCustome("Vui lòng chọn tỉnh hoặc thành phố"),
@@ -245,7 +245,9 @@ function DeliveryAddress(props) {
             innerRef={formRefOther}
             initialValues={initialValues.otherAddress}
             onSubmit={() => {}}
-            validationSchema={isShowOtherAddress ? validationsAddressOther : null}
+            validationSchema={
+              isShowOtherAddress ? validationsAddressOther : null
+            }
             enableReinitialize={isShowOtherAddress}
             render={() => {
               return (

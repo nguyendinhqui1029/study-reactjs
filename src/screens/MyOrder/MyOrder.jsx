@@ -7,7 +7,7 @@ import { Button } from "@material-ui/core";
 import Table from "./../../component/Table/Table";
 import orderDetailApi from "../../api/orderDetail";
 import Yup from "../../validation/CustomValidation";
-import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Loading from "./../../component/Loading/Loading";
 import "./MyOrder.scss";
 import {
@@ -43,9 +43,9 @@ function MyOrder() {
   const [showOrderDetail, setShowOrderDetail] = useState(false);
   const [isShowLoading, setIsShowLoading] = useState(false);
   const [dataList, setDataList] = useState([]);
-  const id = useSelector((cart) => cart.cart.id);
+  const { state: { id = "" } = {} } = useHistory();
   useEffect(() => {
-    if (id !== "") {
+    if (id) {
       orderDetailApi.getorderDetailById(id).then((result) => {
         if (result.hasOwnProperty("id")) {
           setShowOrderDetail(true);

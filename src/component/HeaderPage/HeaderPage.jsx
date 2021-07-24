@@ -41,11 +41,11 @@ function HeaderPage() {
         {account.subMenu.map((item,index)=>{
           return (
             <div className="ContainerNav" key={index}>
-              <FontAwesomeIcon className="IconPhoneNav" icon={item.icon} />
               <Link
                 className={item.path === pathname ? "Link Active" : "Link"}
                 to={item.path}
               >
+                <FontAwesomeIcon className="IconPhoneNav" icon={item.icon} />
                 {item.label}
               </Link>
             </div>

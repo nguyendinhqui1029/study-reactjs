@@ -16,7 +16,6 @@ import {
 } from "../../actions/cart";
 import orderDetailApi from "../../api/orderDetail";
 import { useHistory } from "react-router-dom";
-import { useFormikContext } from "formik";
 
 function Payment() {
   const [paymentMethod, setPaymentMethod] = useState([]);
@@ -44,13 +43,17 @@ function Payment() {
   };
 
   const handleClickOrder = () => {
-    const { isValid: isValidForm = false, values: valueForm = {} } =
-      formRefAdrress.current;
+    const {
+      isValid: isValidForm = false,
+      values: valueForm = {},
+      dirty=false,
+    } = formRefAdrress.current;
     const { isValid: isValidFormOther = false, values: valueFormOther = {} } =
       formRefOther.current;
     formRefAdrress.current.submitForm();
     formRefOther.current.submitForm();
-    if (isValidForm && isValidFormOther) {
+    if (dirty && isValidForm && isValidFormOther) {
+      
       const cartDetailMap = Object.assign({
         ...cartDetail,
         address: valueForm,
@@ -62,7 +65,10 @@ function Payment() {
         disPatch(addAddress(valueForm));
         disPatch(addAddressOther(valueFormOther));
         disPatch(setStatus("Waiting Approval"));
-        history.push("/cart-detail/completed");
+        history.push({
+          pathname: "/cart-detail/completed",
+          state: { id: result.id },
+        });
       });
     }
   };

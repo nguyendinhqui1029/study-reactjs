@@ -1,6 +1,6 @@
 const initialState = {
   id: sessionStorage.getItem("ID") || "",
-  idCustomer: "5d1b8222-8241-45dd-ac89-70d1793b6f4a",
+  idCustomer: "",
   cartList:
     (!!sessionStorage.getItem("ITEM_LIST") &&
       JSON.parse(sessionStorage.getItem("ITEM_LIST")).cartList) ||
@@ -61,7 +61,7 @@ const cartReducer = (state = initialState, action) => {
     }
 
     case "RESET_CART_LIST": {
-      const obj = { cartList: action.payload };
+      const obj = { ...state, cartList: action.payload };
       sessionStorage.setItem("ITEM_LIST", JSON.stringify(obj));
       return obj;
     }

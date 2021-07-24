@@ -37,9 +37,9 @@
       .Active {
         color: $orangeColor !important;
         font-weight: bold;
-      }
-      .IconPhoneNav {
-        color: $whiteColor;
+        .IconPhoneNav {
+          color: $orangeColor !important;
+        }
       }
 
       .Link {
@@ -47,7 +47,11 @@
         user-select: none;
         text-decoration: none !important;
         color: $whiteColor;
-        margin: 5px;
+        padding: 10px;
+        .IconPhoneNav {
+          color: $whiteColor;
+          margin-right: 5px;
+        }
       }
 
       .ContainerNav {
@@ -56,12 +60,13 @@
 
       .ContainerNav:hover {
         background: $whiteColor;
-        .IconPhoneNav {
-          color: $orangeColor !important;
-        }
+
         .Link {
           text-decoration: none !important;
           color: $orangeColor !important;
+          .IconPhoneNav {
+            color: $orangeColor !important;
+          }
         }
       }
     }
@@ -148,9 +153,6 @@
         line-height: 50px;
         border: 1px dotted $borderColor;
         position: relative;
-        .IconPhoneNav {
-          margin: 0px 10px;
-        }
 
         .Link {
           display: flex;
@@ -161,6 +163,9 @@
           color: $blackColor;
           font-weight: 700;
           padding-left: 10px;
+          .IconPhoneNav {
+            margin: 0px 10px;
+          }
         }
 
         .subMenu {
