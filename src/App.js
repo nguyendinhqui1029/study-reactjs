@@ -51,7 +51,7 @@ function App() {
           <Switch>
             <Route path="/admin/:path?" exact>
               <Switch>
-                <Route path="/admin" component={Admin} exact />
+                <Route path="/admin" component={Admin} />
               </Switch>
             </Route>
 

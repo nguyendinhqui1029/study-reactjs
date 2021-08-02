@@ -10,5 +10,6 @@ export const TYPE_COLUMN_TABLE = {
 
 export const ACTION_TYPE_TABLE = {
   DELETE: "DELETE",
-  UPDATE: "UPDATE"
+  UPDATE: "UPDATE",
+  REFERENCE: "REFERENCE"
 };

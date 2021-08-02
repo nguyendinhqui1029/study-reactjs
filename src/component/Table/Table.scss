@@ -72,8 +72,14 @@
       margin: auto;
     }
 
+    .Reference {
+      font-size: 20px;
+      cursor: pointer;
+      color: cornflowerblue;
+    }
     .DeleteAction:hover,
-    .UpdateAction:hover {
+    .UpdateAction:hover,
+    .Reference:hover {
       color: $orangeColor;
     }
 

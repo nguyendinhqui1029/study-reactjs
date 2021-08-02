@@ -17,6 +17,16 @@ $backgroundHeaderTable: #eaeaea;
 $borderTabel: #ddd;
 $backgroundFooter: #3c3f44;
 $validColor: #1a9d1af7;
+
+$cartBackgroundDarkBlue: linear-gradient(45deg,#321fdb,#1f1498);
+$cartBorderColorDarkBlue: #1f1498;
+$cartBackgroundBlue: linear-gradient(45deg,#39f,#2982cc);
+$cartBorderColorBlue: #2982cc;
+
+$cartBackgroundOrange: linear-gradient(45deg,#f9b115,#f6960b);
+$cartBorderColorOrange: #f6960b;
+$cartBackgroundRed: linear-gradient(45deg,#e55353,#d93737);
+$cartBorderColorRed: #d93737;
 .App {
   background: $backgroundColor;
 }

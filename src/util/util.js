@@ -12,30 +12,28 @@ export const formatCurrency = (value) => {
 export const calculateTotal = (cartList) => {
   let total = 0;
   cartList.forEach((cart) => {
-      total +=
-        calculateDiscount(cart.price, cart.discount) * parseInt(cart.amount);
-    });
+    total +=
+      calculateDiscount(cart.price, cart.discount) * parseInt(cart.amount);
+  });
   return total;
 };
 
 export const calculateIntoMoney = (cartList) => {
   console.log("calculateIntoMoney", cartList);
-  return (
-    cartList.map((item) => {
-      const hasDiscount = item.discount;
-      const total =
-        (hasDiscount
-          ? calculateDiscount(item.price, item.discount)
-          : parseFloat(item.price)) * parseInt(item.amount);
-      item.price = parseFloat(item.price);
-      return { ...item, intoMoney: total };
-    })
-  );
+  return cartList.map((item) => {
+    const hasDiscount = item.discount;
+    const total =
+      (hasDiscount
+        ? calculateDiscount(item.price, item.discount)
+        : parseFloat(item.price)) * parseInt(item.amount);
+    item.price = parseFloat(item.price);
+    return { ...item, intoMoney: total };
+  });
 };
 export const calculateAmount = (cartList) => {
   let totalAmount = 0;
   cartList.forEach((cart) => {
-      totalAmount += parseInt(cart.amount);
-    });
+    totalAmount += parseInt(cart.amount);
+  });
   return totalAmount;
 };

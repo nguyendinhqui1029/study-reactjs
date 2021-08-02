@@ -4,14 +4,12 @@
     display: flex;
     flex: 1;
     flex-direction: row;
-    height: 100vh;
     .LeftSection,
     .LeftSectionIcon {
       display: flex;
       justify-content: space-between;
       flex-direction: column;
       background: $darkOrangeColor;
-      height: 100%;
     }
     .LeftSection {
       width: 200px;
@@ -65,11 +63,11 @@
 
     .LeftSectionIcon {
       width: 70px;
-
       .Menu {
         display: flex;
         flex-direction: column;
         flex: 1;
+
         .Logo {
           img {
             margin: 5px 0px;
@@ -82,6 +80,7 @@
           align-items: center;
           height: 45px;
           margin: 5px 0px;
+
           .Link {
             display: flex;
             width: 100%;
@@ -100,6 +99,16 @@
         }
         .Item:hover {
           background: $textColor;
+          .Label {
+            display: inline;
+            left: 70px;
+            font-weight: bold;
+            padding: 10px 5px;
+            
+            background: $darkOrangeColor;
+            position: absolute;
+            z-index: 999999;
+          }
         }
       }
       .Button {
@@ -122,7 +131,6 @@
 
     .RightSection {
       flex: 1;
-      background: yellow;
       height: 100%;
       .NavTop {
         display: flex;
@@ -136,7 +144,192 @@
         .Item {
           position: relative;
           margin: 0px 15px;
-          .Icon {
+          .IconHumburger {
+            font-size: 25px;
+            display: none;
+          }
+        }
+        .MenuGroup {
+          display: flex;
+          flex: 1;
+          flex-direction: row;
+          justify-content: flex-end;
+          align-items: center;
+          .Item {
+            position: relative;
+            margin: 0px 15px;
+            span {
+              position: absolute;
+              padding: 3px;
+              top: -7px;
+              right: -15px;
+
+              font-weight: bold;
+              text-align: center;
+              background: $orangeColor;
+              color: $whiteColor;
+
+              font-size: 10px;
+              border: 1px solid transparent;
+              border-radius: 5px 5px 5px 5px;
+            }
+
+            .Icon {
+              font-size: 25px;
+            }
+          }
+          .Avatar {
+            margin: 0px 15px;
+            width: 40px;
+            height: 40px;
+            img {
+              width: 40px;
+              height: 40px;
+              border: 1px solid $borderColor;
+              border-radius: 50% 50%;
+            }
+          }
+        }
+      }
+
+      .BodyAdmin {
+        display: flex;
+        flex: 1;
+        padding: 20px;
+        flex-direction: row;
+        height: calc(100vh - 123px);
+        overflow-y: scroll;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .Admin {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    .LeftSection,
+    .LeftSectionIcon {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      background: $darkOrangeColor;
+    }
+    .LeftSection {
+      width: 200px;
+      display: none;
+      .Menu {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        .Logo {
+          img {
+            width: 100%;
+            height: 85px;
+          }
+        }
+        .Item {
+          display: flex;
+          align-items: center;
+          height: 45px;
+
+          .Link {
+            width: 100%;
+            color: $whiteColor;
+            padding: 0px 15px;
+            text-decoration: none;
+
+            .Icon {
+              margin-right: 10px;
+            }
+          }
+        }
+        .Item:hover {
+          background: $textColor;
+        }
+      }
+      .Button {
+        display: none;
+      }
+    }
+
+    .LeftSectionIcon {
+      width: 70px;
+      .Menu {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        .Logo {
+          img {
+            margin: 5px 0px;
+            width: 100%;
+            height: 45px;
+          }
+        }
+        .Item {
+          display: flex;
+          align-items: center;
+          height: 45px;
+          margin: 5px 0px;
+
+          .Link {
+            display: flex;
+            width: 100%;
+            color: $whiteColor;
+            padding: 0px 15px;
+            text-decoration: none;
+            justify-content: center;
+            .Icon {
+              font-size: 30px;
+            }
+
+            .Label {
+              display: none;
+            }
+          }
+        }
+        .Item:hover {
+          background: $textColor;
+          .Label {
+            display: inline;
+            left: 70px;
+            font-weight: bold;
+            padding: 10px 5px;
+            
+            background: $darkOrangeColor;
+            position: absolute;
+            z-index: 999999;
+          }
+        }
+      }
+      .Button {
+        display: none;
+      }
+    }
+
+    .RightSection {
+      flex: 1;
+      height: 100%;
+      .NavTop {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        justify-content: space-between;
+
+        height: 50px;
+        border: 1px solid $borderColor;
+        align-items: center;
+        .Item {
+          position: relative;
+          margin: 0px 15px;
+          .IconHumburger {
+            display: flex;
             font-size: 25px;
           }
         }
@@ -182,12 +375,15 @@
           }
         }
       }
+
+      .BodyAdmin {
+        display: flex;
+        flex: 1;
+        padding: 20px 0px;
+        flex-direction: row;
+        height: calc(100vh - 92px);
+        overflow-y: scroll;
+      }
     }
   }
-}
-
-@media all and (max-width: 768px) {
-}
-
-@media all and (max-width: 480px) {
 }

@@ -9,16 +9,21 @@ Table.propTypes = {
   dataList: PropTypes.array.isRequired,
   headerList: PropTypes.array.isRequired,
   hanldeCalculateValue: PropTypes.func,
-  hanldeEventDelete: PropTypes.func,
+  hanldeAction: PropTypes.func
 };
 
 Table.defaultProps = {
   hanldeCalculateValue: null,
-  hanldeAction: null,
+  hanldeAction: null
 };
 
 function Table(props) {
-  const { dataList, headerList, hanldeCalculateValue, hanldeAction } = props;
+  const {
+    dataList,
+    headerList,
+    hanldeCalculateValue,
+    hanldeAction
+  } = props;
 
   function handleEventChangeDataRow(newValue, item, propertyName) {
     if (hanldeCalculateValue) {
@@ -75,7 +80,13 @@ function Table(props) {
 function renderComponentByType(header, item, eventChange) {
   switch (header.type) {
     case TYPE_COLUMN_TABLE.IMAGE: {
-      return <img className="Image" src={item[header.propertyMapping]} alt="Loading ..."/>;
+      return (
+        <img
+          className="Image"
+          src={item[header.propertyMapping]}
+          alt="Loading ..."
+        />
+      );
     }
     case TYPE_COLUMN_TABLE.CHECKBOX: {
       return (
@@ -145,7 +156,7 @@ function renderComponentByType(header, item, eventChange) {
             eventChange(
               event.target.value >= header.max
                 ? header.max
-                : event.target.value < header.min && event.target.value !==''
+                : event.target.value < header.min && event.target.value !== ""
                 ? header.min
                 : event.target.value,
               item,
@@ -154,7 +165,7 @@ function renderComponentByType(header, item, eventChange) {
           }}
           onMouseLeave={(event) => {
             eventChange(
-                event.target.value <= header.min
+              event.target.value <= header.min
                 ? header.min
                 : event.target.value,
               item,
@@ -185,6 +196,15 @@ function renderComponentByType(header, item, eventChange) {
                   onClick={(event) => eventChange(item, actionType)}
                 />
               );
+            case ACTION_TYPE_TABLE.REFERENCE:
+              return (
+                <FontAwesomeIcon
+                  key={actionType}
+                  icon="link"
+                  className="Reference"
+                  onClick={(event) => eventChange(item, actionType)}
+                />
+              );
             default:
               return "";
           }
@@ -194,8 +214,7 @@ function renderComponentByType(header, item, eventChange) {
       }
     }
     default:
-      return header.hasOwnProperty("formatCurrency") &&
-        header.formatCurrency
+      return header.hasOwnProperty("formatCurrency") && header.formatCurrency
         ? formatCurrency(item[header.propertyMapping])
         : item[header.propertyMapping];
   }
