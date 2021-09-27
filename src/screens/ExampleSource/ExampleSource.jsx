@@ -121,7 +121,7 @@ function ExampleSource(props) {
       </div>
       <div className="SubContainer">
         <div className="Layout">
-          <Formik
+        <Formik
             initialValues={initialValues}
             validationSchema={validations}
             onSubmit={(values) => console.log(values)}
