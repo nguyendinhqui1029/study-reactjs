@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Input.scss";
@@ -10,17 +10,31 @@ Input.propTypes = {
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   disable: PropTypes.bool,
+  iconLeft: PropTypes.string,
+  isShowValidField: PropTypes.bool
 };
 
 Input.defaultProps = {
   disable: false,
+  iconLeft: "",
+  isShowValidField: true
 };
 function Input(props) {
-  const { field, form, type, placeholder, disable } = props;
+  const {
+    field,
+    form,
+    type,
+    placeholder,
+    disable,
+    iconLeft,
+    isShowValidField,
+    min,
+    max,
+  } = props;
   const { errors, touched } = form;
   const { name } = field;
   const showError = errors[name] && touched[name];
-  const showValidField = touched[name] && !errors[name];
+  const showValidField = touched[name] && !errors[name] && isShowValidField;
   return (
     <div className="Input">
       <div
@@ -33,7 +47,14 @@ function Input(props) {
         }
       >
         <div className="Input">
+          {iconLeft && (
+            <div className="ContainerIcon">
+              <FontAwesomeIcon icon={iconLeft} />
+            </div>
+          )}
+
           <input
+            className={iconLeft ? "NoneBorderLeft" : ""}
             type={type}
             placeholder={placeholder}
             {...field}

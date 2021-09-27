@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -6,30 +6,81 @@ import {
   faList,
   faChevronCircleDown,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link, useRouteMatch } from "react-router-dom";
+import {
+  Link,
+  useRouteMatch,
+  useHistory,
+} from "react-router-dom";
 import "./NavigateMenu.scss";
-
+import { useDispatch, useSelector } from "react-redux";
+import {
+  categoriesAction
+} from "../../actions/categories";
+import { addQuickLink, removeQuickLink } from "../../actions/quicklink";
+import categoryApi from "../../api/category.api";
 NavigateMenu.propTypes = {
-  listCategory: PropTypes.array,
   listMenu: PropTypes.array,
-  selectedCategory: PropTypes.func,
 };
 
 NavigateMenu.defaultProps = {
-  listCategory: [],
   listMenu: [],
-  selectedCategory: null,
 };
 
 function NavigateMenu(props) {
-  const { listMenu, listCategory } = props;
+  const { listMenu } = props;
+  const categories = useSelector((cate) => cate.categories.categories);
+  
+  const disPatch = useDispatch();
   const match = useRouteMatch({ path: "/" });
+  let history = useHistory();
+  useEffect(() => {
+    categoryApi.getCategoryByIdSubCategory()
+      .then((categoryList) => {
+        return Promise.all(
+          (categoryList || []).map((cate) => {
+            return categoryApi
+              .getCategoryByIdSubCategory(cate.id)
+              .then((cateLevel2) => {
+                return Promise.all(
+                  (cateLevel2 || []).map((level2) => {
+                    return categoryApi.getCategoryByIdSubCategory(level2.id);
+                  })
+                ).then((value) => {
+                  return (cateLevel2 || []).map((category, index) => {
+                    return { ...category, subCategory: value[index] };
+                  });
+                });
+              });
+          })
+        ).then((value) => {
+          return (categoryList || []).map((category, index) => {
+            return { ...category, subCategory: value[index] };
+          });
+        });
+      })
+      .then((categories) => {
+        disPatch(categoriesAction(categories));
+      });
+  }, []);
+
+  const handleSelectedCategory = (item) => {
+    if (!item.hasOwnProperty("subCategory") || !item.subCategory.length) {
+      disPatch(removeQuickLink(1));
+      disPatch(addQuickLink({ path: `/product`, label: 'Sản phẩm'}));
+      disPatch(addQuickLink({ path: `/product/${item.id}`, label: item.name }));
+      history.push({
+        pathname: `/product/${item.id}`,
+        state: { category: item },
+      });
+    }
+  };
+  
   return (
     <div className="NavMenu">
       <div className="ContainerCategory">
         <div className="TitleCategory">
           <FontAwesomeIcon icon={faList} className="IconCategory" />
-          DANH MUC SAN PHAM
+          Danh mục sản phẩm
           <FontAwesomeIcon
             icon={faChevronCircleDown}
             className="IconChevronCircleDown"
@@ -37,9 +88,46 @@ function NavigateMenu(props) {
           />
         </div>
         <ul style={{ display: match.isExact ? "block" : "none" }}>
-          {listCategory.map((catagory, index) => {
+          {categories.map((catagory, index) => {
             return (
-              <CategoryItem item={{ ...catagory, ...props }} key={index} />
+              <li onClick={() => handleSelectedCategory(catagory)} key={index}>
+                {catagory.name}
+                <FontAwesomeIcon
+                  icon={faAngleRight}
+                  className={
+                    catagory.subCategory.length > 0
+                      ? "IconRight"
+                      : "IconRightHidden"
+                  }
+                />
+                {catagory.subCategory.length > 0 && (
+                  <div className="SubMenu">
+                    {catagory.subCategory.map((parentSubcategory, ind) => {
+                      return (
+                        <div className="ContentSubMenu" key={ind}>
+                          <h4>{parentSubcategory.name}</h4>
+                          <ul>
+                            {parentSubcategory.subCategory.map(
+                              (subItem, index) => {
+                                return (
+                                  <li
+                                    key={`SUBMENU${index}`}
+                                    onClick={() =>
+                                      handleSelectedCategory(subItem)
+                                    }
+                                  >
+                                    {subItem.name}
+                                  </li>
+                                );
+                              }
+                            )}
+                          </ul>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </li>
             );
           })}
         </ul>
@@ -58,65 +146,22 @@ function NavigateMenu(props) {
 
 function MenuItem({ item }) {
   const match = useRouteMatch({ path: item.path });
+  const disPatch = useDispatch();
+
+  const addQuickLinkEvent=(item)=>{
+    disPatch(removeQuickLink(1));
+    disPatch(addQuickLink(item));
+  }
   return (
     <Link
       to={item.path}
       exact={item && item.exact ? item.exact.toString() : "false"}
       className="MenuLink"
+      onClick={() => addQuickLinkEvent({ label: item.label, path: item.path })}
     >
       <li className={match && match.isExact ? "Active" : ""}>{item.label}</li>
     </Link>
   );
 }
 
-function CategoryItem({ item }) {
-  const { label, subCategory, selectedCategory } = item;
-  function handlSelectedItem(categorySeleted) {
-    if (selectedCategory && subCategory.length <= 0) {
-      selectedCategory(categorySeleted);
-    }
-  }
-  return (
-    <li onClick={() => handlSelectedItem(item)}>
-      {label}
-      <FontAwesomeIcon
-        icon={faAngleRight}
-        className={
-          subCategory && subCategory.length > 0
-            ? "IconRight"
-            : "IconRightHidden"
-        }
-      />
-      {subCategory && subCategory.length > 0 ? (
-        <SubCategoryItem item={{ subCategory, selectedCategory }} />
-      ) : (
-        ""
-      )}
-    </li>
-  );
-}
-
-function SubCategoryItem({ item }) {
-  const { label, subCategory, selectedCategory } = item;
-  return (
-    <div className="SubMenu">
-      {subCategory.map((parentSubcategory, ind) => {
-        return (
-          <div className="ContentSubMenu" key={ind}>
-            <h5>{parentSubcategory.label}</h5>
-            <ul>
-              {parentSubcategory.subCategory.map((subItem, index) => {
-                return (
-                  <li key={index} onClick={() => selectedCategory(subItem)}>
-                    {subItem.label}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
 export default NavigateMenu;

@@ -4,6 +4,7 @@
   flex-direction: column;
   flex: 1;
   border: 1px solid $borderColor;
+  height: 100%;
   .HeaderContainer {
     text-align: left;
     padding: 6px 11px;
@@ -27,7 +28,7 @@
     .DeliveryContainer {
       display: flex;
       flex-direction: column;
-
+      input[type="password"],
       input[type="text"],
       input[type="checkbox"],
       input[type="radio"],

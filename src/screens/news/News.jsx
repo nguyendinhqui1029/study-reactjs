@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import VerticalMenu from "../../component/VerticalMenu/VerticalMenu";
 import FeaturedNews from "../../component/FeaturedNews/FeaturedNews";
 import NavigateQuickly from "../../component/NavigateQuickly/NavigateQuickly";
@@ -9,12 +8,10 @@ import CardNews from "../../component/CardNews/CardNews";
 import "./News.scss";
 News.propTypes = {};
 
-function News(props) {
+function News() {
   function selectedCategory(item) {}
 
   function selectedNews(item) {}
-
-  function getPagination(paginationInfo) {}
 
   function navigatorDetailNews(news) {}
   return (
@@ -37,7 +34,7 @@ function News(props) {
       </div>
       <div className="ContainerRight">
         <div className="NavigateQuickly">
-          <NavigateQuickly listQuickLink={listQuickLink} />
+          <NavigateQuickly/>
         </div>
         <div className="Header">
           <Header title="Tin tức" />
@@ -138,15 +135,4 @@ const newsHighlightList = [
     title: 'Tại sao “thượng đế” ngày càng "ngán" hội chợ giảm giá',
   },
 ];
-const listQuickLink = [
-  {
-    id: "NQ01",
-    label: "Trang chủ",
-    path: "/",
-  },
-  {
-    id: "NQ02",
-    label: "Tin tức",
-    path: "news",
-  },
-];
+

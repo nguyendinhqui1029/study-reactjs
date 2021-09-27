@@ -1,41 +1,31 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { Link, useRouteMatch } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
+import { useSelector, useDispatch } from "react-redux";
 import "./NavigateQuickly.scss";
-NavigateQuickly.propTypes = {
-  listQuickLink: PropTypes.array.isRequired,
-};
-NavigateQuickly.defaultProps = {
-  listQuickLink: [],
-};
-function NavigateQuickly(props) {
-  const { listQuickLink } = props;
-  const [listLink, setListLink] = useState(listQuickLink);
+import { removeQuickLink } from "../../actions/quicklink";
+function NavigateQuickly() {
+  const quickLinks = useSelector((quickLink) => quickLink.quickLink.quickLinks);
+  const disPatch = useDispatch();
   function handleClickLink(index) {
-    const updateListLink = Object.assign(listLink);
-    setListLink(updateListLink.splice(0, index + 1));
+   disPatch(removeQuickLink(index+1));
   }
   return (
     <div className="NavigateQuickly">
-      {listLink.map((link, index) => {
+      {quickLinks.map((link, index) => {
         return (
-          <Link
-            to={link.path}
-            className="MenuLink"
-            onClick={() => handleClickLink(index)}
-            key={index}
-          >
+          <Link to={link.path} className="MenuLink" key={index}>
             <span
               className={
-                listLink.length - 1 === index
+                quickLinks.length - 1 === index
                   ? "ContentLink Active"
                   : "ContentLink"
               }
+              onClick={() => handleClickLink(index)}
             >
               {link.label}
-              {listLink.length > 1 && listLink.length - 1 !== index ? (
+              {quickLinks.length > 1 && quickLinks.length - 1 !== index ? (
                 <FontAwesomeIcon
                   icon={faAngleDoubleRight}
                   className="IconRight"

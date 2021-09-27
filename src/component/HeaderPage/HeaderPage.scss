@@ -1,0 +1,215 @@
+@import "../../assets/scss/common.scss";
+
+@media all and (max-width: 1600px) {
+  .HeaderPage {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+
+    height: 45px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $darkTextColor;
+
+    .Hotline {
+      margin-left: 5%;
+      .IconPhone {
+        color: $whiteColor;
+        transform: rotate(90deg);
+      }
+
+      span {
+        color: $whiteColor;
+        font-weight: bold;
+        margin: 5px;
+      }
+    }
+
+    .NavigateInfo {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      justify-content: flex-end;
+
+      flex-wrap: wrap;
+      margin-right: 5%;
+      height: inherit;
+      .Active {
+        color: $orangeColor !important;
+        font-weight: bold;
+        .IconPhoneNav {
+          color: $orangeColor !important;
+        }
+      }
+
+      .Link {
+        cursor: pointer;
+        user-select: none;
+        text-decoration: none !important;
+        color: $whiteColor;
+        padding: 10px;
+        .IconPhoneNav {
+          color: $whiteColor;
+          margin-right: 5px;
+        }
+      }
+
+      .ContainerNav {
+        padding: 12px;
+      }
+
+      .ContainerNav:hover {
+        background: $whiteColor;
+
+        .Link {
+          text-decoration: none !important;
+          color: $orangeColor !important;
+          .IconPhoneNav {
+            color: $orangeColor !important;
+          }
+        }
+      }
+    }
+
+    .MenuMobile {
+      display: none;
+    }
+    .MenuMobileDetail {
+      display: none;
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .HeaderPage {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+
+    height: 45px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $darkTextColor;
+    .Active {
+      color: $orangeColor !important;
+      font-weight: bold;
+    }
+    .Hidden {
+      display: none !important;
+    }
+    .Hotline {
+      margin-left: 5%;
+      .IconPhone {
+        color: $whiteColor;
+        transform: rotate(90deg);
+      }
+
+      span {
+        color: $whiteColor;
+        font-weight: bold;
+        margin: 5px;
+      }
+    }
+
+    .NavigateInfo {
+      display: none;
+    }
+
+    .MenuMobile {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+      position: relative;
+
+      margin: 5px;
+      .IconBars {
+        margin: 5px;
+        color: $whiteColor;
+        font-size: 35px;
+      }
+    }
+    &:hover .MenuMobileDetail {
+      display: flex;
+      background: $whiteColor;
+    }
+    .MenuMobileDetail {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+      position: absolute;
+
+      right: 0px;
+      top: 43px;
+      right: 0px;
+      width: 100%;
+
+      box-shadow: 1px 0 4px 0 rgb(0 0 0 / 20%);
+      background: $whiteColor;
+      z-index: 100000;
+      .ContainerNav {
+        line-height: 50px;
+        border: 1px dotted $borderColor;
+        position: relative;
+
+        .Link {
+          display: flex;
+          flex: 1;
+          flex-direction: row;
+          text-decoration: none;
+
+          color: $blackColor;
+          font-weight: 700;
+          padding-left: 10px;
+          .IconPhoneNav {
+            margin: 0px 10px;
+          }
+        }
+
+        .subMenu {
+          display: flex;
+          flex: 1;
+          line-height: 50px;
+          border: 1px dotted $borderColor;
+
+          position: relative;
+          display: none;
+          .IconPhoneNav {
+            margin: 0px 10px;
+          }
+
+          .LinkSub {
+            display: flex;
+            flex: 1;
+            flex-direction: row;
+            text-decoration: none;
+
+            align-items: center;
+            color: $blackColor;
+            font-weight: 700;
+            padding-left: 15px;
+          }
+        }
+
+        .subMenu:hover {
+          color: $orangeColor;
+          .LinkSub {
+            color: $orangeColor;
+          }
+        }
+      }
+
+      .ContainerNav:hover {
+        color: $orangeColor;
+        .subMenu {
+          display: flex;
+        }
+        .Link {
+          color: $orangeColor;
+        }
+      }
+    }
+  }
+}

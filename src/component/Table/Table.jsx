@@ -1,40 +1,40 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./Table.scss";
-import {
-  TYPE_COLUMN_TABLE,
-  ACTION_TYPE_TABLE,
-} from "../../constant/Constant.js";
+import { TYPE_COLUMN_TABLE, ACTION_TYPE_TABLE } from "../../Constant/Constant";
+import { formatCurrency } from "../../util/util";
 Table.propTypes = {
   dataList: PropTypes.array.isRequired,
   headerList: PropTypes.array.isRequired,
   hanldeCalculateValue: PropTypes.func,
+  hanldeAction: PropTypes.func
 };
 
 Table.defaultProps = {
   hanldeCalculateValue: null,
+  hanldeAction: null
 };
 
 function Table(props) {
-  const { dataList, headerList, hanldeCalculateValue } = props;
-  const [dataTable, setDataTable] = useState(dataList);
+  const {
+    dataList,
+    headerList,
+    hanldeCalculateValue,
+    hanldeAction
+  } = props;
 
   function handleEventChangeDataRow(newValue, item, propertyName) {
     if (hanldeCalculateValue) {
       hanldeCalculateValue(newValue, item, propertyName);
     }
-      item[propertyName] = newValue;
-      dataTable[item.index] = item;
-      setDataTable([...dataTable]);
   }
 
   function handleActionClick(item, actionName) {
-    if (actionName === ACTION_TYPE_TABLE.UPDATE) {
-      dataTable[item.index] = item;
-    } else dataTable.splice(item.index, 1);
-    setDataTable([...dataTable]);
+    if (hanldeAction) {
+      hanldeAction(item, actionName);
+    }
   }
 
   return (
@@ -48,7 +48,7 @@ function Table(props) {
           );
         })}
       </div>
-      {dataTable.map((item, index) => {
+      {dataList.map((item, index) => {
         return (
           <div className="ContentTable" key={index}>
             {headerList.map((keyHeader, ind) => {
@@ -80,7 +80,13 @@ function Table(props) {
 function renderComponentByType(header, item, eventChange) {
   switch (header.type) {
     case TYPE_COLUMN_TABLE.IMAGE: {
-      return <img className="Image" src={item[header.propertyMapping]} />;
+      return (
+        <img
+          className="Image"
+          src={item[header.propertyMapping]}
+          alt="Loading ..."
+        />
+      );
     }
     case TYPE_COLUMN_TABLE.CHECKBOX: {
       return (
@@ -137,6 +143,37 @@ function renderComponentByType(header, item, eventChange) {
           }}
         />
       );
+    case TYPE_COLUMN_TABLE.INPUTNUMBER:
+      return (
+        <input
+          max={(header.max = header.max || 9999999999999)}
+          min={(header.min = header.min || -9999999999999)}
+          type="number"
+          name={header.propertyMapping}
+          value={item[header.propertyMapping]}
+          placeholder={header.label}
+          onChange={(event) => {
+            eventChange(
+              event.target.value >= header.max
+                ? header.max
+                : event.target.value < header.min && event.target.value !== ""
+                ? header.min
+                : event.target.value,
+              item,
+              header.propertyMapping
+            );
+          }}
+          onMouseLeave={(event) => {
+            eventChange(
+              event.target.value <= header.min
+                ? header.min
+                : event.target.value,
+              item,
+              header.propertyMapping
+            );
+          }}
+        />
+      );
     case TYPE_COLUMN_TABLE.ACTION: {
       try {
         return header.actionType.map((actionType, index) => {
@@ -159,6 +196,15 @@ function renderComponentByType(header, item, eventChange) {
                   onClick={(event) => eventChange(item, actionType)}
                 />
               );
+            case ACTION_TYPE_TABLE.REFERENCE:
+              return (
+                <FontAwesomeIcon
+                  key={actionType}
+                  icon="link"
+                  className="Reference"
+                  onClick={(event) => eventChange(item, actionType)}
+                />
+              );
             default:
               return "";
           }
@@ -168,7 +214,9 @@ function renderComponentByType(header, item, eventChange) {
       }
     }
     default:
-      return item[header.propertyMapping];
+      return header.hasOwnProperty("formatCurrency") && header.formatCurrency
+        ? formatCurrency(item[header.propertyMapping])
+        : item[header.propertyMapping];
   }
 }
 export default Table;

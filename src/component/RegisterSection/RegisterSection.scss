@@ -1,0 +1,46 @@
+@import "../../assets/scss/common.scss";
+
+@media all and (max-width: 1600px) {
+  .RegisterSection {
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+    .RegisterForm {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      max-width: 500px;
+      .Button{
+        color:$whiteColor;
+        background: $redColor;
+      }
+      .Header{
+        .ProductContent{
+          .Title{
+            color: $orangeColor;
+            font-weight: 900;
+            font-size: 20px;
+            font-family: initial;
+            border-bottom: 1px dotted $borderColor;
+          }
+        }
+      }
+      .ContainerMain {
+        .ContainerInput {
+          margin-bottom: 20px;
+        }
+      }
+      .Input {
+        .ContainerInput {
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+}

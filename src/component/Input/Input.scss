@@ -2,7 +2,7 @@
 .Input {
   flex-direction: row;
   flex: 1;
-  margin: 0px 10px;
+  // margin: 0px 10px;
   // background: red;
   .ContainerInput {
     display: flex;
@@ -13,6 +13,21 @@
       display: flex;
       flex: 1;
       position: relative;
+      height: 40px;
+      .ContainerIcon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: inherit;
+
+        border-radius: 5px 0px 0px 5px;
+        background: $textColor;
+        font-size: 20px;
+      }
+      input[type="number"],
+      input[type="password"],
+      input[type="date"],
       input[type="text"] {
         flex: 1;
         outline-color: $outlineInputColor !important;
@@ -20,19 +35,21 @@
 
         border-radius: 5px 5px 5px 5px;
         border: 1px solid $borderColor;
+        height: 23px;
       }
-
+      .NoneBorderLeft {
+        border-radius: 0px 5px 5px 0px !important;
+      }
       .IconValid {
         display: none;
         position: absolute;
         z-index: 2;
-        right: 2px;
-        top: 9px;
+        right: 1px;
+        top: 8px;
         color: $validColor;
       }
     }
     .Error {
-      padding: 6px 0px;
       display: none;
       .IconInvalid {
         color: $redColor;
@@ -47,14 +64,13 @@
   .InputValid {
     .Input {
       input {
-        border: 2px solid $validColor !important;
+        border: 1px solid $validColor !important;
       }
-      .IconValid 
-      {
+      .IconValid {
         display: inline;
       }
     }
-    
+
     .Error {
       display: none;
     }
@@ -63,16 +79,16 @@
   .InputInvalid {
     .Input {
       input {
-        border: 2px solid $redColor !important;
-        padding-left:8px;
+        border: 1px solid $redColor !important;
+        padding-left: 8px;
       }
-      .IconValid 
-      {
-        display: none ;
+      .IconValid {
+        display: none;
       }
     }
     .Error {
-      display: inline;
+      align-items: center;
+      display: flex;
     }
   }
 }

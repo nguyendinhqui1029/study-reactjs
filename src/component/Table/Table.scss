@@ -1,11 +1,12 @@
 @import "../../assets/scss/common.scss";
+
 .TableProduct {
   display: flex;
   flex-direction: column;
   flex: 1;
   .HeaderTable,
   .ContentTable {
-    line-height: 40px;
+    line-height: 20px;
     display: flex;
     background: $backgroundHeaderTable;
     border-bottom: 3px solid $borderTabel;
@@ -24,7 +25,6 @@
     background: $whiteColor;
     border-bottom: 2px solid $borderTabel;
     font-weight: normal;
-    word-break: break-all;
 
     div {
       align-items: center;
@@ -39,7 +39,9 @@
       }
     }
 
-    input[type="text"] {
+    input[type="password"],
+    input[type="text"],
+    input[type="number"] {
       height: 18px;
       width: 100%;
     }
@@ -49,8 +51,10 @@
       height: 36px;
     }
 
+    input[type="password"],
     input[type="text"],
     input[type="checkbox"],
+    input[type="number"],
     textarea,
     select {
       flex: 1;
@@ -68,8 +72,14 @@
       margin: auto;
     }
 
+    .Reference {
+      font-size: 20px;
+      cursor: pointer;
+      color: cornflowerblue;
+    }
     .DeleteAction:hover,
-    .UpdateAction:hover {
+    .UpdateAction:hover,
+    .Reference:hover {
       color: $orangeColor;
     }
 

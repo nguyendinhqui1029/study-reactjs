@@ -42,7 +42,7 @@ function PayInfo(props) {
         <h3 className="HeaderContent">2. Thanh toán và vận chuyển</h3>
       </div>
       <div className="ContentContainer">
-        <h3 className="HeaderContent">Thông tin thanh toán</h3>
+        <h3 className="HeaderContent">Hình thức vận chuyển</h3>
         <div className="DeliveryContainer">
           <select
             onChange={(event) => handleChangeDeliveryMethod(event.target.value)}
@@ -68,7 +68,7 @@ function PayInfo(props) {
                 <input
                   type="radio"
                   id={pay.id}
-                  name="deliveryPay"
+                  name="payMethod"
                   value={payMethodSelected.id}
                   checked={pay.id === payMethodSelected.id}
                   onChange={() => handleChangePayMethod(pay.id)}

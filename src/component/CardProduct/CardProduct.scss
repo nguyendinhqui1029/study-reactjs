@@ -14,7 +14,7 @@
   flex-shrink: 1;
   background: $whiteColor;
   text-align: center;
-  
+
   .PercentDiscount {
     position: absolute;
     background-color: $orangeColor;
@@ -72,11 +72,12 @@
   }
 
   .ImageProduct {
-    height: 200px;
+    // height: 200px;
     .Image {
       width: 70%;
       height: inherit;
       cursor: zoom-in;
+      margin-bottom: 70px;
     }
     .Image:hover {
       transform: scale(1.25);
@@ -84,23 +85,28 @@
   }
 
   .ProductDetail {
-    margin-top: 20px;
     .Price {
       font-weight: bold;
       color: $redColor;
       padding: 5px;
+      line-height: 30px;
+
       .Currency {
         text-decoration: underline;
       }
     }
+    .Discount {
+      margin-bottom: 10px;
+    }
     .ProductName {
-      margin: 0px;
+      margin: 5px 0px;
       padding: 0px;
       font-size: 1rem;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
+      cursor: pointer;
     }
 
     .BtnBuy {

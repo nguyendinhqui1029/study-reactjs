@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -27,13 +27,18 @@ function getTotalPage(totalPage, limitPage) {
 function Pagination(props) {
   const FIRST_PAGE = 1;
   const { currentPage, itemPage, totalItem, limit, pageChangeClick } = props;
-  const totalPage = Math.floor(totalItem / itemPage);
-
+  const [totalPage, setTotalPage] = useState(0);
   const [startPage, setStartPage] = useState(FIRST_PAGE);
-  const [endPage, setEndPage] = useState(() => {
-    return getTotalPage(totalPage, limit);
-  });
-  const [current, setCurrent] = useState(currentPage);
+  const [endPage, setEndPage] = useState(1);
+  const [current, setCurrent] = useState(1);
+  
+  useEffect(() => {
+    const totalPages = Math.ceil(totalItem / itemPage);
+    setCurrent(currentPage);
+    setTotalPage(totalPages);
+    setEndPage(getTotalPage(totalPages, limit));
+    setStartPage(FIRST_PAGE);
+  }, [currentPage, totalItem, itemPage, limit]);
 
   function updateStartEndPage(indexPage, limit) {
     switch (indexPage) {
@@ -72,7 +77,7 @@ function Pagination(props) {
   function changePagination(indexPage) {
     if (pageChangeClick) {
       updateStartEndPage(indexPage, limit);
-      pageChangeClick({ ...{ currentPage: indexPage }, itemPage, totalItem });
+      pageChangeClick({ ...{ currentPage: indexPage }, itemPage });
     }
   }
 
@@ -82,7 +87,6 @@ function Pagination(props) {
     pageChangeClick({
       ...{ currentPage: pageSelected },
       itemPage,
-      totalItem,
     });
   }
 
@@ -92,7 +96,6 @@ function Pagination(props) {
     pageChangeClick({
       ...{ currentPage: pageSelected },
       itemPage,
-      totalItem,
     });
   }
 

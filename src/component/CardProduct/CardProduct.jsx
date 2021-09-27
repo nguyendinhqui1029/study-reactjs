@@ -1,7 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { addToCart, setStatus } from "../../actions/cart";
+import { useHistory } from "react-router-dom";
 import "./CardProduct.scss";
+import { calculateDiscount, formatCurrency } from "../../util/util";
+
 CardProduct.propTypes = {
   itemProduct: PropTypes.object,
   addCardClick: PropTypes.func,
@@ -13,11 +18,20 @@ CardProduct.defaultProps = {
 };
 
 function CardProduct(props) {
-  const { itemProduct, addCardClick } = props;
-  function handleEventClick(item) {
-    if (addCardClick) {
-      addCardClick(item);
-    }
+  const { itemProduct } = props;
+  const disPatch = useDispatch();
+  const history = useHistory();
+  function addItemToCart(item) {
+    disPatch(addToCart(item));
+    disPatch(setStatus("draft"));
+    history.push("/cart-detail");
+  }
+
+  function navigateDetail(itemProduct) {
+    history.push({
+      pathname: `/product/${itemProduct.id}`,
+      state: { id: itemProduct.id },
+    });
   }
   return (
     <div className="CardProduct">
@@ -29,28 +43,38 @@ function CardProduct(props) {
         ""
       )}
       <div className="ImageProduct">
-        <img className="Image" src={itemProduct.imageUrl} />
+        <img
+          className="Image"
+          src={itemProduct.imageUrl}
+          alt={itemProduct.imageUrl}
+        />
       </div>
       <div className="ProductDetail">
-        <h2 className="ProductName">{itemProduct.productName}</h2>
+        <h2
+          className="ProductName"
+          onClick={() => {
+            navigateDetail(itemProduct);
+          }}
+        >
+          {itemProduct.productName}
+        </h2>
         <span className="Price">
-          {itemProduct.price}
+          {formatCurrency(
+            calculateDiscount(itemProduct.price, itemProduct.discount)
+          )}
           <span className="Currency">đ</span>
         </span>
         <div className="Discount">
           {itemProduct.discount ? (
             <del>
-              {Math.round((itemProduct.price * itemProduct.discount) / 100)}
+              {formatCurrency(itemProduct.price)}
               <span className="Currency">đ</span>
             </del>
           ) : (
             <span>&nbsp;</span>
           )}
         </div>
-        <Button
-          className="BtnBuy"
-          onClick={() => handleEventClick(itemProduct)}
-        >
+        <Button className="BtnBuy" onClick={() => addItemToCart(itemProduct)}>
           Mua
         </Button>
       </div>

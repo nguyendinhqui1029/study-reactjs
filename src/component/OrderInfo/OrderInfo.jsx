@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Table from "../../component/Table/Table";
 import './OrderInfo.scss';
+import { formatCurrency } from "../../util/util";
 
 OrderInfo.propTypes = {
   intoMoney: PropTypes.number.isRequired,
@@ -41,19 +42,19 @@ function OrderInfo(props) {
           <div className="IntoMoney">
             <span>Thành tiền</span>
             <span>
-              {intoMoney} <sup>đ</sup>
+              {formatCurrency(intoMoney)} <sup>đ</sup>
             </span>
           </div>
           <div className="IntoMoney">
             <span>Phí vận chuyển</span>
             <span>
-              {deliveryFee} <sup>đ</sup>
+              {formatCurrency(deliveryFee)} <sup>đ</sup>
             </span>
           </div>
           <div className="Pay">
             <span>Thanh toán</span>
             <span>
-              {totalPay} <sup>đ</sup>
+              {formatCurrency(totalPay)} <sup>đ</sup>
             </span>
           </div>
           <div className="ButtonAdd">

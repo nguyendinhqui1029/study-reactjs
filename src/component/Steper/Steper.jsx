@@ -1,20 +1,19 @@
-import React from 'react';
+import React from "react";
 import PropTypes from 'prop-types';
 import './Steper.scss';
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
-
 Steper.propTypes = {
-  listSteper:PropTypes.array.isRequired,
+  listSteper:PropTypes.array.isRequired
 };
 
 function Steper(props) {
   const { listSteper } = props;
+  
   return (
     <div className="Steper">
-      {listSteper.map((steper,index)=>{
+      {listSteper.map((steper, index) => {
         return (
           <div
             key={index}

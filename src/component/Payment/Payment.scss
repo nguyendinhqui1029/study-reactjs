@@ -1,0 +1,21 @@
+@import "../../assets/scss/common.scss";
+.Payment {
+  display: flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  flex: 1;
+  margin-bottom: 20px;
+  .ContainerDeliveryAddress {
+    flex: 1;
+    background: $whiteColor;
+  }
+  .ContainerPayInfo {
+    flex: 1;
+    margin: 0px 5px;
+    background: $whiteColor;
+  }
+  .ContainerOrderInfo {
+    flex: 1;
+    background: $whiteColor;
+  }
+}

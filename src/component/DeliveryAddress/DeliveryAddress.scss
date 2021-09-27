@@ -49,22 +49,51 @@
       .FormInfo {
         display: flex;
         flex-direction: column;
-        input[type="text"],
-        input[type="checkbox"],
-        textarea,
-        select {
-          flex: 1;
-          outline-color: $outlineInputColor !important;
-          padding: 8px;
-          margin-bottom: 15px;
+        .ContainerInput {
+          margin-bottom: 10px;
+          .Input{
+            margin-bottom: 0px;
+          }
+        }
+        .Input {
+          margin-bottom: 10px;
+          .ContainerInput {
+            .Input {
+              margin-bottom: 0px;
+              input[type="password"],
+              input[type="text"],
+              input[type="checkbox"],
+              textarea,
+              select {
+                flex: 1;
+                outline-color: $outlineInputColor !important;
+                padding: 8px;
+                border-radius: 5px 5px 5px 5px;
 
-          border-radius: 5px 5px 5px 5px;
-          border: 1px solid $borderColor;
+                border: 1px solid $borderColor;
+              }
+            }
+          }
         }
       }
     }
 
     .SubInfo {
+      .ContainerMain {
+        .ContainerInput {
+          margin-bottom: 15px;
+          .Input {
+            margin-bottom: 0px;
+          }
+        }
+        .InputInvalid {
+            .Error{
+              display: flex !important;
+              align-items: center;
+              padding: 5px 0px;
+            }
+          }
+      }
       span {
         display: flex;
         justify-items: center;

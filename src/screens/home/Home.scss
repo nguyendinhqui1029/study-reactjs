@@ -1,22 +1,47 @@
 @import "../../assets/scss/common.scss";
-.Home {
-  display: flex;
-  flex-direction: column;
-  margin: 0px 67px;
-  flex: 1;
-  .Header {
-    margin-top: 20px;
-  }
-  .ProductList {
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
 
-  .Pagination {
+@media all and (max-width: 1600px) {
+  .Home {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 5%;
     flex: 1;
-    flex-direction: row;
-    justify-content: center;
+    .MarginNone {
+      margin: 0px;
+    }
+    .ContainerBody {
+      .ContainerBodyRight {
+        padding: 0px 0px 0px 26px;
+      }
+    }
+
+    .Header {
+      margin-top: 20px;
+    }
+    .ProductList {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+ 
+    .Pagination {
+      flex: 1;
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+}
+@media all and (max-width: 480px) {
+  .Home {
+    margin: 0px 0px;
+    .ContainerBody {
+      .ContainerBodyLeft {
+        display: none;
+      }
+      .ContainerBodyRight {
+        padding: 0px;
+      }
+    }
   }
 }

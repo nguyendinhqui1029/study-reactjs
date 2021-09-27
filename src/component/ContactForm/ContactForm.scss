@@ -12,55 +12,37 @@
     margin-bottom: 15px;
   }
 
-  .ContainerInput {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 15px;
-
-    .ContainerIcon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 50px;
-
-      border-radius: 5px 0px 0px 5px;
-      background: $textColor;
-      font-size: 20px;
-    }
-
-    textarea,
-    input[type="text"] {
-      padding: 12px;
-      flex: 1;
-      outline-color: $outlineInputColor !important;
-      border-radius: 0px 5px 5px 0px;
-      border: 1px solid $borderColor;
+  form {
+    .Input {
+      margin-bottom: 10px !important;
     }
   }
 
   .ButtonSend {
-        flex: 1;
-        flex-direction: column;
-        align-items: flex-start;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
 
-        text-align: left;
-        cursor: pointer;
-        user-select: none;
-        span {
-          color: $whiteColor;
-          text-transform: uppercase;
-          border-radius: 5px 5px 5px 5px;
-          background-color: $redColor;
-          padding: 7px 33px;
-        }
-        span:hover {
-          background: $orangeColor;
-          transition: 0.5s ease-out ;
-        }
+    text-align: left;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 15px;
+    button {
+      color: $whiteColor;
+      text-transform: uppercase;
+      border-radius: 5px 5px 5px 5px;
+      background-color: $redColor;
+      padding: 12px 40px;
+      border: none;
+    }
+    button:hover {
+      background: $orangeColor;
+      transition: 0.5s ease-out;
+    }
 
-        span:active{
-          background: $redColor;
-          transition: 0.001s ease-in;
-        }
-      }
+    button:active {
+      background: $redColor;
+      transition: 0.001s ease-in;
+    }
+  }
 }

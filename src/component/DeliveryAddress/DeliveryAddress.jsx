@@ -3,27 +3,75 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Input from "../../component/Input/Input";
 import SelectedInput from "../../component/SelectedInput/SelectedInput";
+import Textarea from "../../component/Textarea/Textarea";
 import { Formik, Form, FastField, Field } from "formik";
 import Yup from "../../validation/CustomValidation";
 import "./DeliveryAddress.scss";
-DeliveryAddress.propTypes = {};
-DeliveryAddress.defaultProps = {};
+DeliveryAddress.propTypes = {
+  formRef: PropTypes.object,
+  formRefOther: PropTypes.object,
+};
+DeliveryAddress.defaultProps = {
+  formRef: null,
+  formRefOther: null,
+};
 
 function DeliveryAddress(props) {
+  const { formRef, formRefOther } = props;
   const [cities, setCities] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [districtsByCity, setDistrictsByCity] = useState([]);
-  const [districtsByCitySubAddress, setDistrictsByCitySubAddress] = useState([]);
+  const [districtsByCitySubAddress, setDistrictsByCitySubAddress] = useState(
+    []
+  );
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedCitySubAddress, setSelectedCitySubAddress] = useState(null);
   const [isShowOtherAddress, setShowOtherAddress] = useState(false);
+
   const initialValues = {
-    name: "",
-    email: "",
-    address: "",
-    city: "",
-    district: "",
+    address: {
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      city: "",
+      district: "",
+      description: "",
+    },
+    otherAddress: {
+      nameOther: "",
+      emailOther: "",
+      phoneOther: "",
+      addressOther: "",
+      cityOther: "",
+      districtOther: "",
+    },
   };
+
+  const validations = Yup.object().shape({
+    name: Yup.string().requiredCustome("Vui lòng nhập họ tên"),
+    email: Yup.string()
+      .requiredCustome("Vui lòng nhập email")
+      .email("Email không hợp vui lòng nhập lại."),
+    phone: Yup.string().requiredCustome("Vui lòng nhập số điện thoại"),
+    address: Yup.string().requiredCustome("Vui lòng nhập địa chỉ"),
+    city: Yup.string().requiredCustome("Vui lòng chọn tỉnh hoặc thành phố"),
+    district: Yup.string().requiredCustome("Vui lòng chọn quận hoặc huyện"),
+  });
+
+  const validationsAddressOther = Yup.object().shape({
+    nameOther: Yup.string().requiredCustome("Vui lòng nhập họ tên"),
+    emailOther: "",
+    phoneOther: Yup.string().requiredCustome("Vui lòng nhập số điện thoại"),
+    addressOther: Yup.string().requiredCustome("Vui lòng nhập địa chỉ"),
+    cityOther: Yup.string().requiredCustome(
+      "Vui lòng chọn tỉnh hoặc thành phố"
+    ),
+    districtOther: Yup.string().requiredCustome(
+      "Vui lòng chọn quận hoặc huyện"
+    ),
+  });
+
   const fetchCities = async () => {
     try {
       const header = {
@@ -32,7 +80,7 @@ function DeliveryAddress(props) {
           Accept: "application/json",
         },
       };
-      const urlRequest = "./json/cities.json";
+      const urlRequest = "/json/cities.json";
       const response = await fetch(urlRequest, header);
       const responseJson = await response.json();
       const responseJsonMap = responseJson.map((item) => {
@@ -51,6 +99,10 @@ function DeliveryAddress(props) {
     fetchCities();
   }, []);
 
+  useEffect(() => {
+    fetchDistricts();
+  }, [selectedCity, selectedCitySubAddress]);
+
   async function fetchDistricts() {
     try {
       const districtsList = [];
@@ -62,7 +114,7 @@ function DeliveryAddress(props) {
             Accept: "application/json",
           },
         };
-        const urlRequest = "./json/districts.json";
+        const urlRequest = "/json/districts.json";
         const response = await fetch(urlRequest, header);
         const responseJson = await response.json();
         const responseJsonMap = responseJson.map((item) => {
@@ -73,7 +125,7 @@ function DeliveryAddress(props) {
             idCity: item.idCity,
           };
         });
-       
+
         setDistricts(responseJsonMap);
         responseJsonMap.forEach((district) => {
           district.idCity === selectedCity &&
@@ -91,7 +143,7 @@ function DeliveryAddress(props) {
           district.idCity === selectedCitySubAddress &&
             districtsSubAddress.push(...district.districts);
         });
-         console.log(districtsList);
+        console.log(districtsList);
         setDistrictsByCity(Object.assign(districtsList));
         setDistrictsByCitySubAddress(Object.assign(districtsSubAddress));
       }
@@ -99,9 +151,6 @@ function DeliveryAddress(props) {
       console.log(error);
     }
   }
-  useEffect(() => {
-    fetchDistricts();
-  }, [selectedCity, selectedCitySubAddress]);
 
   function changeOtherAddress(event) {
     setShowOtherAddress(event.target.checked);
@@ -115,20 +164,22 @@ function DeliveryAddress(props) {
       <div className="ContentContainer">
         <h3 className="HeaderContent">THÔNG TIN THANH TOÁN</h3>
         <div className="ContainerLink">
-          <Link to="link123" className="RegisterLink">
+          <Link to="/account/register" className="RegisterLink">
             Đăng ký tài khoản mua hàng
           </Link>
           <span>|</span>
-          <Link to="link124" className="LoginLink">
+          <Link to="/account/login" className="LoginLink">
             Đăng nhập
           </Link>
         </div>
         <div className="MainInfo">
           <h5>Mua hàng không cần tài khoản</h5>
           <Formik
-            initialValues={initialValues}
-            render={(formik) => {
-              setSelectedCity(formik.values.city);
+            innerRef={formRef}
+            initialValues={initialValues.address}
+            validationSchema={validations}
+            onSubmit={() => {}}
+            render={() => {
               return (
                 <Form className="FormInfo">
                   <FastField
@@ -144,29 +195,36 @@ function DeliveryAddress(props) {
                     placeholder="Email"
                   />
                   <FastField
+                    name="phone"
+                    component={Input}
+                    type="text"
+                    placeholder="Số điện thoại"
+                  />
+                  <FastField
                     name="address"
                     component={Input}
                     type="text"
                     placeholder="Địa chỉ"
                   />
-                  <Field           
+                  <Field
                     name="city"
                     component={SelectedInput}
                     dataSource={cities}
+                    optionEventChange={setSelectedCity}
+                    placeHolder="Vui lòng chọn thành phố"
                   />
-
                   <Field
-                    as="select"
                     name="district"
                     component={SelectedInput}
                     dataSource={districtsByCity}
                     disabled={!districtsByCity.length}
-                  ></Field>
-                  <textarea
-                    value=""
-                    onChange={() => {}}
+                    placeHolder="Vui lòng chọn quận hoặc huyện"
+                  />
+                  <FastField
+                    name="description"
+                    component={Textarea}
                     placeholder="Ghi chú đơn hàng"
-                    rows="5"
+                    rows={5}
                   />
                 </Form>
               );
@@ -179,45 +237,58 @@ function DeliveryAddress(props) {
             <input
               type="checkbox"
               name="otherAddress"
-              placeholder="Họ và Tên"
               onChange={(event) => changeOtherAddress(event)}
             />
             <span>Giao hàng địa chỉ khác</span>
           </span>
-
           <Formik
-            initialValues={initialValues}
-            render={(formik) => {
+            innerRef={formRefOther}
+            initialValues={initialValues.otherAddress}
+            onSubmit={() => {}}
+            validationSchema={
+              isShowOtherAddress ? validationsAddressOther : null
+            }
+            enableReinitialize={isShowOtherAddress}
+            render={() => {
               return (
                 <Form className={isShowOtherAddress ? "FormInfo" : "SubForm"}>
                   <FastField
-                    name="nameSubAddress"
+                    name="nameOther"
                     component={Input}
                     type="text"
                     placeholder="Họ và Tên"
                   />
                   <FastField
-                    name="emailSubAddress"
+                    name="emailOther"
                     component={Input}
                     type="text"
                     placeholder="Email"
                   />
                   <FastField
-                    name="addressSubAddress"
+                    name="phoneOther"
+                    component={Input}
+                    type="text"
+                    placeholder="Vui lòng nhập số điện thoại"
+                  />
+
+                  <FastField
+                    name="addressOther"
                     component={Input}
                     type="text"
                     placeholder="Địa chỉ"
                   />
                   <Field
-                    name="citySubAddress"
+                    name="cityOther"
                     component={SelectedInput}
                     dataSource={cities}
                     placeHolder="Vui lòng chọn thành phố"
+                    optionEventChange={setSelectedCitySubAddress}
                   />
-                  <FastField
-                    name="districtSubAddress"
+                  <Field
+                    name="districtOther"
                     component={SelectedInput}
                     dataSource={districtsByCitySubAddress}
+                    placeHolder="Vui lòng chọn quận hoặc huyện"
                   />
                 </Form>
               );

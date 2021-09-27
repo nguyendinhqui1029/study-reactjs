@@ -1,34 +1,24 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Header from "../../component/Header/Header";
-import CardProduct from "../../component/CardProduct/CardProduct";
-import Pagination from "../../component/Pagination/Pagination";
-import './Home.scss';
-Home.propTypes = {};
+import CarouselImage from "../../component/CarouselImage/CarouselImage";
+import BodyProductList from './../Product/BodyProductList/BodyProductList';
+import "./Home.scss";
 
-function Home(props) {
-  function selectedProduct(product) {
-    console.log("product selected",product)
-  }
+function Home() {
   return (
     <div className="Home">
+      <div className="ContainerBody MarginNone">
+        <div className="ContainerBodyLeft"></div>
+        <div className="ContainerBodyRight">
+          <CarouselImage dataSource={dataSourceCarousel} />
+        </div>
+      </div>
       <div className="Header">
         <Header title="Sản phẩm" />
       </div>
 
       <div className="ProductList">
-        {listProduct.map((product, index) => {
-          return (
-            <CardProduct
-              key={index}
-              addCardClick={selectedProduct}
-              itemProduct={product}
-            />
-          );
-        })}
-      </div>
-      <div className="Pagination">
-        <Pagination />
+        <BodyProductList noItemPage={20} />
       </div>
     </div>
   );
@@ -36,149 +26,8 @@ function Home(props) {
 
 export default Home;
 
-const listProduct = [
-  {
-    id: 1,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 0,
-    isHot: false,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 2,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 10,
-    isHot: false,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 3,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 0,
-    isHot: true,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 4,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 0,
-    isHot: false,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 5,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 10,
-    isHot: false,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 6,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 0,
-    isHot: true,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 7,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 0,
-    isHot: false,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 8,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 10,
-    isHot: false,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 9,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 0,
-    isHot: true,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 10,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 0,
-    isHot: false,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 11,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 10,
-    isHot: false,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 12,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 0,
-    isHot: true,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 13,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 0,
-    isHot: false,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 14,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 10,
-    isHot: false,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 15,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 0,
-    isHot: true,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 16,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 0,
-    isHot: false,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 17,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 10,
-    isHot: false,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
-  {
-    id: 18,
-    productName: "ASUS TP550LA-CJ04",
-    price: 25000000,
-    discount: 0,
-    isHot: true,
-    imageUrl: "/static/media/camera.b97b375b.jpg",
-  },
+const dataSourceCarousel = [
+  { image: require("../../assets/images/761x309.png").default, content: "" },
+  { image: require("../../assets/images/slider1.jpg").default, content: "" },
+  { image: require("../../assets/images/slider2.jpg").default, content: "" },
 ];

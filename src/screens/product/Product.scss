@@ -1,50 +1,93 @@
 @import "../../assets/scss/common.scss";
-.Product {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  margin: 20px 70px;
-  .Left {
+.Active {
+  color: $whiteColor;
+}
+@media all and (max-width: 1600px) {
+  .Product {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     flex: 1;
+    margin: 20px 5%;
+    .Left {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
 
-    .VerticalMenu {
-      .LabelMenu {
-        background: $backgroundFooter;
-      }
-    }
-  }
-  .Right {
-    display: flex;
-    flex-direction: column;
-    flex: 3;
-    margin-left: 25px;
-
-    .NavigateQuickly {
-      margin-top: -5px;
-    }
-    .Header {
-      .ProductContent {
-        .Title {
-          color: $blackColor;
+      .VerticalMenu {
+        .LabelMenu {
+          background: $backgroundFooter;
         }
       }
     }
-
-    .ProductList {
+    .Right {
       display: flex;
-      flex: 1;
-      flex-direction: row;
-      flex-wrap: wrap;
+      flex-direction: column;
+      flex: 3;
+      margin-left: 25px;
+       .BodyProductList {
+        .Pagination{
+          .Pagination{
+            .Active {
+              color: $whiteColor !important;
+            }
+          }
+        }
+      }
+      .NavigateQuickly {
+        margin-top: -5px;
+      }
+      .Header {
+        .ProductContent {
+          .Title {
+            color: $blackColor;
+          }
+        }
+      }
     }
+  }
+}
 
-    .Pagination {
-      display: flex;
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .Product {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 1;
+    
+    margin: 20px 2px;
+    .Left {
+      display: none;
+      flex-direction: column;
       flex: 1;
-      flex-direction: row;
-      justify-content: center;
-      padding: 5px;
+    }
+    .Right {
+      display: flex;
+      flex-direction: column;
+      flex: 3;
+      margin-left: 0px;
+      .BodyProductList {
+        .Pagination{
+          .Pagination{
+            .Active {
+              color: $whiteColor !important;
+            }
+          }
+        }
+      }
+      .NavigateQuickly {
+        margin-top: -5px;
+      }
+      .Header {
+        .ProductContent {
+          .Title {
+            color: $blackColor;
+          }
+        }
+      }
     }
   }
 }

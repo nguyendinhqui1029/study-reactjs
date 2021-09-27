@@ -1,1 +1,10 @@
-@import '../../assets/scss/common.scss';
+@import "../../assets/scss/common.scss";
+.ContainerMain {
+  .ContainerInput {
+    .Input {
+      select {
+        height: 40px;
+      }
+    }
+  }
+}
