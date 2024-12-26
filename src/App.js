@@ -18,7 +18,7 @@ import {
 } from "react-router-dom";
 import Admin from "../src/screens/Admin/Admin";
 import Home from "../src/screens/Home/Home";
-import About from "../src/screens/About";
+import About from "../src/screens/About/About";
 import Product from '../src/screens/Product/Product';
 import DetailProduct from '../src/screens/DetailProduct/DetailProduct';
 import Contact from '../src/screens/Contact/Contact';
