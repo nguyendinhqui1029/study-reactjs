@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import CardProduct from "./../../../component/CardProduct/CardProduct";
-import Pagination from "./../../../component/Pagination/Pagination";
+import CardProduct from "../../../component/CardProduct/CardProduct";
+import Pagination from "../../../component/Pagination/Pagination";
 import "./BodyProductList.scss";
 import productApi from "../../../api/product.api";
-import Loading from './../../../component/Loading/Loading';
+import Loading from '../../../component/Loading/Loading';
 
 BodyProductList.propTypes = {
   noItemPage: PropTypes.number,

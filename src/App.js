@@ -14,8 +14,7 @@ import Footer from "./component/Footer/Footer";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Redirect,
+  Route
 } from "react-router-dom";
 import Admin from "./screens/Admin/Admin";
 import Home from "./screens/Home/Home";

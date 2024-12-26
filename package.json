@@ -19,7 +19,7 @@
     "react-redux": "^7.2.4",
     "react-responsive-carousel": "^3.2.19",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.1",
     "react-share": "^4.4.0",
     "redux": "^4.1.0",
     "web-vitals": "^1.1.2",
@@ -52,6 +52,7 @@
   "devDependencies": {
     "react-to-print": "^2.12.6",
     "sass": "^1.35.1",
-    "sass-loader": "^12.1.0"
+    "sass-loader": "^12.1.0",
+    "webpack": "^5.91.0"
   }
 }
