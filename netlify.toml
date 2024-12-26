@@ -2,9 +2,10 @@
   functions = "functions"
 
 [dev]
-  publish = "./study-reactjs/build"
+  publish = "./build"
 
 [[redirects]]
   from = "/*"
-  to = "/"
+  to = "/index.html"
   status = 200
+  
