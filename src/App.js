@@ -16,18 +16,18 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Admin from "./screens/Admin/Admin";
-import Home from "./screens/Home/Home";
-import About from "./screens/About/About";
-import Product from './screens/Product/Product';
-import DetailProduct from './screens/DetailProduct/DetailProduct';
-import Contact from './screens/Contact/Contact';
-import News from './screens/News/News';
-import ExampleSource from './screens/ExampleSource/ExampleSource';
-import CartDetail from './screens/CartDetail/CartDetail';
-import ResultSearch from './screens/ResultSearch/ResultSearch';
-import MyOrder from './screens/MyOrder/MyOrder';
-import Login from './screens/Login/Login';
+import Admin from "../screens/Admin/Admin";
+import Home from "../screens/Home/Home";
+import About from "../screens/About/About";
+import Product from '../screens/Product/Product';
+import DetailProduct from '../screens/DetailProduct/DetailProduct';
+import Contact from '../screens/Contact/Contact';
+import News from '../screens/News/News';
+import ExampleSource from '../screens/ExampleSource/ExampleSource';
+import CartDetail from '../screens/CartDetail/CartDetail';
+import ResultSearch from '../screens/ResultSearch/ResultSearch';
+import MyOrder from '../screens/MyOrder/MyOrder';
+import Login from '../screens/Login/Login';
 
 const iconList = Object.keys(Icons)
   .filter((key) => key !== "fas" && key !== "prefix")
