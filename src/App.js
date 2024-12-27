@@ -1,33 +1,33 @@
-import "./App.css";
-import "./assets/scss/common.scss";
+import "App.css";
+import "assets/scss/common.scss";
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Provider } from "react-redux";
-import store from "./store";
+import store from "store";
 //dynamic icon
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import * as Icons from "@fortawesome/free-solid-svg-icons";
-import HeaderMain from "./component/HeaderMain/HeaderMain";
-import Footer from "./component/Footer/Footer";
+import HeaderMain from "component/HeaderMain/HeaderMain";
+import Footer from "component/Footer/Footer";
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
-import Admin from "./screens/admin/Admin";
-import Home from "./screens/home/Home";
-import About from "./screens/about/About";
-import Product from './screens/product/Product';
-import DetailProduct from './screens/detail-product/DetailProduct';
-import Contact from './screens/contact/Contact';
-import News from './screens/news/News';
-import ExampleSource from './screens/example-source/ExampleSource';
-import CartDetail from './screens/cart-detail/CartDetail';
-import ResultSearch from './screens/result-search/ResultSearch';
-import MyOrder from './screens/my-order/MyOrder';
-import Login from './screens/login/Login';
+import Admin from "screens/admin/Admin";
+import Home from "screens/home/Home";
+import About from "screens/about/About";
+import Product from 'screens/product/Product';
+import DetailProduct from 'screens/detail-product/DetailProduct';
+import Contact from 'screens/contact/Contact';
+import News from 'screens/news/News';
+import ExampleSource from 'screens/example-source/ExampleSource';
+import CartDetail from 'screens/cart-detail/CartDetail';
+import ResultSearch from 'screens/result-search/ResultSearch';
+import MyOrder from 'screens/my-order/MyOrder';
+import Login from 'screens/login/Login';
 
 const iconList = Object.keys(Icons)
   .filter((key) => key !== "fas" && key !== "prefix")
