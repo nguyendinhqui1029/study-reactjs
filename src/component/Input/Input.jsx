@@ -27,9 +27,7 @@ function Input(props) {
     placeholder,
     disable,
     iconLeft,
-    isShowValidField,
-    min,
-    max,
+    isShowValidField
   } = props;
   const { errors, touched } = form;
   const { name } = field;

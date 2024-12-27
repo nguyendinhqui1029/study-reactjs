@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Header from "../Header/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './Footer.scss';
 Footer.propTypes = {
   
