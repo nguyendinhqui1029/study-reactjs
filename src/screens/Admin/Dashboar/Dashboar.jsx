@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./Dashboar.scss";
-import ChartLine from "./../../../component/ChartLine/ChartLine";
+import ChartLine from "../../../component/ChartLine/ChartLine";
 import { Paper, Tab, Tabs } from "@material-ui/core";
-import Table from "./../../../component/Table/Table";
+import Table from "../../../component/Table/Table";
 import { TYPE_COLUMN_TABLE } from "../../../Constant/Constant";
-import OrderDetailPrint from "./../../../component/OrderDetailPrint/OrderDetailPrint";
+import OrderDetailPrint from "../../../component/OrderDetailPrint/OrderDetailPrint";
 import ReactToPrint from "react-to-print";
 const headerListChoDuyet = [
   {

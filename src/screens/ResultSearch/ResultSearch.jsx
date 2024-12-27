@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router";
-import NavigateQuickly from "./../../component/NavigateQuickly/NavigateQuickly";
-import Header from "./../../component/Header/Header";
-import CardProduct from "./../../component/CardProduct/CardProduct";
-import Pagination from "./../../component/Pagination/Pagination";
+import NavigateQuickly from "../../component/NavigateQuickly/NavigateQuickly";
+import Header from "../../component/Header/Header";
+import CardProduct from "../../component/CardProduct/CardProduct";
+import Pagination from "../../component/Pagination/Pagination";
 import { useSelector } from "react-redux";
 import "./ResultSearch.scss";
 import Loading from "../../component/Loading/Loading";

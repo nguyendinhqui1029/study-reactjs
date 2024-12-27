@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import NavigateQuickly from "./../../component/NavigateQuickly/NavigateQuickly";
-import Header from "./../../component/Header/Header";
-import Input from "./../../component/Input/Input";
+import NavigateQuickly from "../../component/NavigateQuickly/NavigateQuickly";
+import Header from "../../component/Header/Header";
+import Input from "../../component/Input/Input";
 import { Field, Formik, Form } from "formik";
 import { Button } from "@material-ui/core";
-import Table from "./../../component/Table/Table";
+import Table from "../../component/Table/Table";
 import orderDetailApi from "../../api/orderDetail";
 import Yup from "../../validation/CustomValidation";
 import { useHistory } from "react-router-dom";
-import Loading from "./../../component/Loading/Loading";
+import Loading from "../../component/Loading/Loading";
 import "./MyOrder.scss";
 import {
   calculateIntoMoney,

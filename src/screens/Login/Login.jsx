@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import VerticalMenu from "../../component/VerticalMenu/VerticalMenu";
 import { Switch, Route, useHistory } from "react-router-dom";
-import NavigateQuickly from "./../../component/NavigateQuickly/NavigateQuickly";
-import Header from "./../../component/Header/Header";
+import NavigateQuickly from "../../component/NavigateQuickly/NavigateQuickly";
+import Header from "../../component/Header/Header";
 import LoginSection from "../../component/LoginSection/LoginSection";
-import RegisterSection from "./../../component/RegisterSection/RegisterSection";
-import ForgetPasswordSection from "./../../component/ForgetPasswordSection/ForgetPasswordSection";
+import RegisterSection from "../../component/RegisterSection/RegisterSection";
+import ForgetPasswordSection from "../../component/ForgetPasswordSection/ForgetPasswordSection";
 import "./Login.scss";
 Login.propTypes = {};
 

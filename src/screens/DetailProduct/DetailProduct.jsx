@@ -1,6 +1,6 @@
 import React from 'react';
 import './DetailProduct.scss';
-import DescriptionDetail from './../../component/DescriptionDetail/DescriptionDetail';
+import DescriptionDetail from '../../component/DescriptionDetail/DescriptionDetail';
 DetailProduct.propTypes = {
   
 };
