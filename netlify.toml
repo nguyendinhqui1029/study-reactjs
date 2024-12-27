@@ -1,11 +1,9 @@
 [build]
-  functions = "functions"
-
-[dev]
-  publish = "build/"
+  command = "npm run build"
+  publish = "build"
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/admin/*"
+  to = "/admin/index.html"
   status = 200
-  
+  force = true
