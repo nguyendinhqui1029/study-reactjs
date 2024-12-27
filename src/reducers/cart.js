@@ -74,6 +74,7 @@ const cartReducer = (state = initialState, action) => {
         return obj;
       }
     }
+    // eslint-disable-next-line no-fallthrough
     case "REMOVE_CART": {
       if (!!action.payload) {
         state.cartList.splice(action.payload.index, 1);

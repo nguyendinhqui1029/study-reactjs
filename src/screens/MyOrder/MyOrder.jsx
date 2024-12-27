@@ -57,7 +57,7 @@ function MyOrder() {
         }
       });
     }
-  }, []);
+  }, [id]);
   const submitSearch = (value) => {
     setShowOrderDetail(false);
     setIsShowLoading(true);

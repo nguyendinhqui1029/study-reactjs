@@ -387,7 +387,7 @@ function Dashboard() {
     header: headerListChoDuyet,
     data: data,
   });
-  const [approvedList, setApprovedList] = useState([]);
+  const [approvedList] = useState([]);
   const [waitingapprovedList, setWaitingapprovedList] = useState(data);
   const refData = useRef(null);
   const refPrint = useRef(null);

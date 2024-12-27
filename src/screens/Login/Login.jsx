@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
 import VerticalMenu from "../../component/VerticalMenu/VerticalMenu";
 import { Switch, Route, useHistory } from "react-router-dom";
 import NavigateQuickly from "./../../component/NavigateQuickly/NavigateQuickly";

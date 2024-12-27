@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Steper from "../../component/Steper/Steper";
 import Table from "../../component/Table/Table";
 import { ACTION_TYPE_TABLE } from "../../Constant/Constant";
@@ -9,7 +9,6 @@ import CompletedOrder from "../../component/CompletedOrder/CompletedOrder";
 
 import { Button } from "@material-ui/core";
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   useRouteMatch,

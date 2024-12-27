@@ -36,6 +36,7 @@ const categoryApi = {
           ]
         }
       ]
+    // eslint-disable-next-line no-unreachable
     } catch (error) {
       console.log(error);
     }
