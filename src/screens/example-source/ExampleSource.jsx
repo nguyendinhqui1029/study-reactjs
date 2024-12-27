@@ -16,7 +16,7 @@ import ContactForm from "../../component/ContactForm/ContactForm";
 import Input from "../../component/Input/Input";
 import SelectedInput from "../../component/SelectedInput/SelectedInput";
 import CarouselImage from "../../component/CarouselImage/CarouselImage";
-import { TYPE_COLUMN_TABLE, ACTION_TYPE_TABLE } from "../../Constant/Constant";
+import { TYPE_COLUMN_TABLE, ACTION_TYPE_TABLE } from "../../constant/Constant";
 import Table from "../../component/Table/Table";
 import HeaderPage from "../../component/HeaderPage/HeaderPage";
 import Search from "../../component/Search/Search";

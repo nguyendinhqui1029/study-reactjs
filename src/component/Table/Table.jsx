@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./Table.scss";
-import { TYPE_COLUMN_TABLE, ACTION_TYPE_TABLE } from "../../Constant/Constant";
+import { TYPE_COLUMN_TABLE, ACTION_TYPE_TABLE } from "../../constant/Constant";
 import { formatCurrency } from "../../util/util";
 Table.propTypes = {
   dataList: PropTypes.array.isRequired,

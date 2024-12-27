@@ -4,7 +4,7 @@ import Header from "../../component/Header/Header";
 import NavigateQuickly from "../../component/NavigateQuickly/NavigateQuickly";
 import { useLocation } from "react-router-dom";
 import "./Product.scss";
-import BodyProductList from "./BodyProductList/BodyProductList";
+import BodyProductList from "./body-product-list/BodyProductList";
 import { useDispatch, useSelector } from "react-redux";
 import { addQuickLink, removeQuickLink } from "../../actions/quicklink";
 import { useHistory } from 'react-router';

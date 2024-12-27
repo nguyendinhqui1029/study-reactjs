@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../component/Header/Header";
 import CarouselImage from "../../component/CarouselImage/CarouselImage";
-import BodyProductList from '../Product/BodyProductList/BodyProductList';
+import BodyProductList from '../product/body-product-list/BodyProductList';
 import "./Home.scss";
 
 function Home() {

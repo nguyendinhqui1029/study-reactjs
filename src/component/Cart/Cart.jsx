@@ -10,7 +10,7 @@ import {
   calculateTotal,
   formatCurrency,
 } from "../../util/util";
-import { ACTION_TYPE_TABLE } from "../../Constant/Constant";
+import { ACTION_TYPE_TABLE } from "../../constant/Constant";
 import { removeToCart } from "../../actions/cart";
 import { useHistory } from "react-router-dom";
 function Cart() {

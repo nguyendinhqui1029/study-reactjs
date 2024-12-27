@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Steper from "../../component/Steper/Steper";
 import Table from "../../component/Table/Table";
-import { ACTION_TYPE_TABLE } from "../../Constant/Constant";
+import { ACTION_TYPE_TABLE } from "../../constant/Constant";
 import NavigateQuickly from "../../component/NavigateQuickly/NavigateQuickly";
 import Header from "../../component/Header/Header";
 import Payment from "../../component/Payment/Payment";
