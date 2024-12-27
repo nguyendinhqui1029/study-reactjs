@@ -2,7 +2,7 @@
   functions = "functions"
 
 [dev]
-  publish = "./build"
+  publish = "build/"
 
 [[redirects]]
   from = "/*"
