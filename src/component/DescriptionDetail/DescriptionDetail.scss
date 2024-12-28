@@ -1,0 +1,253 @@
+@import "../../assets/scss/common.scss";
+
+@media all and (max-width: 1600px) {
+  .DescriptionDetail {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 0px 10px;
+    .ContainerImage {
+      display: flex;
+      flex-direction: row;
+      flex: 1;
+      flex-wrap: wrap;
+      .ContainerLeft {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        min-width: 320px;
+        margin-top: 15px;
+        padding: 15px;
+        .Image {
+          display: flex;
+          flex: 1;
+          flex-direction: row;
+          .Iframe {
+            width: 560px;
+            height: 315px;
+          }
+          .BoxImage {
+            width: 100%;
+            height: 330px;
+          }
+        }
+        .Thumnail {
+          display: flex;
+          flex-direction: row;
+          div {
+            cursor: pointer;
+            img {
+              width: 90px;
+              height: 50px;
+              margin: 3px;
+              border: 1px solid $borderColor;
+            }
+            .Iframe {
+              width: 90px;
+              height: 50px;
+              margin: 3px;
+            }
+          }
+        }
+      }
+      .ContainerRight {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        min-width: 320px;
+        margin-top: 15px;
+        padding: 15px;
+        .Title {
+          font-weight: bold;
+          font-size: 25px;
+          color: $blackColor;
+          margin-bottom: 15px;
+        }
+        .Price {
+          margin-bottom: 15px;
+          .Label {
+            color: $blackColor;
+            font-weight: bold;
+          }
+          .Content {
+            color: $orangeColor;
+            font-weight: bold;
+            padding: 0px 20px;
+          }
+        }
+        .Social {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+        }
+        .SizeAndAmout {
+          .Form {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            .ContainerField {
+              display: flex;
+              flex: 1;
+              flex-direction: row;
+              align-items: center;
+              margin-bottom: 15px;
+              .LabelForm {
+                flex: 1;
+                font-weight: bold;
+                color: $blackColor;
+              }
+              .Field {
+                flex: 1;
+              }
+            }
+            .ContainerButton {
+              display: flex;
+              flex: 1;
+              justify-content: space-between;
+              .Button {
+                color: $whiteColor;
+                background: $redColor;
+              }
+            }
+          }
+        }
+      }
+    }
+    .ContentDetail {
+      padding-top: 30px;
+      .Title {
+        background: $orangeColor;
+        color: white;
+        font-weight: bold;
+        padding: 10px;
+        text-transform: uppercase;
+      }
+      .Content {
+        margin-top: 9px;
+        padding: 10px;
+        border: 2px solid $borderColor;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .DescriptionDetail {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 0px 10px;
+    .ContainerImage {
+      display: flex;
+      flex-direction: row;
+      flex: 1;
+      flex-wrap: wrap;
+      .ContainerLeft {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        min-width: 320px;
+        margin-top: 15px;
+        padding: 5px;
+        .Image {
+          display: flex;
+          flex: 1;
+          flex-direction: row;
+          .Iframe {
+            width: 342px;
+            height: 250px;
+          }
+          .BoxImage {
+            width: 100%;
+          }
+        }
+        .Thumnail {
+          display: flex;
+          flex-direction: row;
+          div {
+            width: 100px;
+            height: 60px;
+            border: 1px solid $borderColor;
+            margin: 5px;
+          }
+        }
+      }
+      .ContainerRight {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        min-width: 320px;
+        margin-top: 15px;
+        padding: 5px;
+        .Price {
+          margin-bottom: 15px;
+          .Label {
+            color: $blackColor;
+            font-weight: bold;
+          }
+          .Content {
+            color: $orangeColor;
+            font-weight: bold;
+            padding: 0px 20px;
+          }
+        }
+        .Title {
+          font-weight: bold;
+          font-size: 25px;
+          color: $blackColor;
+        }
+        .Social {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+        }
+        .SizeAndAmout {
+          .Form {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            .ContainerField {
+              display: flex;
+              flex: 1;
+              flex-direction: row;
+              align-items: center;
+              margin-bottom: 15px;
+              .LabelForm {
+                font-weight: bold;
+                color: $blackColor;
+              }
+            }
+
+            .ContainerButton {
+              display: flex;
+              flex: 1;
+              justify-content: space-between;
+              .Button {
+                color: $whiteColor;
+                background: $redColor;
+              }
+            }
+          }
+        }
+      }
+    }
+    .ContentDetail {
+      padding-top: 30px;
+      .Title {
+        background: $orangeColor;
+        color: white;
+        font-weight: bold;
+        padding: 10px;
+        text-transform: uppercase;
+      }
+      .Content {
+        margin-top: 9px;
+        padding: 10px;
+        border: 2px solid $borderColor;
+      }
+    }
+  }
+}

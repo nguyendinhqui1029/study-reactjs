@@ -1,0 +1,194 @@
+@import "../../assets/scss/common.scss";
+
+@media all and (max-width: 1600px) {
+  .CartDetail {
+    .ContainerBody {
+      flex-direction: column;
+
+      .NavQuickly {
+        margin: 10px 0px;
+      }
+      .Header {
+        margin-bottom: 10px;
+      }
+      .Steper {
+        width: 60%;
+        margin: auto;
+        padding: 10px 0px 20px 0px;
+      }
+      .ProductInfo {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        margin-bottom: 40px;
+
+        .Total {
+          display: flex;
+          flex-direction: row;
+          flex: 1;
+          justify-content: flex-end;
+          padding: 15px;
+
+          .Label {
+            font-weight: 700;
+            font-size: 20px;
+          }
+
+          .Content {
+            font-size: 20px;
+            margin: -2px 0px 4px 20px;
+          }
+        }
+
+        .ButtonSend {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          margin-bottom: 15px;
+          user-select: none;
+          .ButtonLeft,
+          .ButtonRight {
+            color: $whiteColor;
+            text-transform: uppercase;
+            border-radius: 5px 5px 5px 5px;
+            background-color: $redColor;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+            .Link {
+              text-decoration: none;
+              color: $whiteColor;
+            }
+          }
+          .ButtonLeft:hover,
+          .ButtonRight:hover {
+            background: $orangeColor;
+            transition: 0.5s ease-out;
+          }
+
+          .ButtonLeft:active,
+          .ButtonRight:active {
+            background: $redColor;
+            transition: 0.001s ease-in;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .CartDetail {
+    .ContainerBody {
+      flex-direction: column;
+      margin: 0px 7px;
+      .NavQuickly {
+        margin: 10px 0px;
+      }
+      .Header {
+        margin-bottom: 10px;
+      }
+      .Steper {
+        width: 100%;
+        padding: 10px 0px 20px 0px;
+      }
+      .ProductInfo {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        margin-bottom: 40px;
+        .TableProduct {
+          font-size: 11px;
+          font-weight: 900;
+          .HeaderTable {
+            line-height: 19px;
+            div:first-child {
+              display: none;
+            }
+          }
+          .ContentTable {
+            line-height: 17px;
+            div:first-child {
+              display: none;
+            }
+            div:last-child {
+              svg {
+                font-size: 20px;
+              }
+            }
+          }
+        }
+        .Total {
+          display: flex;
+          flex-direction: row;
+          flex: 1;
+          justify-content: flex-end;
+          padding: 15px;
+          .Label {
+            font-weight: 700;
+            font-size: 20px;
+          }
+
+          .Content {
+            color: $orangeColor;
+            font-weight: 900;
+            font-size: 20px;
+            margin: -4px 0px 4px 20px;
+          }
+        }
+
+        .ButtonSend {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          margin-bottom: 15px;
+          user-select: none;
+          .ButtonLeft,
+          .ButtonRight {
+            color: $whiteColor;
+            text-transform: uppercase;
+            border-radius: 5px 5px 5px 5px;
+            background-color: $redColor;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+            .Link {
+              text-decoration: none;
+              color: $whiteColor;
+            }
+          }
+          .ButtonLeft:hover,
+          .ButtonRight:hover {
+            background: $orangeColor;
+            transition: 0.5s ease-out;
+          }
+
+          .ButtonLeft:active,
+          .ButtonRight:active {
+            background: $redColor;
+            transition: 0.001s ease-in;
+          }
+        }
+      }
+
+      .Payment {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        .ContainerDeliveryAddress,
+        .ContainerPayInfo{
+          margin-bottom: 10px !important;
+        }
+        .ContainerPayInfo {
+          margin: 0px 0px 10px 0px!important;
+          min-width: 300px;
+        }
+      }
+    }
+  }
+}

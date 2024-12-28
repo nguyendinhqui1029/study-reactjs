@@ -1,0 +1,7 @@
+[
+    { "path": "/", "label": "Trang chu", "isExact": true },
+    { "path": "/about", "label": "Gioi thieu", "isExact": false },
+    { "path": "/product", "label": "San pham", "isExact": false },
+    { "path": "/news", "label": "Tin tuc", "isExact": false },
+    { "path": "/contact", "label": "Lien he", "isExact": false }
+]

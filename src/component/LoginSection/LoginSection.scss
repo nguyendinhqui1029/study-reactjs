@@ -1,0 +1,73 @@
+@import "../../assets/scss/common.scss";
+@media all and (max-width: 1600px) {
+  .ContainerBody {
+    margin: 0px 5%;
+    .Login {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      .LoginForm {
+        display: flex;
+        flex-direction: column;
+        .Input {
+          min-width: 300px;
+          .ContainerInput {
+            margin-bottom: 20px;
+          }
+        }
+        .ContainerButton {
+          display: flex;
+          flex: 1;
+          justify-content: start;
+          align-items: flex-end;
+          .Button {
+            background: $redColor;
+            color: $whiteColor;
+          }
+          .Link {
+            color: $orangeColor;
+            text-decoration: none;
+            margin: 0px 3px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .ContainerBody {
+    margin: 0px 5px;
+    .Login {
+      display: flex;
+      flex: 1;
+      .LoginForm {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .Input {
+          min-width: 300px;
+          margin-bottom: 5px;
+        }
+        .ContainerButton {
+          display: flex;
+          flex: 1;
+          justify-content: center;
+          align-items: flex-end;
+          .Button {
+            background: $redColor;
+            color: $whiteColor;
+          }
+          .Link {
+            color: $orangeColor;
+            text-decoration: none;
+            margin: 0px 3px;
+          }
+        }
+      }
+    }
+  }
+}

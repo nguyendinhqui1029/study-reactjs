@@ -1,0 +1,310 @@
+@import "../../assets/scss/common.scss";
+@media all and (max-width: 1600px) {
+  .MyOrder {
+    .ContainerBody {
+      .ContainerBodyLeft {
+        display: none !important;
+      }
+      .ContainerBodyRight {
+        padding: 0px !important;
+        .ContainerSearchOrder {
+          display: flex;
+          background: $borderTabel;
+          padding: 10px;
+          margin-bottom: 10px;
+          .FormInfo {
+            display: flex;
+            flex-direction: row;
+            // align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            .Input {
+              .ContainerInput {
+                .Input {
+                  margin: 0px 5px;
+                  input {
+                    height: 17px;
+                  }
+                }
+              }
+            }
+            label {
+              font-weight: 700;
+              font-size: 20px;
+            }
+
+            .Button {
+              color: $whiteColor !important;
+              text-transform: uppercase;
+              border-radius: 5px 5px 5px 5px;
+              background-color: $redColor !important;
+              padding: 5px 27px;
+              border: none;
+              height: 34px;
+            }
+            .Button:hover {
+              background: $orangeColor;
+              transition: 0.5s ease-out;
+            }
+
+            .Button:active {
+              background: $redColor;
+              transition: 0.001s ease-in;
+            }
+          }
+        }
+
+        .ContainerOrderDetail {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+          min-height: 150px;
+          .NotFound {
+            text-align: center;
+          }
+          .ContainerHeader {
+            .MarginBottom20 {
+              margin-bottom: 20px;
+            }
+            .ContainerContent {
+              span {
+                .CustomerName {
+                  font-weight: bold;
+                  color: $blackColor;
+                  margin-left:5px ;
+                }
+                .IdOrder {
+                  margin: 0px 3px;
+                  color: $orangeColor;
+                }
+              }
+              .TableProduct {
+                margin-top: 10px;
+                margin-bottom: 20px;
+              }
+              .ContainerFooterInfo {
+                display: flex;
+                flex: 1;
+                flex-direction: row;
+                flex-wrap: wrap;
+                .ContainerFooterInfoLeft {
+                  flex: 1;
+                  display: flex;
+                  flex-direction: column;
+                  min-width: 350px;
+                  margin-bottom: 15px;
+                  .ContainerContent {
+                    .Label {
+                      font-weight: 700;
+                      margin: 15px;
+                      line-height: 25px;
+                    }
+                    .Content {
+                      color: $orangeColor;
+                    }
+                  }
+                }
+                .ContainerFooterInfoRight {
+                  display: flex;
+                  flex: 3;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: space-around;
+                  margin-bottom: 15px;
+                  .ContainerBox {
+                    display: flex;
+                    width: 300px;
+                    flex-direction: column;
+                    background: $whiteColor;
+                    .ContainerContent {
+                      display: flex;
+                      flex: 1;
+                      justify-content: space-between;
+                      padding: 3px 20px;
+                      .Label {
+                        font-weight: 700;
+                        line-height: 25px;
+                      }
+                      .Content {
+                        color: $orangeColor;
+                      }
+                    }
+                    .ContainerContent:last-child {
+                      display: flex;
+                      flex: 1;
+                      flex-direction: column;
+                      background: $orangeColor;
+                      padding: 20px;
+                      .Status {
+                        text-align: center;
+                        color: $whiteColor;
+                      }
+                      .StatusName {
+                        color: $whiteColor;
+                        text-align: center;
+                        font-weight: 900;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .MyOrder {
+    .ContainerBody {
+      margin: 5px;
+      .ContainerBodyLeft {
+        display: none !important;
+      }
+      .ContainerBodyRight {
+        padding: 0px !important;
+        .ContainerSearchOrder {
+          display: flex;
+          background: $borderTabel;
+          padding: 10px;
+          .FormInfo {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            flex-wrap: wrap;
+            .Input {
+              min-width: 330px;
+              margin-bottom: 10px;
+              .ContainerInput {
+                .Input {
+                  margin: 0px;
+                }
+              }
+            }
+            label {
+              font-weight: 700;
+              font-size: 20px;
+              margin-bottom: 5px;
+            }
+
+            .Button {
+              color: $whiteColor !important;
+              text-transform: uppercase;
+              border-radius: 5px 5px 5px 5px;
+              background-color: $redColor !important;
+              padding: 5px 27px;
+              border: none;
+            }
+            .Button:hover {
+              background: $orangeColor;
+              transition: 0.5s ease-out;
+            }
+
+            .Button:active {
+              background: $redColor;
+              transition: 0.001s ease-in;
+            }
+          }
+        }
+
+        .ContainerOrderDetail {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+          min-height: 150px;
+          .ContainerHeader {
+            .ContainerContent {
+              .MarginBottom20 {
+                margin-bottom: 20px;
+              }
+              .TableProduct {
+                margin-top: 10px;
+                margin-bottom: 20px;
+                .HeaderTable {
+                  div:first-child {
+                    display: none !important;
+                  }
+                }
+                .ContentTable {
+                  div:first-child {
+                    display: none !important;
+                  }
+                }
+              }
+              .ContainerFooterInfo {
+                display: flex;
+                flex: 1;
+                flex-direction: row;
+                flex-wrap: wrap;
+                .ContainerFooterInfoLeft {
+                  min-width: 350px;
+                  margin-bottom: 15px;
+                  .ContainerContent {
+                    .Label {
+                      font-weight: 700;
+                      margin: 15px;
+                      line-height: 25px;
+                    }
+                    .Content {
+                      color: $orangeColor;
+                    }
+                  }
+                }
+                .ContainerFooterInfoRight {
+                  display: flex;
+                  flex: 3;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: space-around;
+                  margin-bottom: 15px;
+                  .ContainerBox {
+                    display: flex;
+                    width: 300px;
+                    flex-direction: column;
+                    background: $whiteColor;
+                    .ContainerContent {
+                      display: flex;
+                      flex: 1;
+                      justify-content: space-between;
+                      padding: 3px 20px;
+                      .Label {
+                        font-weight: 700;
+                        line-height: 25px;
+                      }
+                      .Content {
+                        color: $orangeColor;
+                      }
+                    }
+                    .ContainerContent:last-child {
+                      display: flex;
+                      flex: 1;
+                      flex-direction: column;
+                      background: $orangeColor;
+                      padding: 20px;
+                      .Status {
+                        text-align: center;
+                        color: $whiteColor;
+                      }
+                      .StatusName {
+                        color: $whiteColor;
+                        text-align: center;
+                        font-weight: 900;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

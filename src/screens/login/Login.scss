@@ -1,0 +1,61 @@
+@import "../../assets/scss/common.scss";
+@media all and (max-width: 1600px) {
+  .ContainerBody {
+    margin: 20px 5%;
+    .ContainerBodyLeft {
+      .VerticalMenu {
+        .LabelMenu {
+          border-left: 7px solid $blackColor;
+          background:$orangeColor;
+        }
+        .ItemList{
+          li{
+            color: $textColor;
+            font-weight: 500;
+            text-transform: none;
+          }
+          li:hover {
+            color: $orangeColor;
+            background: none;
+          }
+        }
+        .BorderLv1 {
+          display: none;
+        }
+        .BorderLv2 {
+          display: none;
+        }
+      }
+    }
+    .ContainerBodyRight {
+      .Header {
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .ContainerBody {
+    margin: 20px 5px;
+    .ContainerBodyLeft {
+      .VerticalMenu {
+        .BorderLv1 {
+          display: none;
+        }
+        .BorderLv2 {
+          display: none;
+        }
+      }
+    }
+    .ContainerBodyRight {
+      padding: 10px 0px;
+      .Header {
+        margin-bottom: 15px;
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+@import "../../assets/scss/common.scss";
+.Active {
+  color: $whiteColor;
+}
+@media all and (max-width: 1600px) {
+  .Product {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 1;
+    margin: 20px 5%;
+    .Left {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+      .VerticalMenu {
+        .LabelMenu {
+          background: $backgroundFooter;
+        }
+      }
+    }
+    .Right {
+      display: flex;
+      flex-direction: column;
+      flex: 3;
+      margin-left: 25px;
+       .BodyProductList {
+        .Pagination{
+          .Pagination{
+            .Active {
+              color: $whiteColor !important;
+            }
+          }
+        }
+      }
+      .NavigateQuickly {
+        margin-top: -5px;
+      }
+      .Header {
+        .ProductContent {
+          .Title {
+            color: $blackColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .Product {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 1;
+    
+    margin: 20px 2px;
+    .Left {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+    }
+    .Right {
+      display: flex;
+      flex-direction: column;
+      flex: 3;
+      margin-left: 0px;
+      .BodyProductList {
+        .Pagination{
+          .Pagination{
+            .Active {
+              color: $whiteColor !important;
+            }
+          }
+        }
+      }
+      .NavigateQuickly {
+        margin-top: -5px;
+      }
+      .Header {
+        .ProductContent {
+          .Title {
+            color: $blackColor;
+          }
+        }
+      }
+    }
+  }
+}

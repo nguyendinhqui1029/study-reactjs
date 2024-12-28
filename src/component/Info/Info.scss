@@ -1,0 +1,25 @@
+@import "../../assets/scss/common.scss";
+
+.ContactContainer {
+  color: $blackColor;
+  p {
+    .Icon {
+      margin-right: 5px;
+    }
+    h3 {
+      line-height: 30px;
+    }
+    .Link {
+      word-break: break-all;
+      text-decoration: none;
+      color: $textColor;
+    }
+    .Link:hover {
+      color: $orangeColor;
+    }
+    .Label{
+      margin-right: 5px;
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,166 @@
+@import "../../assets/scss/common.scss";
+
+@media all and (max-width: 1600px) {
+  .Cart {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    position: relative;
+    min-width: 220px;
+    z-index: 12000;
+
+    justify-content: center;
+    .Image {
+      display: flex;
+    }
+
+    .InfoCart {
+      padding: 5px;
+      color: $textColor;
+    }
+
+    .InfoCart:hover {
+      color: $orangeColor;
+      cursor: pointer;
+    }
+
+    .Icon {
+      padding: 5px;
+      color: $textColor;
+    }
+
+    .InfoDetail {
+      display: none;
+      position: absolute;
+      flex-direction: column;
+      padding: 5px;
+      border: 1px solid $borderColor;
+      background: $whiteColor;
+      .Total {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        justify-content: space-between;
+        padding: 10px 10px;
+        .Label {
+          font-weight: 800;
+          font-size: 20px;
+        }
+
+        .Content {
+          color: $orangeColor;
+          font-weight: bold;
+          font-size: 20px;
+        }
+      }
+      .ContainerButton {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        justify-content: flex-end;
+        .ButtonPayment {
+          background: $redColor;
+          color: $whiteColor;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    &:hover .InfoDetail {
+      display: flex;
+      z-index: 1000;
+      top: 45px;
+      left: -300px;
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+}
+
+@media all and (max-width: 480px) {
+  .Cart {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    position: relative;
+    width: 100%;
+    z-index: 12000;
+
+    justify-content: center;
+    .Image {
+      display: flex;
+      .InfoCart {
+        padding: 5px;
+        color: $textColor;
+        width: 117%;
+      }
+
+      .InfoCart:hover {
+        color: $orangeColor;
+        cursor: pointer;
+      }
+
+      .Icon {
+        padding: 5px;
+        color: $textColor;
+      }
+    }
+
+    .InfoDetail {
+      display: none;
+      position: absolute;
+      flex-direction: column;
+      padding: 5px;
+
+      border: 1px solid $borderColor;
+      background: $whiteColor;
+      width: 115%;
+      left: -31px !important;
+
+      font-size: 10px;
+      font-weight: 900;
+      .TableProduct {
+        .ContentTable{
+          line-height: 17px;
+        }
+      }
+      .Total {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        justify-content: space-between;
+        padding: 10px 10px;
+        .Label {
+          font-weight: 800;
+          font-size: 20px;
+        }
+
+        .Content {
+          color: $orangeColor;
+          font-weight: bold;
+          font-size: 20px;
+        }
+      }
+      .ContainerButton {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        justify-content: flex-end;
+        .ButtonPayment {
+          background: $redColor;
+          color: $whiteColor;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    &:hover .InfoDetail {
+      display: flex;
+      z-index: 1000;
+      top: 45px;
+    }
+  }
+}

@@ -1,0 +1,170 @@
+@import "../../assets/scss/common.scss";
+.OrderDetailPrint {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  border: 1px solid;
+  padding: 30px;
+  display: none;
+  .Page {
+    .HeaderPrint {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      justify-content: center;
+      h3 {
+        padding-top: 5px;
+      }
+    }
+    .Date {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      justify-content: flex-end;
+      span {
+        padding: 5px 20px;
+      }
+    }
+    .Header {
+      display: flex;
+      flex-direction: row;
+      padding: 5px 20px;
+      .LogoCompany {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 80%;
+        }
+      }
+      .InfoCompany {
+        display: flex;
+        flex: 2;
+        flex-direction: column;
+        margin-left: 20px;
+        .Group {
+          display: flex;
+          flex: 1;
+          flex-direction: row;
+          .Label {
+            font-weight: bold;
+            margin-right: 15px;
+          }
+        }
+      }
+    }
+    .InfoBuyer,
+    .Total {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      margin-bottom: 20px;
+      .Group {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        .Label {
+          font-weight: bold;
+          margin-right: 15px;
+        }
+      }
+    }
+    .Total {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+    }
+
+    .Order {
+      margin-bottom: 20px;
+    }
+  }
+}
+@media print {
+  .OrderDetailPrint {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    .PageMin {
+      height: 135mm;
+    }
+    .PageMax{
+      height: 280mm;
+    }
+    .PageMin,
+    .PageMax {
+      padding: 3px;
+      .HeaderPrint {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        justify-content: center;
+        h3 {
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+      }
+      .Date {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        justify-content: flex-end;
+        span {
+          padding: 5px 20px;
+        }
+      }
+      .Header {
+        display: flex;
+        flex-direction: row;
+        padding: 5px 20px;
+        .LogoCompany {
+          display: flex;
+          flex: 1;
+          justify-content: center;
+          align-items: center;
+        }
+        .InfoCompany {
+          display: flex;
+          flex: 2;
+          flex-direction: column;
+          margin-left: 20px;
+          .Group {
+            display: flex;
+            flex: 1;
+            flex-direction: row;
+            .Label {
+              font-weight: bold;
+              margin-right: 15px;
+            }
+          }
+        }
+      }
+      .InfoBuyer,
+      .Total {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        margin-bottom: 20px;
+        .Group {
+          display: flex;
+          flex: 1;
+          flex-direction: row;
+          .Label {
+            font-weight: bold;
+            margin-right: 15px;
+          }
+        }
+      }
+      .Total {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+      }
+
+      .Order {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

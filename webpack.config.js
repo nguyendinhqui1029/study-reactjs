@@ -4,6 +4,11 @@ module.exports = {
       path: __dirname + '/dist',
       filename: 'bundle.js',
     },
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env': JSON.stringify(process.env)
+      })
+    ],  
     module: {
       rules: [
         {
@@ -19,7 +24,7 @@ module.exports = {
       ],
     },
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.mjs'],
     },
     devServer: {
       contentBase: './dist',

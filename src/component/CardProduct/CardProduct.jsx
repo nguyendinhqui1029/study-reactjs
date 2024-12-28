@@ -1,0 +1,85 @@
+import React from "react";
+import PropTypes from "prop-types";
+import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { addToCart, setStatus } from "../../actions/cart";
+import { useNavigate } from 'react-router-dom';
+import "./CardProduct.scss";
+import { calculateDiscount, formatCurrency } from "../../util/util";
+
+CardProduct.propTypes = {
+  itemProduct: PropTypes.object,
+  addCardClick: PropTypes.func,
+};
+
+CardProduct.defaultProps = {
+  itemProduct: {},
+  addCardClick: null,
+};
+
+function CardProduct(props) {
+  const { itemProduct } = props;
+  const disPatch = useDispatch();
+  const navigate = useNavigate();
+  function addItemToCart(item) {
+    disPatch(addToCart(item));
+    disPatch(setStatus("draft"));
+    navigate("/cart-detail");
+  }
+
+  function navigateDetail(itemProduct) {
+    navigate({
+      pathname: `/product/${itemProduct.id}`,
+      state: { id: itemProduct.id },
+    });
+  }
+  return (
+    <div className="CardProduct">
+      {itemProduct.discount ? (
+        <div className="PercentDiscount">{itemProduct.discount}%</div>
+      ) : itemProduct.isHot ? (
+        <div className="HotProduct">HOT</div>
+      ) : (
+        ""
+      )}
+      <div className="ImageProduct">
+        <img
+          className="Image"
+          src={itemProduct.imageUrl}
+          alt={itemProduct.imageUrl}
+        />
+      </div>
+      <div className="ProductDetail">
+        <h2
+          className="ProductName"
+          onClick={() => {
+            navigateDetail(itemProduct);
+          }}
+        >
+          {itemProduct.productName}
+        </h2>
+        <span className="Price">
+          {formatCurrency(
+            calculateDiscount(itemProduct.price, itemProduct.discount)
+          )}
+          <span className="Currency">đ</span>
+        </span>
+        <div className="Discount">
+          {itemProduct.discount ? (
+            <del>
+              {formatCurrency(itemProduct.price)}
+              <span className="Currency">đ</span>
+            </del>
+          ) : (
+            <span>&nbsp;</span>
+          )}
+        </div>
+        <Button className="BtnBuy" onClick={() => addItemToCart(itemProduct)}>
+          Mua
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+export default CardProduct;
