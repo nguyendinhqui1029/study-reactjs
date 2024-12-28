@@ -429,7 +429,7 @@ function Dashboard() {
         data: approvedList,
       });
     }
-  }, [ waitingapprovedList ]);
+  }, [approvedList, value, waitingapprovedList]);
   return (
     <div className="Dashboard">
       <div className="ContainerCart">
