@@ -34,7 +34,7 @@ function CompletedOrder() {
           dispatch(resetCartList([]));
         }
       });
-  }, [id]);
+  }, [dispatch, id]);
 
   return (
     <div className="ContainerCompletedOrder">

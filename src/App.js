@@ -23,7 +23,7 @@ import * as Icons from "@fortawesome/free-solid-svg-icons";
 import HeaderMain from "component/HeaderMain/HeaderMain";
 import Footer from "component/Footer/Footer";
 
-import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 
 const iconList = Object.keys(Icons)
   .filter((key) => key !== "fas" && key !== "prefix")

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./Dashboar.scss";
-import ChartLine from "../../../component/ChartLine/ChartLine";
+// import ChartLine from "../../../component/ChartLine/ChartLine";
 import { Paper, Tab, Tabs } from "@mui/material";
 import Table from "../../../component/Table/Table";
 import { TYPE_COLUMN_TABLE } from "../../../constant/Constant";
@@ -363,24 +363,24 @@ function Dashboard() {
       ],
     };
   }, []);
-  const chartLineSanPhamBanChay = useMemo(() => {
-    return {
-      labelsX: ["Quần thể thao", "Áo thun nam", "Dầu gội"],
-      dataChart: [65, 59, 80],
-    };
-  }, []);
-  const chartLineKhachHangTimNang = useMemo(() => {
-    return {
-      labelsX: ["Nguyen Van a", "Nguyen Van B", "Nguyen Van C"],
-      dataChart: [100, 500, 900],
-    };
-  }, []);
-  const chartLineDonHang = useMemo(() => {
-    return {
-      labelsX: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4"],
-      dataChart: [100, 500, 900, 1000],
-    };
-  }, []);
+  // const chartLineSanPhamBanChay = useMemo(() => {
+  //   return {
+  //     labelsX: ["Quần thể thao", "Áo thun nam", "Dầu gội"],
+  //     dataChart: [65, 59, 80],
+  //   };
+  // }, []);
+  // const chartLineKhachHangTimNang = useMemo(() => {
+  //   return {
+  //     labelsX: ["Nguyen Van a", "Nguyen Van B", "Nguyen Van C"],
+  //     dataChart: [100, 500, 900],
+  //   };
+  // }, []);
+  // const chartLineDonHang = useMemo(() => {
+  //   return {
+  //     labelsX: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4"],
+  //     dataChart: [100, 500, 900, 1000],
+  //   };
+  // }, []);
 
   const [value, setValue] = useState(0);
   const [detailValueTab, setDetailValueTab] = useState({
@@ -429,7 +429,7 @@ function Dashboard() {
         data: approvedList,
       });
     }
-  }, [waitingapprovedList, waitingapprovedList]);
+  }, [ waitingapprovedList ]);
   return (
     <div className="Dashboard">
       <div className="ContainerCart">
@@ -439,11 +439,11 @@ function Dashboard() {
             <div className="Title">Danh thu</div>
           </div>
           <div className="Chart">
-            <ChartLine
+            {/* <ChartLine
               dataChart={chartLineDanhThu.dataChart}
               labelsX={chartLineDanhThu.labelsX}
               labelNote="Triệu/Ngày"
-            />
+            /> */}
           </div>
         </div>
         <div className="Cart Bule">
@@ -452,11 +452,11 @@ function Dashboard() {
             <div className="Title">Sản phẩm bán chạy</div>
           </div>
           <div className="Chart">
-            <ChartLine
+            {/* <ChartLine
               labelNote="Sản phẩm"
               dataChart={chartLineSanPhamBanChay.dataChart}
               labelsX={chartLineSanPhamBanChay.labelsX}
-            />
+            /> */}
           </div>
         </div>
         <div className="Cart Orange">
@@ -465,11 +465,11 @@ function Dashboard() {
             <div className="Title">Khách hàng tìm năng</div>
           </div>
           <div className="Chart">
-            <ChartLine
+            {/* <ChartLine
               labelNote="Sản phẩm"
               dataChart={chartLineKhachHangTimNang.dataChart}
               labelsX={chartLineKhachHangTimNang.labelsX}
-            />
+            /> */}
           </div>
         </div>
         <div className="Cart Red">
@@ -478,11 +478,11 @@ function Dashboard() {
             <div className="Title">Thống kê đơn hàng</div>
           </div>
           <div className="Chart">
-            <ChartLine
+            {/* <ChartLine
               labelNote="Đơn hàng"
               dataChart={chartLineDonHang.dataChart}
               labelsX={chartLineDonHang.labelsX}
-            />
+            /> */}
           </div>
         </div>
       </div>

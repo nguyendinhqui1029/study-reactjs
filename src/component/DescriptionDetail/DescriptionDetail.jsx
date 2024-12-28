@@ -58,7 +58,7 @@ function DescriptionDetail(props) {
     discount: 0,
   });
 
-  const [size, setSize] = useState([
+  const [size] = useState([
     { value: "S", label: "Size S - 30->45 kg" },
     { value: "M", label: "Size M - 45->55 kg" },
     { value: "L", label: "Size L - 55->65 kg" },

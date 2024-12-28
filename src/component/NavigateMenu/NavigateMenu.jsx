@@ -61,7 +61,7 @@ function NavigateMenu(props) {
       .then((categories) => {
         disPatch(categoriesAction(categories));
       });
-  }, []);
+  });
 
   const handleSelectedCategory = (item) => {
     if (!item.hasOwnProperty("subCategory") || !item.subCategory.length) {

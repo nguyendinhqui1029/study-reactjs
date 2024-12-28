@@ -17,7 +17,7 @@ function HeaderMain() {
       setListMenu(value);
       disPatch(addMenu(value));
     });
-  }, []);
+  });
   return (
     <div className="HeaderMain">
       <div className="ContainerHeader">
