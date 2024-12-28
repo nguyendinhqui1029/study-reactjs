@@ -99,10 +99,7 @@ function DeliveryAddress(props) {
     fetchCities();
   }, []);
 
-  useEffect(() => {
-    fetchDistricts();
-  }, [selectedCity, selectedCitySubAddress]);
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   async function fetchDistricts() {
     try {
       const districtsList = [];
@@ -143,7 +140,6 @@ function DeliveryAddress(props) {
           district.idCity === selectedCitySubAddress &&
             districtsSubAddress.push(...district.districts);
         });
-        console.log(districtsList);
         setDistrictsByCity(Object.assign(districtsList));
         setDistrictsByCitySubAddress(Object.assign(districtsSubAddress));
       }
@@ -151,6 +147,12 @@ function DeliveryAddress(props) {
       console.log(error);
     }
   }
+
+  useEffect(() => {
+    fetchDistricts();
+  }, [fetchDistricts, selectedCity, selectedCitySubAddress]);
+
+  
 
   function changeOtherAddress(event) {
     setShowOtherAddress(event.target.checked);

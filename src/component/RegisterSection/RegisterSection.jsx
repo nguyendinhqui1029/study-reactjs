@@ -37,6 +37,7 @@ const fetchCities = async () => {
   }
 };
 
+// eslint-disable-next-line react-hooks/exhaustive-deps
 async function fetchDistricts() {
   try {
     const districtsList = [];
@@ -85,7 +86,7 @@ async function fetchDistricts() {
 
   useEffect(() => {
     fetchDistricts();
-  }, [selectedCity]);
+  }, [fetchDistricts, selectedCity]);
 
   const initialValue = {
     email: "",
