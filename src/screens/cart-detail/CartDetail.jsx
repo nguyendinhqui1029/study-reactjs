@@ -25,11 +25,12 @@ import {
   formatCurrency,
 } from "../../util/util";
 import { removeToCart, updateAmountToCart } from "../../actions/cart";
+import { useLocation } from 'react-router-dom';
 CartDetail.propTypes = {};
 
 function CartDetail() {
   const [listSteper] = useState(dataSourceSteper);
-  let { path } = useMatch(); //get root path
+  let { pathname } = useLocation(); //get root path
   const navigate = useNavigate();
   let cartList = useSelector((carts) => carts.cart.cartList);
   const status = useSelector((carts) => carts.cart.status);
@@ -64,60 +65,66 @@ function CartDetail() {
           <Steper listSteper={listSteper} />
         </div>
         <Routes>
-          <Route path="/cart-detail" exact={true}>
-            <div className="ProductInfo">
-              <Table
-                dataList={cartList}
-                headerList={headerTable}
-                hanldeCalculateValue={hanldeCalculateValue}
-                hanldeAction={removeItemCart}
-              />
-              <div className="Total">
-                <span className="Label">Tổng thanh toán:</span>
-                <span className="Content">
-                  {formatCurrency(calculateTotal(cartList))} <sup>đ</sup>
-                </span>
-              </div>
-              <div className="ButtonSend">
-                <Button
-                  className="ButtonLeft"
-                  onClick={() => navigate("/product")}
-                >
-                  Tiếp tục mua hàng
-                </Button>
-                <Button className="ButtonRight">
-                  <Link to={`${path}/payment`} className="Link">
-                    Tiến hành thanh toán
-                  </Link>
-                </Button>
-              </div>
+      {/* Cart Detail Route */}
+      <Route
+        path="/cart-detail"
+        element={
+          <div className="ProductInfo">
+            <Table
+              dataList={cartList}
+              headerList={headerTable}
+              hanldeCalculateValue={hanldeCalculateValue}
+              hanldeAction={removeItemCart}
+            />
+            <div className="Total">
+              <span className="Label">Tổng thanh toán:</span>
+              <span className="Content">
+                {formatCurrency(calculateTotal(cartList))} <sup>đ</sup>
+              </span>
             </div>
-          </Route>
-          <Route path={`${path}/payment`}>
-            <Payment />
-          </Route>
-          <Route path={`${path}/completed`}>
-            <div className="ProductInfo">
-              <CompletedOrder />
-              <div className="ButtonSend">
-                <Button
-                  className="ButtonLeft"
-                  onClick={() => navigate("/product")}
-                >
-                  Tiếp tục mua hàng
-                </Button>
-                <Button
-                  className="ButtonRight"
-                  onClick={() => {
-                    navigate("/my-order");
-                  }}
-                >
-                  Đơn hàng của tôi
-                </Button>
-              </div>
+            <div className="ButtonSend">
+              <Button className="ButtonLeft" onClick={() => navigate("/product")}>
+                Tiếp tục mua hàng
+              </Button>
+              <Button className="ButtonRight">
+                <Link to={`${pathname}/payment`} className="Link">
+                  Tiến hành thanh toán
+                </Link>
+              </Button>
             </div>
-          </Route>
-        </Routes>
+          </div>
+        }
+      />
+      
+      {/* Payment Route */}
+      <Route
+        path={`${pathname}/payment`}
+        element={<Payment />}
+      />
+      
+      {/* Completed Order Route */}
+      <Route
+        path={`${pathname}/completed`}
+        element={
+          <div className="ProductInfo">
+            <CompletedOrder />
+            <div className="ButtonSend">
+              <Button className="ButtonLeft" onClick={() => navigate("/product")}>
+                Tiếp tục mua hàng
+              </Button>
+              <Button
+                className="ButtonRight"
+                onClick={() => {
+                  navigate("/my-order");
+                }}
+              >
+                Đơn hàng của tôi
+              </Button>
+            </div>
+          </div>
+        }
+      />
+    </Routes>
       </div>
     </div>
   );

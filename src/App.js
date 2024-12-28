@@ -32,7 +32,6 @@ library.add(...iconList);
 function App() {
   return (
     <Provider store={store}>
-      <div className="App">
         {/* //get all icon name */}
         {/* {iconList.map(icon=>{
           return (
@@ -63,7 +62,6 @@ function App() {
         <Route path="/account" element={<Login />} />
       </Route>
     </Routes>
-      </div>
     </Provider>
   );
 }
