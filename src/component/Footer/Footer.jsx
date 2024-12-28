@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import Header from "../Header/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

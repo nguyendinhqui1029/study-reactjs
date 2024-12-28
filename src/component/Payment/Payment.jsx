@@ -17,7 +17,7 @@ import {
 import orderDetailApi from "../../api/orderDetail";
 import { useNavigate } from 'react-router-dom';
 function Payment() {
-  const [paymentMethod, setPaymentMethod] = useState([]);
+  const [setPaymentMethod] = useState([]);
   const [deliveryMethod, setDeliveryMethod] = useState([]);
   const [deliveryFee, setDeliveryFee] = useState(0);
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ function Payment() {
   useEffect(() => {
     setPaymentMethod(payMethod);
     setDeliveryMethod(deliveryMethod);
-  }, [payMethod, deliveryMethod]);
+  }, [deliveryMethod, setPaymentMethod]);
 
   const changeDeliveryMethod = (item) => {
     disPatch(addDeliveryMethod(item));

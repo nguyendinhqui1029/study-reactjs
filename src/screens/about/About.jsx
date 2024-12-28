@@ -9,7 +9,7 @@ import "./About.scss";
 function About() {
   const disPatch = useDispatch();
   const navigate = useNavigate();
-  const [header, setHeader] = useState("Đăng nhập");
+  const [setHeader] = useState("Đăng nhập");
   navigate.listen((location) => {
     const item = dataSource.find((item) => {
       return item.path.includes(location.pathname);
@@ -17,10 +17,6 @@ function About() {
     if (item && item.hasOwnProperty("title")) setHeader(item.title);
   });
 
-  function navigatePage(item) {
-    setHeader(item.title);
-    navigate(item.path[0]);
-  }
   function selectedCategory(item) {
     disPatch(removeQuickLink(1));
     disPatch(addQuickLink({ path: `/about`, label: "Giới thiệu" }));

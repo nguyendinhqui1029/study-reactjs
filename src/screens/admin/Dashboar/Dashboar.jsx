@@ -347,22 +347,22 @@ const data = [
   },
 ];
 function Dashboard() {
-  const chartLineDanhThu = useMemo(() => {
-    return {
-      labelsX: [
-        "Thứ 2",
-        "Thứ 3",
-        "Thứ 4",
-        "Thứ 5",
-        "Thứ 6",
-        "Thứ 7",
-        "Chủ nhật",
-      ],
-      dataChart: [
-        1000000, 5000000, 5000000, 3000000, 2000000, 3000000, 3000000,
-      ],
-    };
-  }, []);
+  // const chartLineDanhThu = useMemo(() => {
+  //   return {
+  //     labelsX: [
+  //       "Thứ 2",
+  //       "Thứ 3",
+  //       "Thứ 4",
+  //       "Thứ 5",
+  //       "Thứ 6",
+  //       "Thứ 7",
+  //       "Chủ nhật",
+  //     ],
+  //     dataChart: [
+  //       1000000, 5000000, 5000000, 3000000, 2000000, 3000000, 3000000,
+  //     ],
+  //   };
+  // }, []);
   // const chartLineSanPhamBanChay = useMemo(() => {
   //   return {
   //     labelsX: ["Quần thể thao", "Áo thun nam", "Dầu gội"],

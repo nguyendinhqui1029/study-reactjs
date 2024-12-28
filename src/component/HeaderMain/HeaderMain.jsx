@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React,{ useEffect, useState } from 'react';
 import NavigateMenu from "../../component/NavigateMenu/NavigateMenu";
 import HeaderPage from "../../component/HeaderPage/HeaderPage";
@@ -25,7 +26,7 @@ function HeaderMain() {
       </div>
       <div className="ContainerCart">
         <div className="ContainerHeaderLeft">
-          <img src={require("../../assets/images/logo.png").default} />
+          <img src={require("assets/images/logo.png")} />
         </div>
         <div className="ContainerHeaderRight">
           <div className="ContainerSlogan">

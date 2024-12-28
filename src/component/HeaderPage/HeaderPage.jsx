@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./HeaderPage.scss";
@@ -22,7 +23,7 @@ function HeaderPage() {
   const [dataSourceMenu, setDataSourceMenu] = useState([]);
   useEffect(() => {
     setDataSourceMenu([...menuList, account]);
-  }, [menuList]);
+  }, [account, menuList]);
   const { pathname } = useLocation();
   const [isCloseMenu, setIsCloseMenu] = useState(false);
   function navigateClick(item) {
@@ -67,7 +68,6 @@ function HeaderPage() {
           return (
             <div className="ContainerNav" key={index}>
               <Link
-                className="Link"
                 to={item.path}
                 className={item.path === pathname ? "Link Active" : "Link"}
                 onClick={() => navigateClick(item)}
